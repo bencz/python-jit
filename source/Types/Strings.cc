@@ -4,10 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <phosg/Strings.hh>
-
 #include "../Debug.hh"
-#include "../Compiler/Exception.hh"
 #include "../Compiler/BuiltinFunctions.hh"
 
 using namespace std;

@@ -6,7 +6,6 @@
 #include <phosg/Strings.hh>
 
 #include "../Compiler/BuiltinFunctions.hh"
-#include "../Compiler/Exception.hh"
 #include "Strings.hh"
 
 using namespace std;
