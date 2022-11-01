@@ -1,15 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <signal.h>
 
 #include <phosg/Strings.hh>
 
 #include "Debug.hh"
 #include "AST/SourceFile.hh"
-#include "AST/PythonLexer.hh"
 #include "AST/PythonParser.hh"
-#include "Compiler/BuiltinFunctions.hh"
 #include "Compiler/Compile.hh"
 #include "Modules/__pyjit__.hh"
 #include "Modules/sys.hh"
