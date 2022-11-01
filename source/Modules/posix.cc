@@ -694,7 +694,7 @@ shared_ptr<ModuleContext> posix_initialize(GlobalContext *global_context)
                                                                         delete_reference(path);
 
                                                                         // TODO: we shouldn't use list_directory here because it can throw c++
-                                                                        // exceptions; that will break nemesys-generated code
+                                                                        // exceptions; that will break pyjit-generated code
                                                                         auto items = list_directory(path_bytes->data);
                                                                         delete_reference(path_bytes);
 

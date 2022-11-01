@@ -8,7 +8,7 @@
 .globl _raise_python_exception
 raise_python_exception:
 _raise_python_exception:
-  # c entry point for raising a nemesys exception. exc block ptr is rdi, exc
+  # c entry point for raising a pyjit exception. exc block ptr is rdi, exc
   # object is rsi. just move them into the right places and go to
   # __unwind_exception_internal. if the exception block or exception object is
   # NULL, return without doing anything
@@ -23,7 +23,7 @@ _raise_python_exception__exc_valid:
   mov r14, rdi
   mov r15, rsi
 
-# exception unwinding entry point when called from nemesys code. note that this
+# exception unwinding entry point when called from pyjit code. note that this
 # function does not follow the system v calling convention that we adhere to in
 # the rest of this project! it expects its arguments in r14 (the exception block
 # chain) and r15 (the active exception).

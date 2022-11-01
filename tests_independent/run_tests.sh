@@ -4,8 +4,8 @@ set -e
 
 for OPTIONS in "" "-XNoInlineRefcounting" "-XNoEagerCompilation" "-XNoInlineRefcounting -XNoEagerCompilation"; do
   for FILE in *.py; do
-    echo "-- nemesys $OPTIONS $FILE"
-    ../nemesys $OPTIONS $FILE > output.$FILE.txt
+    echo "-- pyjit $OPTIONS $FILE"
+    ../pyjit $OPTIONS $FILE > output.$FILE.txt
   done
 done
 

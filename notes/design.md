@@ -1,11 +1,11 @@
-# nemesys design
+# pyjit design
 
 ## Principles
 
 Guiding ideas behind this project:
 - This project is for my enjoyment and learning only. It's great if it also ends up providing something of value to the world, but that's not the primary objective.
-- nemesys does not aim to support everything that CPython supports. Reasonable restrictions can be placed on the language that make it easier to statically analyze and compile; it is explicitly a non-goal of this project to support all existing Python code.
-- With the above in mind, nemesys should operate on pure, unmodified Python code, without any auxiliary information (like Cython's .pxd files). All code that runs in nemesys should also run in CPython, unless it uses the `__nemesys__` built-in module.
+- pyjit does not aim to support everything that CPython supports. Reasonable restrictions can be placed on the language that make it easier to statically analyze and compile; it is explicitly a non-goal of this project to support all existing Python code.
+- With the above in mind, pyjit should operate on pure, unmodified Python code, without any auxiliary information (like Cython's .pxd files). All code that runs in pyjit should also run in CPython, unless it uses the `__pyjit__` built-in module.
 
 ## Type system
 
@@ -43,13 +43,13 @@ Built-in types have structures defined in their respective header files (in the 
 
 Unlike CPython, not everything is an object. Trivial types (None, booleans, integers, and floats) do not have reference counts because they're passed by value. Modules, functions, and classes also do not have reference counts because they are never deleted. Everything else has a reference count; this includes bytes objects, unicode objects, lists, tuples, sets, dicts, and class instance objects.
 
-The reference count of an object includes all instances of pointers to that object, including instances in CPU registers. All functions that return references to objects return owned references. All functions compiled by nemesys that take objects as arguments accept only owned references, and will delete those references before returning (that is, the caller is responsible for adding references to arguments, but not deleting those references after the function returns). Some built-in functions take borrowed references as arguments; most notably, the built-in data structure functions take borrowed references to all of their arguments, and will not delete those references before returning.
+The reference count of an object includes all instances of pointers to that object, including instances in CPU registers. All functions that return references to objects return owned references. All functions compiled by pyjit that take objects as arguments accept only owned references, and will delete those references before returning (that is, the caller is responsible for adding references to arguments, but not deleting those references after the function returns). Some built-in functions take borrowed references as arguments; most notably, the built-in data structure functions take borrowed references to all of their arguments, and will not delete those references before returning.
 
 ## Conventions
 
 ### Calling convention
 
-The nemesys calling convention is similar to the System V calling convention used by Linux and Mac OS, but is a bit more complex. nemesys' convention is mostly compatible with the System V convention, so nemesys functions can directly call C functions without unnecessary register shuffling. nemesys' register assignment is as follows:
+The pyjit calling convention is similar to the System V calling convention used by Linux and Mac OS, but is a bit more complex. pyjit' convention is mostly compatible with the System V convention, so pyjit functions can directly call C functions without unnecessary register shuffling. pyjit' register assignment is as follows:
 
     register = callee-save? = purpose
     rax      =      no      = int return value, temp values
@@ -83,7 +83,7 @@ The special registers (r12-r15) are used as follows:
 
 ### Function and class model
 
-nemesys doesn't have multiple inheritance yet.
+pyjit doesn't have multiple inheritance yet.
 
 Every function and class has a unique ID that identifies it. These IDs share the same space. The `__init__` function for a class has a function ID equal to the class' ID, but otherwise, no function may have the same ID as a class.
 
@@ -93,7 +93,7 @@ A class does not have to define `__init__`. If a class doesn't define `__init__`
 
 If a built-in class doesn't define `__init__`, though, then it doesn't appear in the global namespace at all, so it can't be instantiated from Python code because Python code can't even refer to it. It can only be instantiated by C/C++ functions and returned to Python code.
 
-A function may have multiple fragments. A fragment is a compiled implementation of a function with completely-defined argument types. This is how nemesys implements function polymorphism - a function's argument types aren't necessarily known at definition time, so the argument variables are left as indeterminate types during static analysis. Then at call compilation time, the types of all arguments are known, and this signature is used to refer to the correct fragment, which can then be compiled if necessary and called.
+A function may have multiple fragments. A fragment is a compiled implementation of a function with completely-defined argument types. This is how pyjit implements function polymorphism - a function's argument types aren't necessarily known at definition time, so the argument variables are left as indeterminate types during static analysis. Then at call compilation time, the types of all arguments are known, and this signature is used to refer to the correct fragment, which can then be compiled if necessary and called.
 
 For example, the function `sum_all_arguments` in tests/functions.py ends up having 3 fragments when all the code in the root scope has been run - one that takes all ints, one that takes all unicode objects, and one that takes all ints except arguments 2, 3, and 4, which are floats. If another module later imports this module and calls the function with different combinations of argument types, more fragments will be generated and compiled for this function. Currently, the fragment search algorithm is linear-time, so compiling a call to a function with a lot of fragments can be slow. This will be fixed in the future.
 
@@ -101,7 +101,7 @@ Fragments may be incompletely compiled; that is, they may contain calls to the c
 
 ## Compilation procedure
 
-nemesys compiles modules in multiple phases. Roughly described, the phases are as follows:
+pyjit compiles modules in multiple phases. Roughly described, the phases are as follows:
 - Search (finding the source file on disk)
 - Loading (loading the source file into memory)
 - Parsing (converting the source file to an abstract syntax tree)
@@ -147,7 +147,7 @@ Module root scopes compile into functions that take no arguments and return the 
 
 Space for all local variables is initialized at the beginning of the function's scope. Temporary variables may only live during a statement's execution; when a statement is completed, they are either copied to a local/global variable or destroyed. This means that no registers should be reserved across statement boundaries, and no references should be held in registers either.
 
-This visitor enforces type annotations for function calls. If a caller attempts to pass an argument that doesn't match the target function's argument types, the caller's caller will get a NemesysCompilerError (since the error occurs during the caller's execution). If a function attempts to return a value that doesn't align with its type annotation, the caller will get a NemesysCompilerError as well.
+This visitor enforces type annotations for function calls. If a caller attempts to pass an argument that doesn't match the target function's argument types, the caller's caller will get a PyJitCompilerError (since the error occurs during the caller's execution). If a function attempts to return a value that doesn't align with its type annotation, the caller will get a PyJitCompilerError as well.
 
 ### Assembly phase
 

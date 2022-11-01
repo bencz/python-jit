@@ -1,4 +1,4 @@
-#include "__nemesys__.hh"
+#include "__pyjit__.hh"
 
 #include <errno.h>
 #include <inttypes.h>
@@ -24,11 +24,11 @@ using FragDef = BuiltinFragmentDefinition;
 
 extern shared_ptr<GlobalContext> global;
 
-static wstring __doc__ = L"Built-in objects specific to nemesys.";
+static wstring __doc__ = L"Built-in objects specific to pyjit.";
 
 static map<string, Value> globals({
                                           {"__doc__",  Value(ValueType::Unicode, __doc__)},
-                                          {"__name__", Value(ValueType::Unicode, L"__nemesys__")},
+                                          {"__name__", Value(ValueType::Unicode, L"__pyjit__")},
                                   });
 
 
@@ -80,7 +80,7 @@ static BytesObject* module_source(ModuleContext* module) {
 }
 
 
-shared_ptr<ModuleContext> __nemesys___initialize(GlobalContext* global_context) {
+shared_ptr<ModuleContext> __pyjit___initialize(GlobalContext* global_context) {
     Value None(ValueType::None);
     Value Bool(ValueType::Bool);
     Value Int(ValueType::Int);
@@ -198,7 +198,7 @@ shared_ptr<ModuleContext> __nemesys___initialize(GlobalContext* global_context) 
                                                            });
 
     std::shared_ptr<ModuleContext> module(new ModuleContext(
-            global_context, "__nemesys__", globals));
+            global_context, "__pyjit__", globals));
 
     for (auto& def : module_function_defs) {
         module->create_builtin_function(def);

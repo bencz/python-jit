@@ -21,7 +21,7 @@ unicode_aa_split = 'a' + 'a'
 unicode_bb_split = 'b' + 'b'
 
 # we don't run the is/is not operators because they produce different results in
-# nemesys vs. cpython, and this is (currently) expected behavior
+# pyjit vs. cpython, and this is (currently) expected behavior
 
 print('bytes_aa vs bytes_aa')
 do_comparisons_with_is(bytes_aa, bytes_aa)
@@ -41,7 +41,7 @@ do_comparisons_with_is(unicode_aa, unicode_bb)
 print('unicode_bb vs unicode_aa')
 do_comparisons_with_is(unicode_bb, unicode_aa)
 
-# note: we don't check `is` here because it doesn't work in nemesys - ints and
+# note: we don't check `is` here because it doesn't work in pyjit - ints and
 # floats aren't objects
 print('2 vs 3')
 do_comparisons(2, 3)

@@ -33,7 +33,7 @@ print('there are ' + repr(num_objects) + ' BoringTestClass objects')
 test()
 print('there are ' + repr(num_objects) + ' BoringTestClass objects')
 
-# unlike python, nemesys doesn't destroy objects at the global scope on shutdown
+# unlike python, pyjit doesn't destroy objects at the global scope on shutdown
 y = BoringTestClass('y', 40, print_destruction=False)
 y.print_value()
 print('there are ' + repr(num_objects) + ' BoringTestClass objects')

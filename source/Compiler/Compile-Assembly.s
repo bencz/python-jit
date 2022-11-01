@@ -1,6 +1,6 @@
 .intel_syntax noprefix
 
-# function call resolution entry point when called from nemesys code. note that
+# function call resolution entry point when called from pyjit code. note that
 # this function does not follow the system v calling convention that we adhere
 # to in the rest of this project! the arguments to the function being compiled
 # are in the normal registers, but r10 specifies the global context pointer and
@@ -61,7 +61,7 @@ stack_ok:
   # on success, this function returns the address of the newly-compiled fragment
   # and sets the address pointed to by rdx to the new return address. on
   # failure, it returns NULL and sets the address pointed to by rdx to the
-  # address of a NemesysCompilerError object, which should be raised to the
+  # address of a PyJitCompilerError object, which should be raised to the
   # calling code. in the failure case, this function also releases the argument
   # references appropriately.
   call jit_compile_scope

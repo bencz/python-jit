@@ -1,4 +1,4 @@
-import __nemesys__
+import __pyjit__
 import posix
 
-posix.write(1, __nemesys__.module_source(__name__))
+posix.write(1, __pyjit__.module_source(__name__))

@@ -165,7 +165,7 @@ print('39 % 5 == ' + repr(39 % 5))
 print('39 ** 5 == ' + repr(39 ** 5))
 
 # float operators
-# TODO: we use a smaller exponent for ** because nemesys' repr(Float) isn't as
+# TODO: we use a smaller exponent for ** because pyjit' repr(Float) isn't as
 # precise as python3's repr(Float) yet
 print('39.0 + 5 == ' + repr(39.0 + 5))
 print('39.0 - 5 == ' + repr(39.0 - 5))
@@ -189,10 +189,10 @@ print('39.0 // 5.0 == ' + repr(39.0 // 5.0))
 print('39.0 % 5.0 == ' + repr(39.0 % 5.0))
 print('39.0 ** 3.0 == ' + repr(39.0 ** 3.0))
 
-# exponentiation has a special case for Int and Int when exponent < 0; nemesys
+# exponentiation has a special case for Int and Int when exponent < 0; pyjit
 # doesn't implement this (it raises ValueError) because it can't dynamically
 # change the variable type
-if sys.version == 'nemesys':
+if sys.version == 'pyjit':
   try:
     x = 39 ** -5
     print('negative exponentiation is incorrect')
@@ -217,5 +217,5 @@ print('3 if True else fail(2) == ' + repr(3 if True else fail(2)))
 
 
 # uncomment for curiosity
-#import __nemesys__
-#print('this module compiles to ' + repr(__nemesys__.module_compiled_size(__name__)) + ' bytes')
+#import __pyjit__
+#print('this module compiles to ' + repr(__pyjit__.module_compiled_size(__name__)) + ' bytes')

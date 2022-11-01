@@ -604,7 +604,7 @@ shared_ptr<ModuleContext> builtins_initialize(GlobalContext *global_context)
         }, one_field_reference_destructor);
     };
 
-    static auto NemesysCompilerError_destructor = void_fn_ptr([](uint8_t *o) {
+    static auto PyJitCompilerError_destructor = void_fn_ptr([](uint8_t *o) {
         // filename and message are Unicode, which have refcounts
         delete_reference(*reinterpret_cast<void **>(o + sizeof(InstanceObject) + 8));
         delete_reference(*reinterpret_cast<void **>(o + sizeof(InstanceObject) + 24));
@@ -617,13 +617,13 @@ shared_ptr<ModuleContext> builtins_initialize(GlobalContext *global_context)
                                                       // it's important that the attrs are declared in lexicographic order to
                                                       // avoid confusion at the construction callsite (since these are generated
                                                       // by the compiler itself, not by Python callers)
-                                                      BuiltinClassDefinition("NemesysCompilerError",
+                                                      BuiltinClassDefinition("PyJitCompilerError",
                                                                              {{"callsite_token", Int},
                                                                               {"filename",       Unicode},
                                                                               {"line",           Int},
                                                                               {"message",        Unicode},
                                                                              },
-                                                                             {}, NemesysCompilerError_destructor),
+                                                                             {}, PyJitCompilerError_destructor),
 
                                                       // TODO: probably all of these should have some more attributes
                                                       declare_message_exception("ArithmeticError"),
@@ -879,7 +879,7 @@ shared_ptr<ModuleContext> builtins_initialize(GlobalContext *global_context)
     global_context->ValueError_class_id = get_class_id("ValueError");
     global_context->AssertionError_class_id = get_class_id("AssertionError");
     global_context->OSError_class_id = get_class_id("OSError");
-    global_context->NemesysCompilerError_class_id = get_class_id("NemesysCompilerError");
+    global_context->PyJitCompilerError_class_id = get_class_id("PyJitCompilerError");
 
     global_context->BytesObject_class_id = get_class_id("bytes");
     global_context->UnicodeObject_class_id = get_class_id("unicode");

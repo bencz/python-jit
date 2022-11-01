@@ -66,7 +66,7 @@ static map<string, Value> globals({
                                           // {"stdin",                Value()},
                                           // {"stdout",               Value()},
                                           // {"thread_info",          Value()},
-                                          {"version",             Value(ValueType::Unicode, L"nemesys")},
+                                          {"version",             Value(ValueType::Unicode, L"pyjit")},
                                           // {"version_info",         Value()},
                                   });
 

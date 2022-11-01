@@ -606,9 +606,9 @@ const void *jit_compile_scope(GlobalContext *global, int64_t callsite_token,
             line = src->line_number_of_offset(src_offset);
         }
 
-        // note: this procedure matches the definition of NemesysCompilerError in
+        // note: this procedure matches the definition of PyJitCompilerError in
         // Modules/builtins.cc
-        InstanceObject *exc = create_instance(global->NemesysCompilerError_class_id, 4);
+        InstanceObject *exc = create_instance(global->PyJitCompilerError_class_id, 4);
         exc->set_attribute_int(0, callsite_token);
         exc->set_attribute_object(1, filename_obj);
         exc->set_attribute_int(2, line);

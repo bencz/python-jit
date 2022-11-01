@@ -22,7 +22,7 @@
 #include "../AST/PythonLexer.hh" // for escape()
 
 // builtin module implementations
-#include "../Modules/__nemesys__.hh"
+#include "../Modules/__pyjit__.hh"
 #include "../Modules/builtins.hh"
 #include "../Modules/errno.hh"
 #include "../Modules/math.hh"
@@ -43,7 +43,7 @@ InstanceObject MemoryError_instance;
 typedef shared_ptr<ModuleContext> (*module_constructor_t)(GlobalContext *);
 
 static unordered_map<string, module_constructor_t> builtin_modules({
-                                                                           DECLARE_MODULE(__nemesys__),
+                                                                           DECLARE_MODULE(__pyjit__),
                                                                            DECLARE_MODULE(builtins),
                                                                            DECLARE_MODULE(errno),
                                                                            DECLARE_MODULE(math),

@@ -9,7 +9,7 @@ def test_function_polymorphism():
 
   try:
     print(f(True, 3))
-  except NemesysCompilerError as e:
+  except PyJitCompilerError as e:
     print('compiler error at %s:%d - %s' % (e.filename, e.line, e.message))
   else:
     assert False
@@ -39,21 +39,21 @@ def test_type_annotations():
 
   try:
     print(call_add(6.5, 5, 3))
-  except NemesysCompilerError as e:
+  except PyJitCompilerError as e:
     print('compiler error at %s:%d - %s' % (e.filename, e.line, e.message))
   else:
     assert False
 
   try:
     print(call_add('not a number', None, None))
-  except NemesysCompilerError as e:
+  except PyJitCompilerError as e:
     print('compiler error at %s:%d - %s' % (e.filename, e.line, e.message))
   else:
     assert False
 
   try:
     print(call_add('not a number', None, False))
-  except NemesysCompilerError as e:
+  except PyJitCompilerError as e:
     print('compiler error at %s:%d - %s' % (e.filename, e.line, e.message))
   else:
     assert False

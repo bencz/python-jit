@@ -289,7 +289,7 @@ struct GlobalContext
     int64_t IndexError_class_id;
     int64_t KeyError_class_id;
     int64_t OSError_class_id;
-    int64_t NemesysCompilerError_class_id;
+    int64_t PyJitCompilerError_class_id;
     int64_t TypeError_class_id;
     int64_t ValueError_class_id;
 

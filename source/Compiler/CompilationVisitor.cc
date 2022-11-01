@@ -3967,7 +3967,7 @@ void CompilationVisitor::visit(FunctionDefinition *a)
 
     // if the function being compiled is __del__ on a class, we need to set up the
     // special registers within the function, since it can be called from anywhere
-    // (even non-nemesys code)
+    // (even non-pyjit code)
     bool setup_special_regs = (this->fragment->function->class_id) &&
                               (this->fragment->function->name == "__del__");
 

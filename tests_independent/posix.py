@@ -1,10 +1,10 @@
-import __nemesys__
+import __pyjit__
 import posix
 import sys
 
 st = posix.stat(__file__)
-assert st.st_size == len(__nemesys__.module_source(__name__))
-print('this script is ' + repr(st.st_size) + ' bytes long, according to both stat and __nemesys__')
+assert st.st_size == len(__pyjit__.module_source(__name__))
+print('this script is ' + repr(st.st_size) + ' bytes long, according to both stat and __pyjit__')
 
 for k in posix.environ:
   print('environment variable: ' + repr(k))

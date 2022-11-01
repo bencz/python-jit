@@ -66,8 +66,8 @@ add_executable(pyjit
         source/Types/List.cc 
         source/Types/Dictionary.cc 
         source/Types/Instance.cc 
-        source/Modules/builtins.cc 
-        source/Modules/__nemesys__.cc 
+        source/Modules/builtins.cc
+        source/Modules/__pyjit__.cc
         source/Modules/sys.cc 
         source/Modules/math.cc 
         source/Modules/posix.cc 

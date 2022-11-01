@@ -11,7 +11,7 @@
 #include "AST/PythonParser.hh"
 #include "Compiler/BuiltinFunctions.hh"
 #include "Compiler/Compile.hh"
-#include "Modules/__nemesys__.hh"
+#include "Modules/__pyjit__.hh"
 #include "Modules/sys.hh"
 
 using namespace std;
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
     // need a script or code to run
     if (!module_spec || sys_argv.empty())
     {
-        fprintf(stderr, "nemesys does not yet implement an interactive shell\n");
+        fprintf(stderr, "pyjit does not yet implement an interactive shell\n");
         return 1;
     }
 
