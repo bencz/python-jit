@@ -1,12 +1,8 @@
 #include "math.hh"
 
 #include <math.h>
-#include <stdlib.h>
 #include <stdint.h>
-#include <sys/time.h>
-#include <unistd.h>
 
-#include "../Compiler/Contexts.hh"
 #include "../Compiler/BuiltinFunctions.hh"
 #include "../Types/Tuple.hh"
 

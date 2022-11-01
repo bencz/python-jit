@@ -12,8 +12,6 @@
 
 struct ASTVisitor; // forward declaration since the visitor type depends on types declared in this file
 
-
-
 struct ASTNode
 {
     size_t file_offset;

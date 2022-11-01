@@ -1,9 +1,5 @@
 #include <stdio.h>
 
-#include <memory>
-#include <string>
-#include <vector>
-
 #include "PythonASTNodes.hh"
 #include "PythonASTVisitor.hh"
 

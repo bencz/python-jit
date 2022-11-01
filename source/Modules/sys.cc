@@ -1,21 +1,13 @@
 #include "sys.hh"
 
-#include <inttypes.h>
-
-#include <stdlib.h>
 #include <stdint.h>
-#include <stdio.h>
 
 #include <memory>
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-#include "../Compiler/Contexts.hh"
 #include "../Compiler/BuiltinFunctions.hh"
-#include "../Types/Strings.hh"
-#include "../Types/List.hh"
 
 using namespace std;
 

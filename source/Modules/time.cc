@@ -1,9 +1,6 @@
 #include "time.hh"
 
-#include <errno.h>
-#include <stdlib.h>
 #include <stdint.h>
-#include <sys/time.h>
 #include <unistd.h>
 
 #include <memory>
@@ -11,9 +8,7 @@
 #include <string>
 #include <unordered_map>
 
-#include "../Compiler/Contexts.hh"
 #include "../Compiler/BuiltinFunctions.hh"
-#include "../Environment/Value.hh"
 #include "../Types/Dictionary.hh"
 
 using namespace std;

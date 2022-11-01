@@ -1,7 +1,5 @@
 #include "posix.hh"
 
-#include <inttypes.h>
-
 #include <errno.h>
 #include <fcntl.h>
 #include <signal.h>
@@ -19,12 +17,9 @@
 #include <phosg/Filesystem.hh>
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-#include "../Compiler/Contexts.hh"
 #include "../Compiler/BuiltinFunctions.hh"
-#include "../Types/Strings.hh"
 #include "../Types/List.hh"
 #include "../Types/Dictionary.hh"
 

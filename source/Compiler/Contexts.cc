@@ -9,10 +9,7 @@
 #include <phosg/Strings.hh>
 
 #include "../Debug.hh"
-#include "../Environment/Value.hh"
 #include "../AST/PythonLexer.hh"
-#include "../AST/PythonParser.hh"
-#include "../AST/PythonASTNodes.hh"
 #include "../Types/Instance.hh"
 #include "BuiltinFunctions.hh"
 

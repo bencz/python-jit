@@ -1,25 +1,13 @@
 #include "BuiltinFunctions.hh"
 
-#include <inttypes.h>
-
-#include <stdlib.h>
-#include <stdint.h>
-#include <stdio.h>
 #include <string.h>
 
 #include <memory>
-#include <phosg/Strings.hh>
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
 #include "Contexts.hh"
-#include "../Types/Strings.hh"
-#include "../Types/Dictionary.hh"
 #include "../Types/List.hh"
-#include "../Types/Instance.hh"
-#include "../AST/PythonLexer.hh" // for escape()
 
 // builtin module implementations
 #include "../Modules/__pyjit__.hh"

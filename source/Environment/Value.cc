@@ -2,7 +2,6 @@
 
 #include <inttypes.h>
 #include <math.h>
-#include <stdio.h>
 #include <string.h>
 
 #include <exception>
@@ -15,7 +14,6 @@
 #include <vector>
 
 #include "../Types/Format.hh"
-#include "../Types/Reference.hh"
 
 using namespace std;
 

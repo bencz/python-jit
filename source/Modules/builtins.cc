@@ -4,17 +4,13 @@
 #include <math.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <sys/time.h>
 #include <unistd.h>
 
 #include <phosg/Strings.hh>
 
 #include "../AST/PythonLexer.hh" // for escape()
-#include "../Compiler/Contexts.hh"
 #include "../Compiler/BuiltinFunctions.hh"
 #include "../Types/List.hh"
-#include "../Types/Tuple.hh"
-#include "../Types/Strings.hh"
 #include "../Types/Dictionary.hh"
 
 using namespace std;

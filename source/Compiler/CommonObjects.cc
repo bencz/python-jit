@@ -1,7 +1,6 @@
 #include "CommonObjects.hh"
 
 #include <math.h>
-#include <stdint.h>
 #include <stdlib.h>
 
 #include <unordered_map>
@@ -10,11 +9,8 @@
 #include "BuiltinFunctions.hh"
 #include "Compile.hh"
 #include "Exception.hh"
-#include "../Types/Reference.hh"
-#include "../Types/Strings.hh"
 #include "../Types/Format.hh"
 #include "../Types/List.hh"
-#include "../Types/Tuple.hh"
 #include "../Types/Dictionary.hh"
 
 using namespace std;

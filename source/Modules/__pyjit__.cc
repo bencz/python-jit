@@ -1,23 +1,17 @@
 #include "__pyjit__.hh"
 
 #include <errno.h>
-#include <inttypes.h>
-#include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
 
 #include <memory>
-#include <phosg/Time.hh>
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 #include "../Debug.hh"
-#include "../Compiler/Contexts.hh"
 #include "../Compiler/BuiltinFunctions.hh"
 #include "../Compiler/CommonObjects.hh"
-#include "../Types/Strings.hh"
 
 using namespace std;
 using FragDef = BuiltinFragmentDefinition;

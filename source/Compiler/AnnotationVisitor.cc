@@ -3,15 +3,9 @@
 #include <inttypes.h>
 #include <stdio.h>
 
-#include <phosg/Filesystem.hh>
 #include <phosg/Strings.hh>
 
 #include "../AST/PythonLexer.hh"
-#include "../AST/PythonParser.hh"
-#include "../AST/PythonASTNodes.hh"
-#include "../AST/PythonASTVisitor.hh"
-#include "../Environment/Value.hh"
-#include "BuiltinFunctions.hh"
 #include "Compile.hh"
 
 using namespace std;
