@@ -3,32 +3,12 @@ project(pyjit CXX ASM)
 
 set(CMAKE_CXX_STANDARD 20)
 
-set(CMAKE_C_COMPILER clang)
 set(CMAKE_CXX_COMPILER clang++)
 SET(CMAKE_ASM_COMPILER clang++)
 
-set(CMAKE_C_FLAGS "-DLINUX")
-set(CMAKE_CXX_FLAGS "-DLINUX")
+set(CMAKE_CXX_FLAGS "-DLINUX -fPIC -Wno-strict-aliasing -Wno-unused-result -Wno-overflow")
 
 include_directories("./libs")
-
-set_property(SOURCE libs/phosg/Encoding.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/Filesystem.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/Hash.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/Image.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/JSON.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/Network.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/Process.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/Random.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/Strings.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/Time.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/Tools.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/UnitTest.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-
-set_property(SOURCE libs/libamd64/AMD64Assembler.cc APPEND PROPERTY COMPILE_OPTIONS -fPIC)
-set_property(SOURCE libs/libamd64/CodeBuffer.cc APPEND PROPERTY COMPILE_OPTIONS -fPIC)
-set_property(SOURCE libs/libamd64/FileAssembler.cc APPEND PROPERTY COMPILE_OPTIONS -fPIC)
-
 
 add_executable(pyjit
         # phosg
