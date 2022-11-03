@@ -239,7 +239,7 @@ ModuleContext::ModuleContext(GlobalContext *global, const string &name,
     }
     else
     {
-        this->create_global_variable("__file__", Value(ValueType::Unicode, unescape_unicode(filename)), false);
+        this->create_global_variable("__file__", Value(ValueType::Unicode, unescape_unicode(realpath(filename))), false);
     }
 }
 
