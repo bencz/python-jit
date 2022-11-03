@@ -10,21 +10,20 @@ SET(CMAKE_ASM_COMPILER clang++)
 set(CMAKE_C_FLAGS "-DLINUX")
 set(CMAKE_CXX_FLAGS "-DLINUX")
 
-include_directories("/libs/phosg/src")
-include_directories("/libs/libamd64")
+include_directories("./libs")
 
-set_property(SOURCE libs/phosg/src/Encoding.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/src/Filesystem.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/src/Hash.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/src/Image.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/src/JSON.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/src/Network.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/src/Process.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/src/Random.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/src/Strings.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/src/Time.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/src/Tools.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
-set_property(SOURCE libs/phosg/src/UnitTest.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
+set_property(SOURCE libs/phosg/Encoding.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
+set_property(SOURCE libs/phosg/Filesystem.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
+set_property(SOURCE libs/phosg/Hash.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
+set_property(SOURCE libs/phosg/Image.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
+set_property(SOURCE libs/phosg/JSON.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
+set_property(SOURCE libs/phosg/Network.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
+set_property(SOURCE libs/phosg/Process.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
+set_property(SOURCE libs/phosg/Random.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
+set_property(SOURCE libs/phosg/Strings.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
+set_property(SOURCE libs/phosg/Time.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
+set_property(SOURCE libs/phosg/Tools.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
+set_property(SOURCE libs/phosg/UnitTest.cc APPEND PROPERTY COMPILE_OPTIONS -Wno-strict-aliasing -Wno-unused-result -Wno-overflow)
 
 set_property(SOURCE libs/libamd64/AMD64Assembler.cc APPEND PROPERTY COMPILE_OPTIONS -fPIC)
 set_property(SOURCE libs/libamd64/CodeBuffer.cc APPEND PROPERTY COMPILE_OPTIONS -fPIC)
@@ -33,18 +32,18 @@ set_property(SOURCE libs/libamd64/FileAssembler.cc APPEND PROPERTY COMPILE_OPTIO
 
 add_executable(pyjit
         # phosg
-        libs/phosg/src/Encoding.cc
-        libs/phosg/src/Filesystem.cc
-        libs/phosg/src/Hash.cc
-        libs/phosg/src/Image.cc
-        libs/phosg/src/JSON.cc
-        libs/phosg/src/Network.cc
-        libs/phosg/src/Process.cc
-        libs/phosg/src/Random.cc
-        libs/phosg/src/Strings.cc
-        libs/phosg/src/Time.cc
-        libs/phosg/src/Tools.cc
-        libs/phosg/src/UnitTest.cc
+        libs/phosg/Encoding.cc
+        libs/phosg/Filesystem.cc
+        libs/phosg/Hash.cc
+        libs/phosg/Image.cc
+        libs/phosg/JSON.cc
+        libs/phosg/Network.cc
+        libs/phosg/Process.cc
+        libs/phosg/Random.cc
+        libs/phosg/Strings.cc
+        libs/phosg/Time.cc
+        libs/phosg/Tools.cc
+        libs/phosg/UnitTest.cc
 
         # libamd64
         libs/libamd64/AMD64Assembler.cc
