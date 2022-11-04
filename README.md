@@ -12,3 +12,4 @@ Main changes that were made
 * Fixed some code bugs
 * Removed dependency with phosg and libamd64 ( it's not necessary to install it on the system anymore )
 * * The phosg and libamd64 code is now integrated into the compiler code
+* Fixed global variable `__file__` to make it compatible with python3
