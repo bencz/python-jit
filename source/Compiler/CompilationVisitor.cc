@@ -1106,7 +1106,6 @@ void CompilationVisitor::visit(BinaryOperation *a)
             if (left_int && right_int)
             {
                 this->as.write_imul(target_mem.base_register, left_mem);
-
             }
             else if (left_int && right_float)
             {
