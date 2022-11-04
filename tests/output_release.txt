@@ -1,0 +1,567 @@
+[refcount:create] created Unicode object 0x55a374c76420: Definitions of built-in functions.
+[refcount:create] created Unicode object 0x55a374c83ec0: __main__
+[refcount:create] created Unicode object 0x55a374c7e170: builtins
+[__main__] loaded exceptions_basic.py (19 lines, 517 bytes)
+
+[__main__] ======== module lexed
+      n:    0 type:             Try s: f:0.000000 i:0 off:0 len:3
+      n:    1 type:          _Colon s: f:0.000000 i:0 off:3 len:1
+      n:    2 type:        _Newline s: f:0.000000 i:0 off:4 len:1
+      n:    3 type:         _Indent s: f:0.000000 i:0 off:5 len:0
+      n:    4 type:        _Dynamic s:print f:0.000000 i:0 off:7 len:5
+      n:    5 type:      _OpenParen s: f:0.000000 i:0 off:12 len:1
+      n:    6 type:_UnicodeConstant s:whatever you do, don\'t type a string with the letter y in it f:0.000000 i:0 off:13 len:63
+      n:    7 type:     _CloseParen s: f:0.000000 i:0 off:76 len:1
+      n:    8 type:        _Newline s: f:0.000000 i:0 off:77 len:1
+      n:    9 type:        _Dynamic s:value f:0.000000 i:0 off:80 len:5
+      n:   10 type:         _Equals s: f:0.000000 i:0 off:86 len:1
+      n:   11 type:        _Dynamic s:input f:0.000000 i:0 off:88 len:5
+      n:   12 type:      _OpenParen s: f:0.000000 i:0 off:93 len:1
+      n:   13 type:     _CloseParen s: f:0.000000 i:0 off:94 len:1
+      n:   14 type:        _Newline s: f:0.000000 i:0 off:95 len:1
+      n:   15 type:          Assert s: f:0.000000 i:0 off:98 len:6
+      n:   16 type:_UnicodeConstant s:y f:0.000000 i:0 off:105 len:3
+      n:   17 type:           NotIn s: f:0.000000 i:0 off:17 len:0
+      n:   18 type:        _Dynamic s:value f:0.000000 i:0 off:116 len:5
+      n:   19 type:          _Comma s: f:0.000000 i:0 off:121 len:1
+      n:   20 type:_UnicodeConstant s:you typed:  f:0.000000 i:0 off:123 len:13
+      n:   21 type:           _Plus s: f:0.000000 i:0 off:137 len:1
+      n:   22 type:        _Dynamic s:value f:0.000000 i:0 off:139 len:5
+      n:   23 type:        _Newline s: f:0.000000 i:0 off:144 len:1
+      n:   24 type:        _Dynamic s:print f:0.000000 i:0 off:147 len:5
+      n:   25 type:      _OpenParen s: f:0.000000 i:0 off:152 len:1
+      n:   26 type:_UnicodeConstant s:code after the assert statement executed f:0.000000 i:0 off:153 len:42
+      n:   27 type:     _CloseParen s: f:0.000000 i:0 off:195 len:1
+      n:   28 type:        _Newline s: f:0.000000 i:0 off:196 len:1
+      n:   29 type:       _Unindent s: f:0.000000 i:0 off:198 len:0
+      n:   30 type:          Except s: f:0.000000 i:0 off:198 len:6
+      n:   31 type:        _Dynamic s:AssertionError f:0.000000 i:0 off:205 len:14
+      n:   32 type:              As s: f:0.000000 i:0 off:220 len:2
+      n:   33 type:        _Dynamic s:e1 f:0.000000 i:0 off:223 len:2
+      n:   34 type:          _Colon s: f:0.000000 i:0 off:225 len:1
+      n:   35 type:        _Newline s: f:0.000000 i:0 off:226 len:1
+      n:   36 type:         _Indent s: f:0.000000 i:0 off:227 len:0
+      n:   37 type:        _Dynamic s:print f:0.000000 i:0 off:229 len:5
+      n:   38 type:      _OpenParen s: f:0.000000 i:0 off:234 len:1
+      n:   39 type:_UnicodeConstant s:nooooo you monster! what have you done! f:0.000000 i:0 off:235 len:41
+      n:   40 type:     _CloseParen s: f:0.000000 i:0 off:276 len:1
+      n:   41 type:        _Newline s: f:0.000000 i:0 off:331 len:1
+      n:   42 type:       _Unindent s: f:0.000000 i:0 off:333 len:0
+      n:   43 type:          Except s: f:0.000000 i:0 off:333 len:6
+      n:   44 type:        _Dynamic s:MemoryError f:0.000000 i:0 off:340 len:11
+      n:   45 type:              As s: f:0.000000 i:0 off:352 len:2
+      n:   46 type:        _Dynamic s:e2 f:0.000000 i:0 off:355 len:2
+      n:   47 type:          _Colon s: f:0.000000 i:0 off:357 len:1
+      n:   48 type:        _Newline s: f:0.000000 i:0 off:358 len:1
+      n:   49 type:         _Indent s: f:0.000000 i:0 off:359 len:0
+      n:   50 type:        _Dynamic s:print f:0.000000 i:0 off:361 len:5
+      n:   51 type:      _OpenParen s: f:0.000000 i:0 off:366 len:1
+      n:   52 type:_UnicodeConstant s:something went horribly horribly wrong f:0.000000 i:0 off:367 len:40
+      n:   53 type:     _CloseParen s: f:0.000000 i:0 off:407 len:1
+      n:   54 type:        _Newline s: f:0.000000 i:0 off:408 len:1
+      n:   55 type:       _Unindent s: f:0.000000 i:0 off:410 len:0
+      n:   56 type:            Else s: f:0.000000 i:0 off:410 len:4
+      n:   57 type:          _Colon s: f:0.000000 i:0 off:414 len:1
+      n:   58 type:        _Newline s: f:0.000000 i:0 off:415 len:1
+      n:   59 type:         _Indent s: f:0.000000 i:0 off:416 len:0
+      n:   60 type:        _Dynamic s:print f:0.000000 i:0 off:418 len:5
+      n:   61 type:      _OpenParen s: f:0.000000 i:0 off:423 len:1
+      n:   62 type:_UnicodeConstant s:the string did not contain y - all is well f:0.000000 i:0 off:424 len:44
+      n:   63 type:     _CloseParen s: f:0.000000 i:0 off:468 len:1
+      n:   64 type:        _Newline s: f:0.000000 i:0 off:469 len:1
+      n:   65 type:       _Unindent s: f:0.000000 i:0 off:471 len:0
+      n:   66 type:         Finally s: f:0.000000 i:0 off:471 len:7
+      n:   67 type:          _Colon s: f:0.000000 i:0 off:478 len:1
+      n:   68 type:        _Newline s: f:0.000000 i:0 off:479 len:1
+      n:   69 type:         _Indent s: f:0.000000 i:0 off:480 len:0
+      n:   70 type:        _Dynamic s:print f:0.000000 i:0 off:482 len:5
+      n:   71 type:      _OpenParen s: f:0.000000 i:0 off:487 len:1
+      n:   72 type:_UnicodeConstant s:it is now the end of days f:0.000000 i:0 off:488 len:27
+      n:   73 type:     _CloseParen s: f:0.000000 i:0 off:515 len:1
+      n:   74 type:        _Newline s: f:0.000000 i:0 off:516 len:1
+      n:   75 type:       _Unindent s: f:0.000000 i:0 off:517 len:0
+      n:   76 type:        _Newline s: f:0.000000 i:0 off:76 len:0
+
+[__main__] ======== module parsed
+# ModuleStatement
+try:
+    print(u'whatever you do, don\'t type a string with the letter y in it')
+    value $ = input()
+    assert (u'y' not in value), (u'you typed: ' + value)
+    print(u'code after the assert statement executed')
+except AssertionError as e1:
+    print(u'nooooo you monster! what have you done!')
+except MemoryError as e2:
+    print(u'something went horribly horribly wrong')
+else:
+    print(u'the string did not contain y - all is well')
+finally:
+    print(u'it is now the end of days')
+
+[__main__] ======== module annotated
+# ModuleStatement
+try:
+    print@0(u'whatever you do, don\'t type a string with the letter y in it')
+    value $ = input@1()
+    assert (u'y' not in value), (u'you typed: ' + value)
+    print@2(u'code after the assert statement executed')
+except AssertionError as e1:
+    print@3(u'nooooo you monster! what have you done!')
+except MemoryError as e2:
+    print@4(u'something went horribly horribly wrong')
+else:
+    print@5(u'the string did not contain y - all is well')
+finally:
+    print@6(u'it is now the end of days')
+# split count: 7
+# global: __file__ = '/home/bencz/programming/python-jit/tests/exceptions_basic.py'
+# global: __name__ = '__main__'
+# global: e1
+# global: e2
+# global: value
+
+[__main__] ======== module analyzed
+# ModuleStatement
+try:
+    print@0=-1(u'whatever you do, don\'t type a string with the letter y in it')
+    value $ = input@1=-3()
+    assert (u'y' not in value), (u'you typed: ' + value)
+    print@2=-1(u'code after the assert statement executed')
+except AssertionError as e1:
+    print@3=-1(u'nooooo you monster! what have you done!')
+except MemoryError as e2:
+    print@4=-1(u'something went horribly horribly wrong')
+else:
+    print@5=-1(u'the string did not contain y - all is well')
+finally:
+    print@6=-1(u'it is now the end of days')
+# global at r13+8: __file__ = '/home/bencz/programming/python-jit/tests/exceptions_basic.py'
+# global at r13+0: __name__ = '__main__'
+# global at r13+24: e1 = Instance:-17
+# global at r13+32: e2 = Instance:-42
+# global at r13+16: value = Unicode
+
+[refcount:create] created Unicode object 0x55a374c81320: /home/bencz/programming/python-jit/tests/exceptions_basic.py
+[__main__] ======== global space statically initialized
+00 | C0 3E C8 74 A3 55 00 00 20 13 C8 74 A3 55 00 00 |  > t U     t U  
+10 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 |                 
+20 | 00 00 00 00 00 00 00 00                         |                 
+
+[refcount:create] created Unicode object 0x55a374c6c100: whatever you do, don't type a string with the letter y in it
+[refcount:create] created Unicode object 0x55a374c74cd0: 
+[refcount:create] created Unicode object 0x55a374ca1c30: y
+[refcount:create] created Unicode object 0x55a374ca44d0: you typed: 
+[refcount:create] created Unicode object 0x55a374c828c0: code after the assert statement executed
+[refcount:create] created Unicode object 0x55a374cab290: the string did not contain y - all is well
+[refcount:create] created Unicode object 0x55a374caeb80: nooooo you monster! what have you done!
+[refcount:create] created Unicode object 0x55a374cb1e60: something went horribly horribly wrong
+[refcount:create] created Unicode object 0x55a374c80cf0: it is now the end of days
+[__main__+ROOT] ======== scope compiled
+
+[__main__+ROOT] ======== scope assembled
+
+__ModuleStatement_0x55a374c80990:
+00007FF78D241000   55                              push     rbp
+00007FF78D241001   48 89 E5                        mov      rbp, rsp
+00007FF78D241004   41 54                           push     r12
+00007FF78D241006   49 BC D0 9D C6 74 A3 55 00 00   movabs   r12, 0x000055A374C69DD0
+00007FF78D241010   41 55                           push     r13
+00007FF78D241012   49 BD 30 0B C8 74 A3 55 00 00   movabs   r13, 0x000055A374C80B30
+00007FF78D24101C   41 56                           push     r14
+00007FF78D24101E   4D 31 F6                        xor      r14, r14
+00007FF78D241021   41 57                           push     r15
+00007FF78D241023   4D 31 FF                        xor      r15, r15
+__ModuleStatement_0x55a374c80990_create_exc_block:
+00007FF78D241026   48 89 E0                        mov      rax, rsp
+00007FF78D241029   6A 00                           push     0x00
+00007FF78D24102B   48 B9 C0 13 24 8D F7 7F 00 00   movabs   rcx, 0x00007FF78D2413C0
+00007FF78D241035   51                              push     rcx
+00007FF78D241036   41 55                           push     r13
+00007FF78D241038   41 54                           push     r12
+00007FF78D24103A   55                              push     rbp
+00007FF78D24103B   50                              push     rax
+00007FF78D24103C   41 56                           push     r14
+00007FF78D24103E   49 89 E6                        mov      r14, rsp
+__ModuleStatement_0x55a374c80990_body:
+__TryStatement_0x55a374c6ae60_create_exc_block:
+00007FF78D241041   48 89 E0                        mov      rax, rsp
+00007FF78D241044   6A 00                           push     0x00
+00007FF78D241046   48 B9 67 13 24 8D F7 7F 00 00   movabs   rcx, 0x00007FF78D241367
+00007FF78D241050   51                              push     rcx
+00007FF78D241051   6A D6                           push     -0x2A
+00007FF78D241053   6A 01                           push     0x01
+00007FF78D241055   48 B9 15 13 24 8D F7 7F 00 00   movabs   rcx, 0x00007FF78D241315
+00007FF78D24105F   51                              push     rcx
+00007FF78D241060   6A EF                           push     -0x11
+00007FF78D241062   6A 01                           push     0x01
+00007FF78D241064   48 B9 C1 12 24 8D F7 7F 00 00   movabs   rcx, 0x00007FF78D2412C1
+00007FF78D24106E   51                              push     rcx
+00007FF78D24106F   41 55                           push     r13
+00007FF78D241071   41 54                           push     r12
+00007FF78D241073   55                              push     rbp
+00007FF78D241074   50                              push     rax
+00007FF78D241075   41 56                           push     r14
+00007FF78D241077   49 89 E6                        mov      r14, rsp
+__TryStatement_0x55a374c6ae60_body:
+__FunctionCall_0x55a374c76510_push_registers:
+__FunctionCall_0x55a374c76510_evaluate_arg_0_passed_value:
+00007FF78D24107A   48 BF 00 C1 C6 74 A3 55 00 00   movabs   rdi, 0x000055A374C6C100
+00007FF78D241084   57                              push     rdi
+00007FF78D241085   48 83 EC 08                     sub      rsp, 8
+00007FF78D241089   41 FF 54 24 20                  call     qword ptr [r12 + 0x20]
+00007FF78D24108E   48 83 C4 08                     add      rsp, 8
+00007FF78D241092   5F                              pop      rdi
+__FunctionCall_0x55a374c76510_call_function_-1_fragment_5_split_0:
+00007FF78D241093   48 B8 A0 BE 3B 74 A3 55 00 00   movabs   rax, 0x000055A3743BBEA0
+00007FF78D24109D   FF D0                           call     rax
+__FunctionCall_0x55a374c76510_returned:
+00007FF78D24109F   4D 85 FF                        test     r15, r15
+00007FF78D2410A2   74 05                           je       +0x5 ; __FunctionCall_0x55a374c76510_no_exception, __FunctionCall_0x55a374c76510_restore_stack, __AssignmentStatement_0x55a374c7f110, __FunctionCall_0x55a374c76610_push_registers, __FunctionCall_0x55a374c76610_evaluate_arg_0_default_value
+00007FF78D2410A4   41 FF 64 24 30                  jmp      qword ptr [r12 + 0x30]
+__FunctionCall_0x55a374c76510_no_exception:
+__FunctionCall_0x55a374c76510_restore_stack:
+__AssignmentStatement_0x55a374c7f110:
+__FunctionCall_0x55a374c76610_push_registers:
+__FunctionCall_0x55a374c76610_evaluate_arg_0_default_value:
+00007FF78D2410A9   48 BF D0 4C C7 74 A3 55 00 00   movabs   rdi, 0x000055A374C74CD0
+00007FF78D2410B3   57                              push     rdi
+00007FF78D2410B4   48 83 EC 08                     sub      rsp, 8
+00007FF78D2410B8   41 FF 54 24 20                  call     qword ptr [r12 + 0x20]
+00007FF78D2410BD   48 83 C4 08                     add      rsp, 8
+00007FF78D2410C1   5F                              pop      rdi
+__FunctionCall_0x55a374c76610_call_function_-3_fragment_0_split_1:
+00007FF78D2410C2   48 B8 70 BF 3B 74 A3 55 00 00   movabs   rax, 0x000055A3743BBF70
+00007FF78D2410CC   FF D0                           call     rax
+__FunctionCall_0x55a374c76610_returned:
+00007FF78D2410CE   4D 85 FF                        test     r15, r15
+00007FF78D2410D1   74 05                           je       +0x5 ; __FunctionCall_0x55a374c76610_no_exception, __FunctionCall_0x55a374c76610_restore_stack, __AssignmentStatement_0x55a374c7f110_write_value
+00007FF78D2410D3   41 FF 64 24 30                  jmp      qword ptr [r12 + 0x30]
+__FunctionCall_0x55a374c76610_no_exception:
+__FunctionCall_0x55a374c76610_restore_stack:
+__AssignmentStatement_0x55a374c7f110_write_value:
+00007FF78D2410D8   50                              push     rax
+00007FF78D2410D9   48 83 EC 08                     sub      rsp, 8
+00007FF78D2410DD   4C 89 F6                        mov      rsi, r14
+00007FF78D2410E0   49 8B 7D 10                     mov      rdi, [r13 + 0x10]
+00007FF78D2410E4   41 FF 54 24 28                  call     qword ptr [r12 + 0x28]
+00007FF78D2410E9   48 83 C4 08                     add      rsp, 8
+00007FF78D2410ED   58                              pop      rax
+00007FF78D2410EE   49 89 45 10                     mov      [r13 + 0x10], rax
+__AssertStatement_0x55a374c7f960_check:
+__BinaryOperation_0x55a374c7f210_evaluate_left:
+00007FF78D2410F2   48 B8 30 1C CA 74 A3 55 00 00   movabs   rax, 0x000055A374CA1C30
+00007FF78D2410FC   50                              push     rax
+00007FF78D2410FD   48 83 EC 08                     sub      rsp, 8
+00007FF78D241101   48 89 C7                        mov      rdi, rax
+00007FF78D241104   41 FF 54 24 20                  call     qword ptr [r12 + 0x20]
+00007FF78D241109   48 83 C4 08                     add      rsp, 8
+00007FF78D24110D   58                              pop      rax
+00007FF78D24110E   50                              push     rax
+__BinaryOperation_0x55a374c7f210_evaluate_right:
+00007FF78D24110F   49 8B 45 10                     mov      rax, [r13 + 0x10]
+00007FF78D241113   50                              push     rax
+00007FF78D241114   48 89 C7                        mov      rdi, rax
+00007FF78D241117   41 FF 54 24 20                  call     qword ptr [r12 + 0x20]
+00007FF78D24111C   58                              pop      rax
+00007FF78D24111D   50                              push     rax
+__BinaryOperation_0x55a374c7f210_combine:
+00007FF78D24111E   48 8B 74 24 08                  mov      rsi, [rsp + 0x8]
+00007FF78D241123   48 89 C7                        mov      rdi, rax
+00007FF78D241126   41 FF 94 24 80 00 00 00         call     qword ptr [r12 + 0x80]
+00007FF78D24112E   48 83 F0 01                     xor      rax, 1
+__BinaryOperation_0x55a374c7f210_cleanup:
+00007FF78D241132   50                              push     rax
+__BinaryOperation_0x55a374c7f210_destroy_left:
+00007FF78D241133   48 83 EC 08                     sub      rsp, 8
+00007FF78D241137   4C 89 F6                        mov      rsi, r14
+00007FF78D24113A   48 8B 7C 24 10                  mov      rdi, [rsp + 0x10]
+00007FF78D24113F   41 FF 54 24 28                  call     qword ptr [r12 + 0x28]
+00007FF78D241144   48 83 C4 08                     add      rsp, 8
+00007FF78D241148   48 8B 04 24                     mov      rax, [rsp]
+00007FF78D24114C   48 83 C4 18                     add      rsp, 24
+__BinaryOperation_0x55a374c7f210_complete:
+__AssertStatement_0x55a374c7f960_test:
+00007FF78D241150   48 85 C0                        test     rax, rax
+00007FF78D241153   0F 85 DA 00 00 00               jne      +0xDA ; __AssertStatement_0x55a374c7f960_pass, __FunctionCall_0x55a374c7fb70_push_registers, __FunctionCall_0x55a374c7fb70_evaluate_arg_0_passed_value
+__AssertStatement_0x55a374c7f960_evaluate_message:
+__BinaryOperation_0x55a374c7f8d0_evaluate_left:
+00007FF78D241159   48 B8 D0 44 CA 74 A3 55 00 00   movabs   rax, 0x000055A374CA44D0
+00007FF78D241163   50                              push     rax
+00007FF78D241164   48 83 EC 08                     sub      rsp, 8
+00007FF78D241168   48 89 C7                        mov      rdi, rax
+00007FF78D24116B   41 FF 54 24 20                  call     qword ptr [r12 + 0x20]
+00007FF78D241170   48 83 C4 08                     add      rsp, 8
+00007FF78D241174   58                              pop      rax
+00007FF78D241175   50                              push     rax
+__BinaryOperation_0x55a374c7f8d0_evaluate_right:
+00007FF78D241176   49 8B 45 10                     mov      rax, [r13 + 0x10]
+00007FF78D24117A   50                              push     rax
+00007FF78D24117B   48 89 C7                        mov      rdi, rax
+00007FF78D24117E   41 FF 54 24 20                  call     qword ptr [r12 + 0x20]
+00007FF78D241183   58                              pop      rax
+00007FF78D241184   50                              push     rax
+__BinaryOperation_0x55a374c7f8d0_combine:
+00007FF78D241185   4C 89 F2                        mov      rdx, r14
+00007FF78D241188   48 89 C6                        mov      rsi, rax
+00007FF78D24118B   48 8B 7C 24 08                  mov      rdi, [rsp + 0x8]
+00007FF78D241190   41 FF 94 24 88 00 00 00         call     qword ptr [r12 + 0x88]
+__BinaryOperation_0x55a374c7f8d0_cleanup:
+00007FF78D241198   50                              push     rax
+__BinaryOperation_0x55a374c7f8d0_destroy_left:
+00007FF78D241199   48 83 EC 08                     sub      rsp, 8
+00007FF78D24119D   4C 89 F6                        mov      rsi, r14
+00007FF78D2411A0   48 8B 7C 24 10                  mov      rdi, [rsp + 0x10]
+00007FF78D2411A5   41 FF 54 24 28                  call     qword ptr [r12 + 0x28]
+00007FF78D2411AA   48 83 C4 08                     add      rsp, 8
+__BinaryOperation_0x55a374c7f8d0_destroy_right:
+00007FF78D2411AE   48 83 EC 08                     sub      rsp, 8
+00007FF78D2411B2   4C 89 F6                        mov      rsi, r14
+00007FF78D2411B5   48 8B 7C 24 18                  mov      rdi, [rsp + 0x18]
+00007FF78D2411BA   41 FF 54 24 28                  call     qword ptr [r12 + 0x28]
+00007FF78D2411BF   48 83 C4 08                     add      rsp, 8
+00007FF78D2411C3   48 8B 04 24                     mov      rax, [rsp]
+00007FF78D2411C7   48 83 C4 18                     add      rsp, 24
+__BinaryOperation_0x55a374c7f8d0_complete:
+00007FF78D2411CB   50                              push     rax
+__AssertStatement_0x55a374c7f960_allocate_instance:
+00007FF78D2411CC   48 83 EC 08                     sub      rsp, 8
+00007FF78D2411D0   48 C7 C7 28 00 00 00            mov      rdi, 0x00000028
+00007FF78D2411D7   41 FF 54 24 08                  call     qword ptr [r12 + 0x8]
+00007FF78D2411DC   48 83 C4 08                     add      rsp, 8
+00007FF78D2411E0   48 85 C0                        test     rax, rax
+00007FF78D2411E3   75 16                           jne      +0x16 ; __alloc_class_instance_skip_0
+00007FF78D2411E5   49 8B 04 24                     mov      rax, [r12]
+00007FF78D2411E9   50                              push     rax
+00007FF78D2411EA   48 89 C7                        mov      rdi, rax
+00007FF78D2411ED   41 FF 54 24 20                  call     qword ptr [r12 + 0x20]
+00007FF78D2411F2   58                              pop      rax
+00007FF78D2411F3   49 89 C7                        mov      r15, rax
+00007FF78D2411F6   41 FF 64 24 30                  jmp      qword ptr [r12 + 0x30]
+__alloc_class_instance_skip_0:
+00007FF78D2411FB   48 C7 00 01 00 00 00            mov      qword ptr [rax], 0x00000001
+00007FF78D241202   48 B9 A0 BB 3B 74 A3 55 00 00   movabs   rcx, 0x000055A3743BBBA0
+00007FF78D24120C   48 89 48 08                     mov      [rax + 0x8], rcx
+00007FF78D241210   48 C7 40 10 EF FF FF FF         mov      qword ptr [rax + 0x10], 0xFFFFFFEF
+00007FF78D241218   59                              pop      rcx
+00007FF78D241219   48 89 48 18                     mov      [rax + 0x18], rcx
+00007FF78D24121D   48 B9 E0 50 C8 74 A3 55 00 00   movabs   rcx, 0x000055A374C850E0
+00007FF78D241227   48 89 48 20                     mov      [rax + 0x20], rcx
+__AssertStatement_0x55a374c7f960_unwind:
+00007FF78D24122B   49 89 C7                        mov      r15, rax
+00007FF78D24122E   41 FF 64 24 30                  jmp      qword ptr [r12 + 0x30]
+__AssertStatement_0x55a374c7f960_pass:
+__FunctionCall_0x55a374c7fb70_push_registers:
+__FunctionCall_0x55a374c7fb70_evaluate_arg_0_passed_value:
+00007FF78D241233   48 BF C0 28 C8 74 A3 55 00 00   movabs   rdi, 0x000055A374C828C0
+00007FF78D24123D   57                              push     rdi
+00007FF78D24123E   48 83 EC 08                     sub      rsp, 8
+00007FF78D241242   41 FF 54 24 20                  call     qword ptr [r12 + 0x20]
+00007FF78D241247   48 83 C4 08                     add      rsp, 8
+00007FF78D24124B   5F                              pop      rdi
+__FunctionCall_0x55a374c7fb70_call_function_-1_fragment_5_split_2:
+00007FF78D24124C   48 B8 A0 BE 3B 74 A3 55 00 00   movabs   rax, 0x000055A3743BBEA0
+00007FF78D241256   FF D0                           call     rax
+__FunctionCall_0x55a374c7fb70_returned:
+00007FF78D241258   4D 85 FF                        test     r15, r15
+00007FF78D24125B   74 05                           je       +0x5 ; __FunctionCall_0x55a374c7fb70_no_exception, __FunctionCall_0x55a374c7fb70_restore_stack, __TryStatement_0x55a374c6ae60_remove_exc_blocks
+00007FF78D24125D   41 FF 64 24 30                  jmp      qword ptr [r12 + 0x30]
+__FunctionCall_0x55a374c7fb70_no_exception:
+__FunctionCall_0x55a374c7fb70_restore_stack:
+__TryStatement_0x55a374c6ae60_remove_exc_blocks:
+00007FF78D241262   4C 8B 34 24                     mov      r14, [rsp]
+00007FF78D241266   48 83 C4 68                     add      rsp, 104
+__TryStatement_0x55a374c6ae60_create_else_exc_block:
+00007FF78D24126A   48 89 E0                        mov      rax, rsp
+00007FF78D24126D   6A 00                           push     0x00
+00007FF78D24126F   48 B9 67 13 24 8D F7 7F 00 00   movabs   rcx, 0x00007FF78D241367
+00007FF78D241279   51                              push     rcx
+00007FF78D24127A   41 55                           push     r13
+00007FF78D24127C   41 54                           push     r12
+00007FF78D24127E   55                              push     rbp
+00007FF78D24127F   50                              push     rax
+00007FF78D241280   41 56                           push     r14
+00007FF78D241282   49 89 E6                        mov      r14, rsp
+__ElseStatement_0x55a374c80420:
+__FunctionCall_0x55a374c805b0_push_registers:
+__FunctionCall_0x55a374c805b0_evaluate_arg_0_passed_value:
+00007FF78D241285   48 BF 90 B2 CA 74 A3 55 00 00   movabs   rdi, 0x000055A374CAB290
+00007FF78D24128F   57                              push     rdi
+00007FF78D241290   48 83 EC 08                     sub      rsp, 8
+00007FF78D241294   41 FF 54 24 20                  call     qword ptr [r12 + 0x20]
+00007FF78D241299   48 83 C4 08                     add      rsp, 8
+00007FF78D24129D   5F                              pop      rdi
+__FunctionCall_0x55a374c805b0_call_function_-1_fragment_5_split_5:
+00007FF78D24129E   48 B8 A0 BE 3B 74 A3 55 00 00   movabs   rax, 0x000055A3743BBEA0
+00007FF78D2412A8   FF D0                           call     rax
+__FunctionCall_0x55a374c805b0_returned:
+00007FF78D2412AA   4D 85 FF                        test     r15, r15
+00007FF78D2412AD   74 05                           je       +0x5 ; __FunctionCall_0x55a374c805b0_no_exception, __FunctionCall_0x55a374c805b0_restore_stack, __TryStatement_0x55a374c6ae60_delete_else_exc_block
+00007FF78D2412AF   41 FF 64 24 30                  jmp      qword ptr [r12 + 0x30]
+__FunctionCall_0x55a374c805b0_no_exception:
+__FunctionCall_0x55a374c805b0_restore_stack:
+__TryStatement_0x55a374c6ae60_delete_else_exc_block:
+00007FF78D2412B4   4C 8B 34 24                     mov      r14, [rsp]
+00007FF78D2412B8   48 83 C4 38                     add      rsp, 56
+00007FF78D2412BC   E9 A6 00 00 00                  jmp      +0xA6 ; __TryStatement_0x55a374c6ae60_finally, __FinallyStatement_0x55a374c80760_save_exc
+__TryStatement_0x55a374c6ae60_except_0:
+__TryStatement_0x55a374c6ae60_except_0_write_value:
+00007FF78D2412C1   48 83 EC 08                     sub      rsp, 8
+00007FF78D2412C5   4C 89 F6                        mov      rsi, r14
+00007FF78D2412C8   49 8B 7D 18                     mov      rdi, [r13 + 0x18]
+00007FF78D2412CC   41 FF 54 24 28                  call     qword ptr [r12 + 0x28]
+00007FF78D2412D1   48 83 C4 08                     add      rsp, 8
+00007FF78D2412D5   4D 89 7D 18                     mov      [r13 + 0x18], r15
+00007FF78D2412D9   4D 31 FF                        xor      r15, r15
+__TryStatement_0x55a374c6ae60_except_0_body:
+__FinallyStatement_0x55a374c82820:
+__FunctionCall_0x55a374c7ff10_push_registers:
+00007FF78D2412DC   48 83 EC 08                     sub      rsp, 8
+__FunctionCall_0x55a374c7ff10_evaluate_arg_0_passed_value:
+00007FF78D2412E0   48 BF 80 EB CA 74 A3 55 00 00   movabs   rdi, 0x000055A374CAEB80
+00007FF78D2412EA   57                              push     rdi
+00007FF78D2412EB   48 83 EC 08                     sub      rsp, 8
+00007FF78D2412EF   41 FF 54 24 20                  call     qword ptr [r12 + 0x20]
+00007FF78D2412F4   48 83 C4 08                     add      rsp, 8
+00007FF78D2412F8   5F                              pop      rdi
+__FunctionCall_0x55a374c7ff10_call_function_-1_fragment_5_split_3:
+00007FF78D2412F9   48 B8 A0 BE 3B 74 A3 55 00 00   movabs   rax, 0x000055A3743BBEA0
+00007FF78D241303   FF D0                           call     rax
+__FunctionCall_0x55a374c7ff10_returned:
+00007FF78D241305   4D 85 FF                        test     r15, r15
+00007FF78D241308   74 05                           je       +0x5 ; __FunctionCall_0x55a374c7ff10_no_exception, __FunctionCall_0x55a374c7ff10_restore_stack
+00007FF78D24130A   41 FF 64 24 30                  jmp      qword ptr [r12 + 0x30]
+__FunctionCall_0x55a374c7ff10_no_exception:
+__FunctionCall_0x55a374c7ff10_restore_stack:
+00007FF78D24130F   48 83 C4 08                     add      rsp, 8
+__TryStatement_0x55a374c6ae60_except_0_end:
+00007FF78D241313   EB 52                           jmp      +0x52 ; __TryStatement_0x55a374c6ae60_finally, __FinallyStatement_0x55a374c80760_save_exc
+__TryStatement_0x55a374c6ae60_except_1:
+__TryStatement_0x55a374c6ae60_except_1_write_value:
+00007FF78D241315   48 83 EC 08                     sub      rsp, 8
+00007FF78D241319   4C 89 F6                        mov      rsi, r14
+00007FF78D24131C   49 8B 7D 20                     mov      rdi, [r13 + 0x20]
+00007FF78D241320   41 FF 54 24 28                  call     qword ptr [r12 + 0x28]
+00007FF78D241325   48 83 C4 08                     add      rsp, 8
+00007FF78D241329   4D 89 7D 20                     mov      [r13 + 0x20], r15
+00007FF78D24132D   4D 31 FF                        xor      r15, r15
+__TryStatement_0x55a374c6ae60_except_1_body:
+__FinallyStatement_0x55a374c7dd90:
+__FunctionCall_0x55a374c80290_push_registers:
+00007FF78D241330   48 83 EC 08                     sub      rsp, 8
+__FunctionCall_0x55a374c80290_evaluate_arg_0_passed_value:
+00007FF78D241334   48 BF 60 1E CB 74 A3 55 00 00   movabs   rdi, 0x000055A374CB1E60
+00007FF78D24133E   57                              push     rdi
+00007FF78D24133F   48 83 EC 08                     sub      rsp, 8
+00007FF78D241343   41 FF 54 24 20                  call     qword ptr [r12 + 0x20]
+00007FF78D241348   48 83 C4 08                     add      rsp, 8
+00007FF78D24134C   5F                              pop      rdi
+__FunctionCall_0x55a374c80290_call_function_-1_fragment_5_split_4:
+00007FF78D24134D   48 B8 A0 BE 3B 74 A3 55 00 00   movabs   rax, 0x000055A3743BBEA0
+00007FF78D241357   FF D0                           call     rax
+__FunctionCall_0x55a374c80290_returned:
+00007FF78D241359   4D 85 FF                        test     r15, r15
+00007FF78D24135C   74 05                           je       +0x5 ; __FunctionCall_0x55a374c80290_no_exception, __FunctionCall_0x55a374c80290_restore_stack
+00007FF78D24135E   41 FF 64 24 30                  jmp      qword ptr [r12 + 0x30]
+__FunctionCall_0x55a374c80290_no_exception:
+__FunctionCall_0x55a374c80290_restore_stack:
+00007FF78D241363   48 83 C4 08                     add      rsp, 8
+__TryStatement_0x55a374c6ae60_finally:
+__FinallyStatement_0x55a374c80760_save_exc:
+00007FF78D241367   41 57                           push     r15
+00007FF78D241369   4D 31 FF                        xor      r15, r15
+__FinallyStatement_0x55a374c80760_body:
+__FunctionCall_0x55a374c80830_push_registers:
+__FunctionCall_0x55a374c80830_evaluate_arg_0_passed_value:
+00007FF78D24136C   48 BF F0 0C C8 74 A3 55 00 00   movabs   rdi, 0x000055A374C80CF0
+00007FF78D241376   57                              push     rdi
+00007FF78D241377   48 83 EC 08                     sub      rsp, 8
+00007FF78D24137B   41 FF 54 24 20                  call     qword ptr [r12 + 0x20]
+00007FF78D241380   48 83 C4 08                     add      rsp, 8
+00007FF78D241384   5F                              pop      rdi
+__FunctionCall_0x55a374c80830_call_function_-1_fragment_5_split_6:
+00007FF78D241385   48 B8 A0 BE 3B 74 A3 55 00 00   movabs   rax, 0x000055A3743BBEA0
+00007FF78D24138F   FF D0                           call     rax
+__FunctionCall_0x55a374c80830_returned:
+00007FF78D241391   4D 85 FF                        test     r15, r15
+00007FF78D241394   74 05                           je       +0x5 ; __FunctionCall_0x55a374c80830_no_exception, __FunctionCall_0x55a374c80830_restore_stack, __FinallyStatement_0x55a374c80760_restore_exc
+00007FF78D241396   41 FF 64 24 30                  jmp      qword ptr [r12 + 0x30]
+__FunctionCall_0x55a374c80830_no_exception:
+__FunctionCall_0x55a374c80830_restore_stack:
+__FinallyStatement_0x55a374c80760_restore_exc:
+00007FF78D24139B   4D 85 FF                        test     r15, r15
+00007FF78D24139E   74 10                           je       +0x10 ; __FinallyStatement_0x55a374c80760_no_exc
+00007FF78D2413A0   4C 89 F6                        mov      rsi, r14
+00007FF78D2413A3   49 8B 3F                        mov      rdi, [r15]
+00007FF78D2413A6   41 FF 54 24 28                  call     qword ptr [r12 + 0x28]
+00007FF78D2413AB   41 FF 64 24 30                  jmp      qword ptr [r12 + 0x30]
+__FinallyStatement_0x55a374c80760_no_exc:
+00007FF78D2413B0   41 5F                           pop      r15
+00007FF78D2413B2   4D 85 FF                        test     r15, r15
+00007FF78D2413B5   74 05                           je       +0x5 ; __FinallyStatement_0x55a374c80760_end, __ModuleStatement_0x55a374c80990_return
+00007FF78D2413B7   41 FF 64 24 30                  jmp      qword ptr [r12 + 0x30]
+__FinallyStatement_0x55a374c80760_end:
+__ModuleStatement_0x55a374c80990_return:
+00007FF78D2413BC   48 83 C4 38                     add      rsp, 56
+__ModuleStatement_0x55a374c80990_exc:
+00007FF78D2413C0   4C 89 F8                        mov      rax, r15
+00007FF78D2413C3   41 5F                           pop      r15
+00007FF78D2413C5   41 5E                           pop      r14
+00007FF78D2413C7   41 5D                           pop      r13
+00007FF78D2413C9   41 5C                           pop      r12
+00007FF78D2413CB   5D                              pop      rbp
+00007FF78D2413CC   C3                              ret
+# split 0 at offset 147 (00007FF78D241093)
+# split 1 at offset 194 (00007FF78D2410C2)
+# split 2 at offset 588 (00007FF78D24124C)
+# split 3 at offset 761 (00007FF78D2412F9)
+# split 4 at offset 845 (00007FF78D24134D)
+# split 5 at offset 670 (00007FF78D24129E)
+# split 6 at offset 901 (00007FF78D241385)
+[__main__] ======== executing root scope
+[refcount] 0x55a374c6c100++ == 2
+[refcount] 0x55a374c6c100-- == 1
+[refcount] 0x55a374c74cd0++ == 2
+[refcount] 0x55a374c74cd0-- == 1
+[refcount:create] created Unicode object 0x55a374c81fe0: yep
+[refcount] 0x55a374ca1c30++ == 2
+[refcount] 0x55a374c81fe0++ == 2
+[refcount] 0x55a374c81fe0-- == 1
+[refcount] 0x55a374c828c0++ == 2
+[refcount] 0x55a374c828c0-- == 1
+[refcount] 0x55a374cab290++ == 2
+[refcount] 0x55a374cab290-- == 1
+[refcount] 0x55a374c80cf0++ == 2
+[refcount] 0x55a374c80cf0-- == 1
+
+[__main__] ======== import complete
+
+[refcount:constants] deleting Unicode constant something went horribly horribly wrong
+[refcount] 0x55a374cb1e60-- == 0 (destroying)
+[refcount:constants] deleting Unicode constant nooooo you monster! what have you done!
+[refcount] 0x55a374caeb80-- == 0 (destroying)
+[refcount:constants] deleting Unicode constant it is now the end of days
+[refcount] 0x55a374c80cf0-- == 0 (destroying)
+[refcount:constants] deleting Unicode constant y
+[refcount] 0x55a374ca1c30-- == 1
+[refcount:constants] deleting Unicode constant 
+[refcount] 0x55a374c74cd0-- == 0 (destroying)
+[refcount:constants] deleting Unicode constant the string did not contain y - all is well
+[refcount] 0x55a374cab290-- == 0 (destroying)
+[refcount:constants] deleting Unicode constant code after the assert statement executed
+[refcount] 0x55a374c828c0-- == 0 (destroying)
+[refcount:constants] deleting Unicode constant /home/bencz/programming/python-jit/tests/exceptions_basic.py
+[refcount] 0x55a374c81320-- == 0 (destroying)
+[refcount:constants] deleting Unicode constant whatever you do, don't type a string with the letter y in it
+[refcount] 0x55a374c6c100-- == 0 (destroying)
+[refcount:constants] deleting Unicode constant builtins
+[refcount] 0x55a374c7e170-- == 0 (destroying)
+[refcount:constants] deleting Unicode constant you typed: 
+[refcount] 0x55a374ca44d0-- == 0 (destroying)
+[refcount:constants] deleting Unicode constant __main__
+[refcount] 0x55a374c83ec0-- == 0 (destroying)
+[refcount:constants] deleting Unicode constant Definitions of built-in functions.
+[refcount] 0x55a374c76420-- == 0 (destroying)
+whatever you do, don't type a string with the letter y in it
+code after the assert statement executed
+the string did not contain y - all is well
+it is now the end of days
