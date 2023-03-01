@@ -185,7 +185,7 @@ void ArraySliceLValueReference::accept(ASTVisitor *v)
 
 TupleLValueReference::TupleLValueReference(
         vector<shared_ptr<Expression>> &&items, size_t file_offset) :
-        LValueReference(file_offset), items(move(items))
+        LValueReference(file_offset), items(std::move(items))
 {}
 
 bool TupleLValueReference::valid_lvalue() const
@@ -319,7 +319,7 @@ ListConstructor::ListConstructor(size_t file_offset) :
 {}
 
 ListConstructor::ListConstructor(vector<shared_ptr<Expression>> &&items,
-                                 size_t file_offset) : Expression(file_offset), items(move(items))
+                                 size_t file_offset) : Expression(file_offset), items(std::move(items))
 {}
 
 string ListConstructor::str() const
@@ -344,7 +344,7 @@ DictConstructor::DictConstructor(size_t file_offset) :
 
 DictConstructor::DictConstructor(
         vector<pair<shared_ptr<Expression>, shared_ptr<Expression>>> &&items,
-        size_t file_offset) : Expression(file_offset), items(move(items))
+        size_t file_offset) : Expression(file_offset), items(std::move(items))
 {}
 
 string DictConstructor::str() const
@@ -375,7 +375,7 @@ void DictConstructor::accept(ASTVisitor *v)
 
 
 SetConstructor::SetConstructor(vector<shared_ptr<Expression>> &&items,
-                               size_t file_offset) : Expression(file_offset), items(move(items))
+                               size_t file_offset) : Expression(file_offset), items(std::move(items))
 {}
 
 string SetConstructor::str() const
@@ -399,7 +399,7 @@ TupleConstructor::TupleConstructor(size_t file_offset) :
 {}
 
 TupleConstructor::TupleConstructor(vector<shared_ptr<Expression>> &&items,
-                                   size_t file_offset) : Expression(file_offset), items(move(items))
+                                   size_t file_offset) : Expression(file_offset), items(std::move(items))
 {}
 
 string TupleConstructor::str() const
@@ -528,7 +528,7 @@ string FunctionArguments::Argument::str() const
 
 FunctionArguments::FunctionArguments(std::vector<Argument> &&args,
                                      const std::string &varargs_name, const std::string &varkwargs_name) :
-        args(move(args)), varargs_name(varargs_name),
+        args(std::move(args)), varargs_name(varargs_name),
         varkwargs_name(varkwargs_name)
 {}
 
@@ -559,7 +559,7 @@ string FunctionArguments::str() const
 
 LambdaDefinition::LambdaDefinition(FunctionArguments &&args,
                                    shared_ptr<Expression> result, size_t file_offset) :
-        Expression(file_offset), args(move(args)), result(result)
+        Expression(file_offset), args(std::move(args)), result(result)
 {}
 
 string LambdaDefinition::str() const
@@ -578,7 +578,7 @@ FunctionCall::FunctionCall(shared_ptr<Expression> function,
                            unordered_map<string, shared_ptr<Expression>> &&kwargs,
                            shared_ptr<Expression> varargs, shared_ptr<Expression> varkwargs,
                            size_t file_offset) : Expression(file_offset), function(function),
-                                                 args(move(args)), kwargs(move(kwargs)), varargs(varargs),
+                                                 args(std::move(args)), kwargs(std::move(kwargs)), varargs(varargs),
                                                  varkwargs(varkwargs), function_id(0), split_id(-1),
                                                  is_class_method_call(false), is_class_construction(false),
                                                  callee_function_id(0)
@@ -803,7 +803,7 @@ void SimpleStatement::print(FILE *stream, size_t indent_level) const
 
 
 CompoundStatement::CompoundStatement(vector<shared_ptr<Statement>> &&items,
-                                     size_t file_offset) : Statement(file_offset), items(move(items))
+                                     size_t file_offset) : Statement(file_offset), items(std::move(items))
 {}
 
 void CompoundStatement::print(FILE *stream, size_t indent_level) const
@@ -826,7 +826,7 @@ void CompoundStatement::print(FILE *stream, size_t indent_level) const
 
 
 ModuleStatement::ModuleStatement(vector<shared_ptr<Statement>> &&items,
-                                 size_t file_offset) : CompoundStatement(move(items), file_offset)
+                                 size_t file_offset) : CompoundStatement(std::move(items), file_offset)
 {}
 
 string ModuleStatement::str() const
@@ -946,7 +946,7 @@ FlowStatement::FlowStatement(size_t file_offset) :
 
 ImportStatement::ImportStatement(unordered_map<string, string> &&modules,
                                  unordered_map<string, string> &&names, bool import_star, size_t file_offset)
-        : SimpleStatement(file_offset), modules(move(modules)), names(move(names)),
+        : SimpleStatement(file_offset), modules(std::move(modules)), names(std::move(names)),
           import_star(import_star)
 {}
 
@@ -1010,7 +1010,7 @@ void ImportStatement::accept(ASTVisitor *v)
 
 
 GlobalStatement::GlobalStatement(vector<string> &&names, size_t file_offset) :
-        SimpleStatement(file_offset), names(move(names))
+        SimpleStatement(file_offset), names(std::move(names))
 {}
 
 string GlobalStatement::str() const
@@ -1147,7 +1147,7 @@ void YieldStatement::accept(ASTVisitor *v)
 
 SingleIfStatement::SingleIfStatement(shared_ptr<Expression> check,
                                      vector<shared_ptr<Statement>> &&items, size_t file_offset) :
-        CompoundStatement(move(items), file_offset), check(check),
+        CompoundStatement(std::move(items), file_offset), check(check),
         always_true(false), always_false(false)
 {}
 
@@ -1163,7 +1163,7 @@ void SingleIfStatement::accept(ASTVisitor *v)
 
 
 ElseStatement::ElseStatement(vector<shared_ptr<Statement>> &&items,
-                             size_t file_offset) : CompoundStatement(move(items), file_offset)
+                             size_t file_offset) : CompoundStatement(std::move(items), file_offset)
 {}
 
 string ElseStatement::str() const
@@ -1179,7 +1179,7 @@ void ElseStatement::accept(ASTVisitor *v)
 
 ElifStatement::ElifStatement(shared_ptr<Expression> check,
                              vector<shared_ptr<Statement>> &&items, size_t file_offset) :
-        SingleIfStatement(check, move(items), file_offset)
+        SingleIfStatement(check, std::move(items), file_offset)
 {}
 
 string ElifStatement::str() const
@@ -1197,7 +1197,7 @@ IfStatement::IfStatement(shared_ptr<Expression> check,
                          vector<shared_ptr<Statement>> &&items,
                          vector<shared_ptr<ElifStatement>> &&elifs,
                          shared_ptr<ElseStatement> else_suite, size_t file_offset) :
-        SingleIfStatement(check, move(items), file_offset), elifs(move(elifs)),
+        SingleIfStatement(check, std::move(items), file_offset), elifs(std::move(elifs)),
         else_suite(else_suite)
 {}
 
@@ -1235,7 +1235,7 @@ void IfStatement::accept(ASTVisitor *v)
 ForStatement::ForStatement(shared_ptr<Expression> variable,
                            shared_ptr<Expression> collection, vector<shared_ptr<Statement>> &&items,
                            shared_ptr<ElseStatement> else_suite, size_t file_offset) :
-        CompoundStatement(move(items), file_offset), variable(variable),
+        CompoundStatement(std::move(items), file_offset), variable(variable),
         collection(collection)
 {}
 
@@ -1261,7 +1261,7 @@ void ForStatement::accept(ASTVisitor *v)
 
 WhileStatement::WhileStatement(shared_ptr<Expression> condition,
                                vector<shared_ptr<Statement>> &&items, shared_ptr<ElseStatement> else_suite,
-                               size_t file_offset) : CompoundStatement(move(items), file_offset),
+                               size_t file_offset) : CompoundStatement(std::move(items), file_offset),
                                                      condition(condition), else_suite(else_suite)
 {}
 
@@ -1287,7 +1287,7 @@ void WhileStatement::accept(ASTVisitor *v)
 
 ExceptStatement::ExceptStatement(shared_ptr<Expression> types,
                                  const string &name, vector<shared_ptr<Statement>> &&items,
-                                 size_t file_offset) : CompoundStatement(move(items), file_offset),
+                                 size_t file_offset) : CompoundStatement(std::move(items), file_offset),
                                                        types(types), name(name)
 {}
 
@@ -1311,7 +1311,7 @@ void ExceptStatement::accept(ASTVisitor *v)
 
 
 FinallyStatement::FinallyStatement(vector<shared_ptr<Statement>> &&items,
-                                   size_t file_offset) : CompoundStatement(move(items), file_offset)
+                                   size_t file_offset) : CompoundStatement(std::move(items), file_offset)
 {}
 
 string FinallyStatement::str() const
@@ -1329,7 +1329,7 @@ TryStatement::TryStatement(vector<shared_ptr<Statement>> &&items,
                            vector<shared_ptr<ExceptStatement>> &&excepts,
                            shared_ptr<ElseStatement> else_suite,
                            shared_ptr<FinallyStatement> finally_suite, size_t file_offset) :
-        CompoundStatement(move(items), file_offset), excepts(move(excepts)),
+        CompoundStatement(std::move(items), file_offset), excepts(std::move(excepts)),
         else_suite(else_suite), finally_suite(finally_suite)
 {}
 
@@ -1371,8 +1371,8 @@ void TryStatement::accept(ASTVisitor *v)
 WithStatement::WithStatement(
         vector<pair<shared_ptr<Expression>, string>> &&item_to_name,
         vector<shared_ptr<Statement>> &&items, size_t file_offset) :
-        CompoundStatement(move(items), file_offset),
-        item_to_name(move(item_to_name))
+        CompoundStatement(std::move(items), file_offset),
+        item_to_name(std::move(item_to_name))
 {}
 
 string WithStatement::str() const
@@ -1405,8 +1405,8 @@ FunctionDefinition::FunctionDefinition(
         vector<shared_ptr<Expression>> &&decorators, const string &name,
         FunctionArguments &&args, shared_ptr<TypeAnnotation> return_type_annotation,
         vector<shared_ptr<Statement>> &&items, size_t file_offset) :
-        CompoundStatement(move(items), file_offset), decorators(move(decorators)),
-        name(name), args(move(args)),
+        CompoundStatement(std::move(items), file_offset), decorators(std::move(decorators)),
+        name(name), args(std::move(args)),
         return_type_annotation(return_type_annotation)
 {}
 
@@ -1434,8 +1434,8 @@ void FunctionDefinition::accept(ASTVisitor *v)
 ClassDefinition::ClassDefinition(vector<shared_ptr<Expression>> &&decorators,
                                  const string &name, vector<shared_ptr<Expression>> &&parent_types,
                                  vector<shared_ptr<Statement>> &&items, size_t file_offset) :
-        CompoundStatement(move(items), file_offset), decorators(move(decorators)),
-        name(name), parent_types(move(parent_types))
+        CompoundStatement(std::move(items), file_offset), decorators(std::move(decorators)),
+        name(name), parent_types(std::move(parent_types))
 {}
 
 string ClassDefinition::str() const

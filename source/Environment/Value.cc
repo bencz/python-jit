@@ -36,7 +36,7 @@ Value::Value(ValueType type, const vector<Value> &extension_types) : type(type),
 
 Value::Value(ValueType type, vector<Value> &&extension_types) : type(type),
                                                                 value_known(type == ValueType::None), int_value(0), instance(NULL),
-                                                                extension_types(move(extension_types))
+                                                                extension_types(std::move(extension_types))
 {}
 
 // Bool
@@ -100,7 +100,7 @@ Value::Value(ValueType type, const string &bytes_value) : type(type),
 }
 
 Value::Value(ValueType type, string &&bytes_value) : type(type),
-                                                     value_known(true), bytes_value(new string(move(bytes_value))),
+                                                     value_known(true), bytes_value(new string(std::move(bytes_value))),
                                                      instance(NULL)
 {
     if ((this->type != ValueType::Bytes) &&
@@ -136,7 +136,7 @@ Value::Value(ValueType type, const wstring &unicode_value) : type(type),
 }
 
 Value::Value(ValueType type, wstring &&unicode_value) : type(type),
-                                                        value_known(true), unicode_value(new wstring(move(unicode_value))),
+                                                        value_known(true), unicode_value(new wstring(std::move(unicode_value))),
                                                         instance(NULL)
 {
     if (this->type != ValueType::Unicode)
@@ -169,7 +169,7 @@ Value::Value(ValueType type,
 
 Value::Value(ValueType type, vector<shared_ptr<Value>> &&list_value) :
         type(type), value_known(true),
-        list_value(new vector<shared_ptr<Value>>(move(list_value))),
+        list_value(new vector<shared_ptr<Value>>(std::move(list_value))),
         instance(NULL)
 {
     if ((this->type != ValueType::List) && (this->type != ValueType::Tuple))
@@ -203,7 +203,7 @@ Value::Value(ValueType type, const unordered_set<Value> &set_value) :
 
 Value::Value(ValueType type, unordered_set<Value> &&set_value) :
         type(type), value_known(true),
-        set_value(new unordered_set<Value>(move(set_value))),
+        set_value(new unordered_set<Value>(std::move(set_value))),
         instance(NULL)
 {
     if (this->type != ValueType::Set)
@@ -226,13 +226,13 @@ Value::Value(ValueType type,
         throw invalid_argument(string_printf("incorrect construction: Value(%d, const unordered_map<...>&)", type));
     }
     auto ex_types = compute_dict_extension_type(*this->dict_value);
-    this->extension_types.emplace_back(move(ex_types.first));
-    this->extension_types.emplace_back(move(ex_types.second));
+    this->extension_types.emplace_back(std::move(ex_types.first));
+    this->extension_types.emplace_back(std::move(ex_types.second));
 }
 
 Value::Value(ValueType type, unordered_map<Value, shared_ptr<Value>> &&dict_value) :
         type(type), value_known(true),
-        dict_value(new unordered_map<Value, shared_ptr<Value>>(move(dict_value))),
+        dict_value(new unordered_map<Value, shared_ptr<Value>>(std::move(dict_value))),
         instance(NULL)
 {
     if (this->type != ValueType::Dict)
@@ -240,8 +240,8 @@ Value::Value(ValueType type, unordered_map<Value, shared_ptr<Value>> &&dict_valu
         throw invalid_argument(string_printf("incorrect construction: Value(%d, unordered_map<...>&&)", type));
     }
     auto ex_types = compute_dict_extension_type(*this->dict_value);
-    this->extension_types.emplace_back(move(ex_types.first));
-    this->extension_types.emplace_back(move(ex_types.second));
+    this->extension_types.emplace_back(std::move(ex_types.first));
+    this->extension_types.emplace_back(std::move(ex_types.second));
 }
 
 // Instance
@@ -267,7 +267,7 @@ Value::Value(const Value &other)
 
 Value::Value(Value &&other)
 {
-    *this = move(other);
+    *this = std::move(other);
 }
 
 Value &Value::operator=(const Value &other)
@@ -350,7 +350,7 @@ Value &Value::operator=(Value &&other)
 
     this->type = other.type;
     this->value_known = other.value_known;
-    this->extension_types = move(other.extension_types);
+    this->extension_types = std::move(other.extension_types);
 
     if (this->value_known)
     {
@@ -1609,7 +1609,7 @@ Value execute_binary_operator(BinaryOperator oper, const Value &left,
                     {
                         result.emplace(item);
                     }
-                    return Value(ValueType::Set, move(result));
+                    return Value(ValueType::Set, std::move(result));
                 }
                 else
                 {
@@ -1674,7 +1674,7 @@ Value execute_binary_operator(BinaryOperator oper, const Value &left,
                             it++;
                         }
                     }
-                    return Value(ValueType::Set, move(result));
+                    return Value(ValueType::Set, std::move(result));
                 }
                 else
                 {
@@ -1734,7 +1734,7 @@ Value execute_binary_operator(BinaryOperator oper, const Value &left,
                             result.erase(item);
                         }
                     }
-                    return Value(ValueType::Set, move(result));
+                    return Value(ValueType::Set, std::move(result));
                 }
                 else
                 {
@@ -1882,7 +1882,7 @@ Value execute_binary_operator(BinaryOperator oper, const Value &left,
                             return Value(ValueType::Bytes);
                         }
                         string new_value = *left.bytes_value + *right.bytes_value;
-                        return Value(ValueType::Bytes, move(new_value));
+                        return Value(ValueType::Bytes, std::move(new_value));
                     }
                     string left_str = left.str();
                     string right_str = right.str();
@@ -1898,7 +1898,7 @@ Value execute_binary_operator(BinaryOperator oper, const Value &left,
                             return Value(ValueType::Unicode);
                         }
                         wstring new_value = *left.unicode_value + *right.unicode_value;
-                        return Value(ValueType::Unicode, move(new_value));
+                        return Value(ValueType::Unicode, std::move(new_value));
                     }
                     string left_str = left.str();
                     string right_str = right.str();
@@ -1917,7 +1917,7 @@ Value execute_binary_operator(BinaryOperator oper, const Value &left,
 
                     vector<shared_ptr<Value>> result = *left.list_value;
                     result.insert(result.end(), right.list_value->begin(), right.list_value->end());
-                    return Value(left.type, move(result));
+                    return Value(left.type, std::move(result));
                 }
 
                 default:
@@ -1946,7 +1946,7 @@ Value execute_binary_operator(BinaryOperator oper, const Value &left,
                     {
                         result.erase(item);
                     }
-                    return Value(ValueType::Set, move(result));
+                    return Value(ValueType::Set, std::move(result));
                 }
                 else
                 {
@@ -2014,7 +2014,7 @@ Value execute_binary_operator(BinaryOperator oper, const Value &left,
                 {
                     result.insert(result.end(), list->list_value->begin(), list->list_value->end());
                 }
-                return Value(list->type, move(result));
+                return Value(list->type, std::move(result));
             }
 
             switch (left.type)

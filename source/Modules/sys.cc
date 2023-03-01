@@ -80,7 +80,7 @@ void sys_set_argv(const vector<const char *> &argv)
         {
             warg += static_cast<wchar_t>(*arg);
         }
-        sys_argv.emplace_back(new Value(ValueType::Unicode, move(warg)));
+        sys_argv.emplace_back(new Value(ValueType::Unicode, std::move(warg)));
     }
 }
 

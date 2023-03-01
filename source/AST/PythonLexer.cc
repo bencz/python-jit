@@ -1033,7 +1033,7 @@ PythonLexer::PythonLexer(shared_ptr<const SourceFile> source) : source(source)
             case TokenType::_OpenBracket:
             case TokenType::_OpenBrace:
                 paren_stack.push_back(token.type);
-                this->tokens.emplace_back(move(token));
+                this->tokens.emplace_back(std::move(token));
                 break;
 
                 // fail if a close paren/brace/bracket doesn't match
@@ -1048,7 +1048,7 @@ PythonLexer::PythonLexer(shared_ptr<const SourceFile> source) : source(source)
                                              this->source->line_number_of_offset(position));
                 }
                 paren_stack.pop_back();
-                this->tokens.emplace_back(move(token));
+                this->tokens.emplace_back(std::move(token));
                 break;
             }
 
@@ -1059,7 +1059,7 @@ PythonLexer::PythonLexer(shared_ptr<const SourceFile> source) : source(source)
                 {
                     break;
                 }
-                this->tokens.emplace_back(move(token));
+                this->tokens.emplace_back(std::move(token));
 
                 // skip any blank lines - we don't enforce indentation for them
                 size_t blank_line_len;
@@ -1098,7 +1098,7 @@ PythonLexer::PythonLexer(shared_ptr<const SourceFile> source) : source(source)
 
                 // everything else goes directly onto the result list
             default:
-                this->tokens.emplace_back(move(token));
+                this->tokens.emplace_back(std::move(token));
         }
     }
 

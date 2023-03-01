@@ -597,7 +597,7 @@ void CompilationVisitor::visit(BinaryOperation *a)
         this->write_delete_held_reference(MemoryReference(this->target_register));
 
         // generate code for the right value
-        Value left_type = move(this->current_type);
+        Value left_type = std::move(this->current_type);
         try
         {
             a->right->accept(this);
@@ -634,7 +634,7 @@ void CompilationVisitor::visit(BinaryOperation *a)
     // TODO: delete the held reference to left if right raises
     this->as.write_label(string_printf("__BinaryOperation_%p_evaluate_left", a));
     a->left->accept(this);
-    Value left_type = move(this->current_type);
+    Value left_type = std::move(this->current_type);
     if (left_type.type == ValueType::Float)
     {
         this->as.write_movq_from_xmm(target_mem, this->float_target_register);
@@ -2052,7 +2052,7 @@ void CompilationVisitor::visit(FunctionCall *a)
                         throw compile_error("instance pointer evaluation resulted in " + this->current_type.str(),
                                             this->file_offset);
                     }
-                    arg.type = move(this->current_type);
+                    arg.type = std::move(this->current_type);
 
                 }
                 else
@@ -2060,7 +2060,7 @@ void CompilationVisitor::visit(FunctionCall *a)
                     this->as.write_label(string_printf("__FunctionCall_%p_evaluate_arg_%zu_passed_value",
                                                        a, arg_index));
                     arg.passed_value->accept(this);
-                    arg.type = move(this->current_type);
+                    arg.type = std::move(this->current_type);
                 }
 
                 // if the argument is the instance object, figure out what it is
@@ -2363,7 +2363,7 @@ void CompilationVisitor::visit(ArrayIndex *a)
 
     // get the collection
     a->array->accept(this);
-    Value collection_type = move(this->current_type);
+    Value collection_type = std::move(this->current_type);
     if (!this->holding_reference)
     {
         throw compile_error("not holding reference to collection", this->file_offset);
@@ -2748,7 +2748,7 @@ void CompilationVisitor::visit(AttributeLValueReference *a)
         Register value_register = this->target_register;
         this->reserve_register(this->target_register);
         this->target_register = this->available_register();
-        Value value_type = move(this->current_type);
+        Value value_type = std::move(this->current_type);
 
         // evaluate the base object
         a->base->accept(this);

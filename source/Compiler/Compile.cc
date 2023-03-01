@@ -539,7 +539,7 @@ void compile_fragment(GlobalContext *global, ModuleContext *module,
             throw compile_error("scope return type does not match type annotation");
         }
 
-        f->return_type = move(new_return_type);
+        f->return_type = std::move(new_return_type);
     }
 
     unordered_set<size_t> patch_offsets;

@@ -33,7 +33,7 @@ void AnalysisVisitor::visit(UnaryOperation *a)
 void AnalysisVisitor::visit(BinaryOperation *a)
 {
     a->left->accept(this);
-    Value left = move(this->current_value);
+    Value left = std::move(this->current_value);
 
     a->right->accept(this);
 
@@ -51,10 +51,10 @@ void AnalysisVisitor::visit(BinaryOperation *a)
 void AnalysisVisitor::visit(TernaryOperation *a)
 {
     a->left->accept(this);
-    Value left = move(this->current_value);
+    Value left = std::move(this->current_value);
 
     a->center->accept(this);
-    Value center = move(this->current_value);
+    Value center = std::move(this->current_value);
 
     a->right->accept(this);
 
@@ -75,11 +75,11 @@ void AnalysisVisitor::visit(ListConstructor *a)
     for (auto item: a->items)
     {
         item->accept(this);
-        items.emplace_back(new Value(move(this->current_value)));
+        items.emplace_back(new Value(std::move(this->current_value)));
     }
 
     a->value_type = compute_list_extension_type(items);
-    this->current_value = Value(ValueType::List, move(items));
+    this->current_value = Value(ValueType::List, std::move(items));
 }
 
 void AnalysisVisitor::visit(SetConstructor *a)
@@ -88,11 +88,11 @@ void AnalysisVisitor::visit(SetConstructor *a)
     for (auto item: a->items)
     {
         item->accept(this);
-        items.emplace(move(this->current_value));
+        items.emplace(std::move(this->current_value));
     }
 
     a->value_type = compute_set_extension_type(items);
-    this->current_value = Value(ValueType::Set, move(items));
+    this->current_value = Value(ValueType::Set, std::move(items));
 }
 
 void AnalysisVisitor::visit(DictConstructor *a)
@@ -101,16 +101,16 @@ void AnalysisVisitor::visit(DictConstructor *a)
     for (auto item: a->items)
     {
         item.first->accept(this);
-        Value key(move(this->current_value));
+        Value key(std::move(this->current_value));
         item.second->accept(this);
-        items.emplace(piecewise_construct, forward_as_tuple(move(key)),
-                      forward_as_tuple(new Value(move(this->current_value))));
+        items.emplace(piecewise_construct, forward_as_tuple(std::move(key)),
+                      forward_as_tuple(new Value(std::move(this->current_value))));
     }
 
     auto ex_types = compute_dict_extension_type(items);
-    a->key_type = move(ex_types.first);
-    a->value_type = move(ex_types.second);
-    this->current_value = Value(ValueType::Dict, move(items));
+    a->key_type = std::move(ex_types.first);
+    a->value_type = std::move(ex_types.second);
+    this->current_value = Value(ValueType::Dict, std::move(items));
 }
 
 void AnalysisVisitor::visit(TupleConstructor *a)
@@ -119,10 +119,10 @@ void AnalysisVisitor::visit(TupleConstructor *a)
     for (auto item: a->items)
     {
         item->accept(this);
-        items.emplace_back(new Value(move(this->current_value)));
+        items.emplace_back(new Value(std::move(this->current_value)));
         a->value_types.emplace_back(items.back()->type_only());
     }
-    this->current_value = Value(ValueType::Tuple, move(items));
+    this->current_value = Value(ValueType::Tuple, std::move(items));
 }
 
 void AnalysisVisitor::visit(ListComprehension *a)
@@ -163,7 +163,7 @@ void AnalysisVisitor::visit(LambdaDefinition *a)
         if (arg.default_value.get())
         {
             arg.default_value->accept(this);
-            new_arg.default_value = move(this->current_value);
+            new_arg.default_value = std::move(this->current_value);
             if (new_arg.default_value.type == ValueType::Indeterminate)
             {
                 throw compile_error("default value has Indeterminate type", a->file_offset);
@@ -179,7 +179,7 @@ void AnalysisVisitor::visit(LambdaDefinition *a)
     fn->varkwargs_name = a->args.varkwargs_name;
 
     a->result->accept(this);
-    fn->return_types.emplace(move(this->current_value));
+    fn->return_types.emplace(std::move(this->current_value));
 
     this->in_function_id = prev_function_id;
 
@@ -197,7 +197,7 @@ void AnalysisVisitor::visit(FunctionCall *a)
     {
         throw compile_error("cannot call a non-function/class object: " + this->current_value.str(), a->file_offset);
     }
-    Value function = move(this->current_value);
+    Value function = std::move(this->current_value);
 
     // if the function a class, then it's actually an __init__ call
     if (function.type == ValueType::Class)
@@ -263,7 +263,7 @@ void AnalysisVisitor::visit(ArrayIndex *a)
         return;
     }
 
-    Value array = move(this->current_value);
+    Value array = std::move(this->current_value);
 
     a->index->accept(this);
 
@@ -638,10 +638,10 @@ void AnalysisVisitor::visit(TupleLValueReference *a)
         throw compile_error("unpacking format length doesn\'t match List/Tuple count", a->file_offset);
     }
 
-    Value base_value = move(this->current_value);
+    Value base_value = std::move(this->current_value);
     for (size_t x = 0; x < a->items.size(); x++)
     {
-        this->current_value = move(*(*base_value.list_value)[x]);
+        this->current_value = std::move(*(*base_value.list_value)[x]);
         a->items[x]->accept(this);
     }
 }
@@ -674,7 +674,7 @@ void AnalysisVisitor::visit(AttributeLValueReference *a)
     }
     else
     {
-        Value value = move(this->current_value);
+        Value value = std::move(this->current_value);
 
         // evaluate the base
         a->base->accept(this);
@@ -886,7 +886,7 @@ void AnalysisVisitor::visit(ReturnStatement *a)
         }
 
         a->value->accept(this);
-        fn->return_types.emplace(move(this->current_value));
+        fn->return_types.emplace(std::move(this->current_value));
     }
     else
     {
@@ -907,7 +907,7 @@ void AnalysisVisitor::visit(SingleIfStatement *a)
 void AnalysisVisitor::visit(IfStatement *a)
 {
     a->check->accept(this);
-    Value check_result = move(this->current_value);
+    Value check_result = std::move(this->current_value);
 
     // if we know the value and it's truthy, skip all the elif/else branches
     if (check_result.value_known && check_result.truth_value())
@@ -1359,7 +1359,7 @@ void AnalysisVisitor::visit(FunctionDefinition *a)
         else if (arg.default_value.get())
         {
             arg.default_value->accept(this);
-            new_arg.default_value = move(this->current_value);
+            new_arg.default_value = std::move(this->current_value);
             if (new_arg.default_value.type == ValueType::Indeterminate)
             {
                 throw compile_error("default value has Indeterminate type", a->file_offset);

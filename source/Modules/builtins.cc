@@ -212,7 +212,7 @@ shared_ptr<ModuleContext> builtins_initialize(GlobalContext *global_context)
                                                                        wstring data;
                                                                        if (blocks.size() == 1)
                                                                        {
-                                                                           data = move(blocks[0]);
+                                                                           data = std::move(blocks[0]);
                                                                        }
                                                                        else
                                                                        {

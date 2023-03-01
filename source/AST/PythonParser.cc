@@ -51,7 +51,7 @@ PythonParser::PythonParser(shared_ptr<const PythonLexer> lexer) : lexer(lexer),
 {
     auto items = this->parse_compound_statement_suite(
             this->lexer->get_tokens().size());
-    this->root.reset(new ModuleStatement(move(items), 0));
+    this->root.reset(new ModuleStatement(std::move(items), 0));
 }
 
 shared_ptr<ModuleStatement> PythonParser::get_root()
@@ -245,11 +245,11 @@ shared_ptr<Expression> PythonParser::parse_expression_tuple(
         auto items = this->parse_expression_list(end_offset, lvalue_reference);
         if (lvalue_reference)
         {
-            return shared_ptr<Expression>(new TupleLValueReference(move(items), offset));
+            return shared_ptr<Expression>(new TupleLValueReference(std::move(items), offset));
         }
         else
         {
-            return shared_ptr<Expression>(new TupleConstructor(move(items), offset));
+            return shared_ptr<Expression>(new TupleConstructor(std::move(items), offset));
         }
 
         // there's no comma; it's a standard Expression. don't wrap it in anything
@@ -391,7 +391,7 @@ FunctionArguments PythonParser::parse_function_argument_definition(
             this->advance_token(); // skip comma
         }
     }
-    return FunctionArguments(move(args), varargs_name, varkwargs_name);
+    return FunctionArguments(std::move(args), varargs_name, varkwargs_name);
 }
 
 shared_ptr<Expression> PythonParser::parse_expression(ssize_t end_offset,
@@ -419,7 +419,7 @@ shared_ptr<Expression> PythonParser::parse_expression(ssize_t end_offset,
             auto result = this->parse_expression(end_offset);
             this->expect_offset(end_offset, ParseError::IncompleteParsing,
                                 "lambda body is incomplete");
-            return shared_ptr<LambdaDefinition>(new LambdaDefinition(move(args),
+            return shared_ptr<LambdaDefinition>(new LambdaDefinition(std::move(args),
                                                                      result, offset));
         }
 
@@ -790,8 +790,8 @@ shared_ptr<Expression> PythonParser::parse_expression(ssize_t end_offset,
             this->expect_offset(paren_end_offset, ParseError::IncompleteParsing,
                                 "function call argument list is incomplete");
             this->advance_token();
-            return shared_ptr<Expression>(new FunctionCall(function, move(args),
-                                                           move(kwargs), varargs, varkwargs, offset));
+            return shared_ptr<Expression>(new FunctionCall(function, std::move(args),
+                                                           std::move(kwargs), varargs, varkwargs, offset));
 
             // attribute lookup
         }
@@ -896,7 +896,7 @@ shared_ptr<Expression> PythonParser::parse_expression(ssize_t end_offset,
             this->expect_offset(end_offset - 1, ParseError::IncompleteParsing,
                                 "list constructor is incomplete");
             this->advance_token();
-            return shared_ptr<Expression>(new ListConstructor(move(items), offset));
+            return shared_ptr<Expression>(new ListConstructor(std::move(items), offset));
 
             // dict/set constructor/comprehension
         }
@@ -981,7 +981,7 @@ shared_ptr<Expression> PythonParser::parse_expression(ssize_t end_offset,
                 this->expect_offset(end_offset - 1, ParseError::IncompleteParsing,
                                     "dict constructor is incomplete");
                 this->advance_token();
-                return shared_ptr<Expression>(new DictConstructor(move(items), offset));
+                return shared_ptr<Expression>(new DictConstructor(std::move(items), offset));
 
             }
             else
@@ -990,7 +990,7 @@ shared_ptr<Expression> PythonParser::parse_expression(ssize_t end_offset,
                 this->expect_offset(end_offset - 1, ParseError::IncompleteParsing,
                                     "set constructor is incomplete");
                 this->advance_token();
-                return shared_ptr<Expression>(new SetConstructor(move(items), offset));
+                return shared_ptr<Expression>(new SetConstructor(std::move(items), offset));
             }
 
             // tuple constructor
@@ -1006,7 +1006,7 @@ shared_ptr<Expression> PythonParser::parse_expression(ssize_t end_offset,
             this->expect_offset(end_offset - 1, ParseError::IncompleteParsing,
                                 "tuple constructor is incomplete");
             this->advance_token();
-            return shared_ptr<Expression>(new TupleConstructor(move(items), offset));
+            return shared_ptr<Expression>(new TupleConstructor(std::move(items), offset));
         }
     }
 
@@ -1393,7 +1393,7 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
                     }
                 }
 
-                ret.emplace_back(new ImportStatement(move(modules),
+                ret.emplace_back(new ImportStatement(std::move(modules),
                                                      unordered_map<string, string>(), false, offset));
                 break;
             }
@@ -1468,7 +1468,7 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
                         }
                     }
                 }
-                ret.emplace_back(new ImportStatement(move(modules), move(names),
+                ret.emplace_back(new ImportStatement(std::move(modules), std::move(names),
                                                      names.empty(), offset));
                 break;
             }
@@ -1511,8 +1511,8 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
 
                 auto items = this->parse_suite_from_colon(end_offset);
 
-                ret.emplace_back(new FunctionDefinition(move(decorator_stack), name,
-                                                        move(args), type_annotation, move(items), offset));
+                ret.emplace_back(new FunctionDefinition(std::move(decorator_stack), name,
+                                                        std::move(args), type_annotation, std::move(items), offset));
                 newline_expected = false;
                 break;
             }
@@ -1581,7 +1581,7 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
                 auto items = this->parse_suite_from_colon(end_offset);
 
                 // we'll fill in the elifs and else later
-                prev_if.reset(new IfStatement(check, move(items),
+                prev_if.reset(new IfStatement(check, std::move(items),
                                               vector<shared_ptr<ElifStatement>>(), shared_ptr<ElseStatement>(),
                                               offset));
                 ret.emplace_back(prev_if);
@@ -1602,19 +1602,19 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
 
                 if (prev_if)
                 {
-                    prev_if->else_suite.reset(new ElseStatement(move(items), offset));
+                    prev_if->else_suite.reset(new ElseStatement(std::move(items), offset));
                 }
                 else if (prev_for)
                 {
-                    prev_for->else_suite.reset(new ElseStatement(move(items), offset));
+                    prev_for->else_suite.reset(new ElseStatement(std::move(items), offset));
                 }
                 else if (prev_while)
                 {
-                    prev_while->else_suite.reset(new ElseStatement(move(items), offset));
+                    prev_while->else_suite.reset(new ElseStatement(std::move(items), offset));
                 }
                 else if (prev_try)
                 {
-                    prev_try->else_suite.reset(new ElseStatement(move(items), offset));
+                    prev_try->else_suite.reset(new ElseStatement(std::move(items), offset));
                     should_clear_local = false;
                 }
                 else
@@ -1643,7 +1643,7 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
 
                 auto items = this->parse_suite_from_colon(end_offset);
 
-                prev_if->elifs.emplace_back(new ElifStatement(check, move(items), offset));
+                prev_if->elifs.emplace_back(new ElifStatement(check, std::move(items), offset));
                 newline_expected = false;
                 should_clear_local = false;
                 break;
@@ -1665,7 +1665,7 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
                 auto items = this->parse_suite_from_colon(end_offset);
 
                 // we'll fill in the else clause later
-                prev_while.reset(new WhileStatement(condition, move(items), NULL, offset));
+                prev_while.reset(new WhileStatement(condition, std::move(items), NULL, offset));
                 ret.emplace_back(prev_while);
                 newline_expected = false;
                 should_clear_local = false;
@@ -1699,7 +1699,7 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
                 auto items = this->parse_suite_from_colon(end_offset);
 
                 // we'll fill in the else clause later
-                prev_for.reset(new ForStatement(variable, collection, move(items), NULL, offset));
+                prev_for.reset(new ForStatement(variable, collection, std::move(items), NULL, offset));
                 ret.emplace_back(prev_for);
                 newline_expected = false;
                 should_clear_local = false;
@@ -1715,7 +1715,7 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
 
                 auto items = this->parse_suite_from_colon(end_offset);
 
-                prev_try.reset(new TryStatement(move(items),
+                prev_try.reset(new TryStatement(std::move(items),
                                                 vector<shared_ptr<ExceptStatement>>(), shared_ptr<ElseStatement>(),
                                                 shared_ptr<FinallyStatement>(), offset));
                 ret.emplace_back(prev_try);
@@ -1767,7 +1767,7 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
 
                 auto items = this->parse_suite_from_colon(end_offset);
 
-                prev_try->excepts.emplace_back(new ExceptStatement(types, name, move(items), offset));
+                prev_try->excepts.emplace_back(new ExceptStatement(types, name, std::move(items), offset));
                 newline_expected = false;
                 should_clear_local = false;
                 break;
@@ -1784,7 +1784,7 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
                 auto items = this->parse_suite_from_colon(end_offset);
 
                 // TODO: Make sure none of these are already set when we set them
-                prev_try->finally_suite.reset(new FinallyStatement(move(items), offset));
+                prev_try->finally_suite.reset(new FinallyStatement(std::move(items), offset));
                 newline_expected = false;
                 break;
             }
@@ -1816,8 +1816,8 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
 
                 auto items = this->parse_suite_from_colon(end_offset);
 
-                ret.emplace_back(new ClassDefinition(move(decorator_stack), name,
-                                                     move(parent_types), move(items), offset));
+                ret.emplace_back(new ClassDefinition(std::move(decorator_stack), name,
+                                                     std::move(parent_types), std::move(items), offset));
                 newline_expected = false;
                 break;
             }
@@ -1877,7 +1877,7 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
 
                 auto items = this->parse_suite_from_colon(end_offset);
 
-                ret.emplace_back(new WithStatement(move(item_to_name), move(items), offset));
+                ret.emplace_back(new WithStatement(std::move(item_to_name), std::move(items), offset));
                 newline_expected = false;
                 should_clear_local = false;
                 break;
