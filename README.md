@@ -6,6 +6,18 @@ ORIGINAL PROJECT
 * https://github.com/fuzziqersoftware/phosg
 * https://github.com/fuzziqersoftware/libamd64
 
+Build
+===========================
+* This project runs ONLY on Linux... Tested on Ubuntu and Debian.
+```
+git clone --recursive https://github.com/bencz/python-jit
+cd python-jit
+mkdir build
+cd build 
+cmake ..
+make -j 4
+```
+
 Main changes that were made
 ===========================
 * Changed from makefile to CMake
