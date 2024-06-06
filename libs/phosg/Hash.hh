@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <cstdint>
 
 #define fnv1a32_start 0x811C9DC5
 
