@@ -51,7 +51,7 @@ DictionaryObject *dictionary_new(size_t (*key_length)(const void *k),
     d->count = 0;
     d->node_count = 0;
     d->flags = flags;
-    d->root = NULL;
+    d->root = nullptr;
     return d;
 }
 
@@ -133,7 +133,7 @@ bool dictionary_erase(DictionaryObject *d, void *k)
         delete_reference(slot_contents.value);
     }
     d->count--;
-    t.node->set_slot(t.ch, NULL, NULL, false, false);
+    t.node->set_slot(t.ch, nullptr, nullptr, false, false);
 
     // delete all empty nodes on the path, except the root, starting from the leaf
     while (t.nodes.size() > 1)
@@ -155,7 +155,7 @@ bool dictionary_erase(DictionaryObject *d, void *k)
         }
         else
         {
-            parent_node->set_slot(node->parent_slot, NULL, NULL, false, false);
+            parent_node->set_slot(node->parent_slot, nullptr, nullptr, false, false);
         }
 
         // delete the child node
@@ -176,7 +176,7 @@ bool dictionary_erase(DictionaryObject *d, void *k)
     if ((t.nodes.size() == 1) && !d->root->has_children() && !d->root->has_value)
     {
         free(d->root);
-        d->root = NULL;
+        d->root = nullptr;
         d->node_count--;
     }
 
@@ -242,7 +242,7 @@ void dictionary_clear(DictionaryObject *d)
         free(node);
     }
 
-    d->root = NULL;
+    d->root = nullptr;
     d->count = 0;
     d->node_count = 0;
 }
@@ -295,7 +295,7 @@ size_t dictionary_node_size(const DictionaryObject *d)
 }
 
 
-DictionaryObject::SlotContents::SlotContents() : key(NULL), value(NULL),
+DictionaryObject::SlotContents::SlotContents() : key(nullptr), value(nullptr),
                                                  occupied(false), is_subnode(false)
 {}
 
@@ -318,7 +318,7 @@ DictionaryObject::Node::Node(uint8_t slot, uint8_t parent_slot, void *key,
                              void *value, bool has_value) : start(slot), end(slot),
                                                             parent_slot(parent_slot), has_value(has_value), key(key), value(value)
 {
-    this->set_slot(slot, NULL, NULL, false, false);
+    this->set_slot(slot, nullptr, nullptr, false, false);
 
     // clear the last byte in the flags array in case there are some nonzero bits
     *this->flags_array() = 0;
@@ -463,7 +463,7 @@ DictionaryObject::Traversal DictionaryObject::traverse(void *k, bool with_nodes,
     {
         if (!create)
         {
-            t.node = NULL;
+            t.node = nullptr;
             return t;
         }
 
@@ -477,7 +477,7 @@ DictionaryObject::Traversal DictionaryObject::traverse(void *k, bool with_nodes,
                 raise_python_exception(exc_block, &MemoryError_instance);
                 throw bad_alloc();
             }
-            new(this->root) Node(1, 0, 0, NULL, NULL, false);
+            new(this->root) Node(1, 0, 0, nullptr, NULL, false);
             t.node = this->root;
             t.ch = 0x100;
             if (with_nodes)

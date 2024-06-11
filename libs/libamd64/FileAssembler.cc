@@ -792,12 +792,12 @@ static void assemble_line(AMD64Assembler& as, const string& raw_line) {
             try {
               const auto& def = name_to_register_def.at(e1);
               arg.reference.index_register = def.reg;
-              arg.reference.field_size = stoul(e2, NULL, 0);
+              arg.reference.field_size = stoul(e2, nullptr, 0);
             } catch (const out_of_range&) {
               try {
                 const auto& def = name_to_register_def.at(e2);
                 arg.reference.index_register = def.reg;
-                arg.reference.field_size = stoul(e1, NULL, 0);
+                arg.reference.field_size = stoul(e1, nullptr, 0);
               } catch (const out_of_range&) {
                 throw invalid_argument("neither side of index multiplication is a register");
               }

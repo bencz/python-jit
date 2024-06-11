@@ -23,9 +23,9 @@ public:
     class terminated_by_split : public std::runtime_error
     {
     public:
-        terminated_by_split(int64_t callsite_token);
+        explicit terminated_by_split(int64_t callsite_token);
 
-        virtual ~terminated_by_split() = default;
+        ~terminated_by_split() override = default;
 
         int64_t callsite_token;
     };
@@ -33,7 +33,7 @@ public:
     CompilationVisitor(GlobalContext *global, ModuleContext *module,
                        Fragment *fragment);
 
-    ~CompilationVisitor() = default;
+    ~CompilationVisitor() override = default;
 
     AMD64Assembler &assembler();
 
@@ -44,111 +44,59 @@ public:
     using RecursiveASTVisitor::visit;
 
     // expression evaluation
-    virtual void visit(UnaryOperation *a);
-
-    virtual void visit(BinaryOperation *a);
-
-    virtual void visit(TernaryOperation *a);
-
-    virtual void visit(ListConstructor *a);
-
-    virtual void visit(SetConstructor *a);
-
-    virtual void visit(DictConstructor *a);
-
-    virtual void visit(TupleConstructor *a);
-
-    virtual void visit(ListComprehension *a);
-
-    virtual void visit(SetComprehension *a);
-
-    virtual void visit(DictComprehension *a);
-
-    virtual void visit(LambdaDefinition *a);
-
-    virtual void visit(FunctionCall *a);
-
-    virtual void visit(ArrayIndex *a);
-
-    virtual void visit(ArraySlice *a);
-
-    virtual void visit(IntegerConstant *a);
-
-    virtual void visit(FloatConstant *a);
-
-    virtual void visit(BytesConstant *a);
-
-    virtual void visit(UnicodeConstant *a);
-
-    virtual void visit(TrueConstant *a);
-
-    virtual void visit(FalseConstant *a);
-
-    virtual void visit(NoneConstant *a);
-
-    virtual void visit(VariableLookup *a);
-
-    virtual void visit(AttributeLookup *a);
-
-    virtual void visit(AttributeLValueReference *a);
-
-    virtual void visit(ArrayIndexLValueReference *a);
-
-    virtual void visit(ArraySliceLValueReference *a);
-
-    virtual void visit(TupleLValueReference *a);
-
-    virtual void visit(ModuleStatement *a);
-
-    virtual void visit(ExpressionStatement *a);
-
-    virtual void visit(AssignmentStatement *a);
-
-    virtual void visit(AugmentStatement *a);
-
-    virtual void visit(DeleteStatement *a);
-
-    virtual void visit(ImportStatement *a);
-
-    virtual void visit(GlobalStatement *a);
-
-    virtual void visit(ExecStatement *a);
-
-    virtual void visit(AssertStatement *a);
-
-    virtual void visit(BreakStatement *a);
-
-    virtual void visit(ContinueStatement *a);
-
-    virtual void visit(ReturnStatement *a);
-
-    virtual void visit(RaiseStatement *a);
-
-    virtual void visit(YieldStatement *a);
-
-    virtual void visit(SingleIfStatement *a);
-
-    virtual void visit(IfStatement *a);
-
-    virtual void visit(ElseStatement *a);
-
-    virtual void visit(ElifStatement *a);
-
-    virtual void visit(ForStatement *a);
-
-    virtual void visit(WhileStatement *a);
-
-    virtual void visit(ExceptStatement *a);
-
-    virtual void visit(FinallyStatement *a);
-
-    virtual void visit(TryStatement *a);
-
-    virtual void visit(WithStatement *a);
-
-    virtual void visit(FunctionDefinition *a);
-
-    virtual void visit(ClassDefinition *a);
+    void visit(UnaryOperation *a) override;
+    void visit(BinaryOperation *a) override;
+    void visit(TernaryOperation *a) override;
+    void visit(ListConstructor *a) override;
+    void visit(SetConstructor *a) override;
+    void visit(DictConstructor *a) override;
+    void visit(TupleConstructor *a) override;
+    void visit(ListComprehension *a) override;
+    void visit(SetComprehension *a) override;
+    void visit(DictComprehension *a) override;
+    void visit(LambdaDefinition *a) override;
+    void visit(FunctionCall *a) override;
+    void visit(ArrayIndex *a) override;
+    void visit(ArraySlice *a) override;
+    void visit(IntegerConstant *a) override;
+    void visit(FloatConstant *a) override;
+    void visit(BytesConstant *a) override;
+    void visit(UnicodeConstant *a) override;
+    void visit(TrueConstant *a) override;
+    void visit(FalseConstant *a) override;
+    void visit(NoneConstant *a) override;
+    void visit(VariableLookup *a) override;
+    void visit(AttributeLookup *a) override;
+    void visit(AttributeLValueReference *a) override;
+    void visit(ArrayIndexLValueReference *a) override;
+    void visit(ArraySliceLValueReference *a) override;
+    void visit(TupleLValueReference *a) override;
+    void visit(ModuleStatement *a) override;
+    void visit(ExpressionStatement *a) override;
+    void visit(AssignmentStatement *a) override;
+    void visit(AugmentStatement *a) override;
+    void visit(DeleteStatement *a) override;
+    void visit(ImportStatement *a) override;
+    void visit(GlobalStatement *a) override;
+    void visit(ExecStatement *a) override;
+    void visit(AssertStatement *a) override;
+    void visit(BreakStatement *a) override;
+    void visit(ContinueStatement *a) override;
+    void visit(ReturnStatement *a) override;
+    void visit(RaiseStatement *a) override;
+    void visit(YieldStatement *a) override;
+    void visit(SingleIfStatement *a) override;
+    void visit(IfStatement *a) override;
+    void visit(ElseStatement *a) override;
+    void visit(ElifStatement *a) override;
+    void visit(ForStatement *a) override;
+    void visit(WhileStatement *a) override;
+    void visit(ExceptStatement *a) override;
+    void visit(FinallyStatement *a) override;
+    void visit(TryStatement *a) override;
+    void visit(WithStatement *a) override;
+    void visit(FunctionDefinition *a) override;
+    void visit(ClassDefinition *a) override;
 
 private:
     // debugging info
@@ -165,7 +113,7 @@ private:
     // compilation state
     union
     {
-        int64_t available_registers; // bit mask; check for (1 << register)
+        int64_t available_registers{}; // bit mask; check for (1 << register)
         struct
         {
             int32_t available_int_registers;
@@ -188,7 +136,7 @@ private:
         std::string name;
         Value type;
 
-        ModuleContext *global_module; // can be NULL for locals/attributes
+        ModuleContext *global_module; // can be nullptr for locals/attributes
         int64_t global_index;
 
         MemoryReference variable_mem;
@@ -258,7 +206,7 @@ private:
 
     void write_alloc_class_instance(int64_t class_id, bool initialize_attributes = true);
 
-    void write_raise_exception(int64_t class_id, const wchar_t *message = NULL);
+    void write_raise_exception(int64_t class_id, const wchar_t *message = nullptr);
 
     void write_create_exception_block(
             const std::vector<std::pair<std::string, std::unordered_set<int64_t>>> &label_to_class_ids,

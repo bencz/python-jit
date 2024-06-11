@@ -28,7 +28,7 @@ static string comma_str_list(const vector<shared_ptr<T>> &l)
         }
         if (!l[x])
         {
-            ret += "NULL";
+            ret += "nullptr";
         }
         else
         {
@@ -70,10 +70,10 @@ static string comma_list(const vector<string> &l)
 template<typename T>
 static string str_or_null(const shared_ptr<T> item)
 {
-    return item.get() ? item->str() : "NULL";
+    return item.get() ? item->str() : "nullptr";
 }
 
-const char *augment_operator_names[] = {"+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>=", "**=", "//=", NULL};
+const char *augment_operator_names[] = {"+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>=", "**=", "//=", nullptr};
 
 
 string TypeAnnotation::str() const

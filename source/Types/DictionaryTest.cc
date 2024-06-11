@@ -58,7 +58,7 @@ void verify_structure(const DictionaryObject *d, const char *expected_structure)
 void verify_state(
         const unordered_map<BytesObject *, BytesObject *> &expected,
         const DictionaryObject *d, size_t expected_node_size,
-        const char *expected_structure = NULL)
+        const char *expected_structure = nullptr)
 {
     expect_eq(expected.size(), dictionary_size(d));
     expect_eq(expected_node_size, dictionary_node_size(d));

@@ -81,7 +81,7 @@ size_t CodeBuffer::total_used_bytes() const {
 }
 
 CodeBuffer::Block::Block(size_t size) : size(size), used_bytes(0) {
-  this->data = mmap(NULL, this->size, PROT_READ | PROT_EXEC,
+  this->data = mmap(nullptr, this->size, PROT_READ | PROT_EXEC,
       MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
   if (this->data == MAP_FAILED) {
     string error_str = string_for_error(errno);

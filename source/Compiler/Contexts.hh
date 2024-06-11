@@ -20,9 +20,8 @@
 class compile_error : public std::runtime_error
 {
 public:
-    compile_error(const std::string &what, ssize_t where = -1);
-
-    virtual ~compile_error() = default;
+    explicit compile_error(const std::string &what, ssize_t where = -1);
+    ~compile_error() override = default;
 
     ssize_t where;
 };
@@ -80,7 +79,7 @@ struct Fragment
 
     std::vector<ssize_t> call_split_offsets;
     std::vector<std::string> call_split_labels;
-    const void *compiled;
+    const void *compiled{};
     std::multimap<size_t, std::string> compiled_labels;
 
     Fragment() = delete;
@@ -113,11 +112,11 @@ struct ClassContext
     // Annotated phase or later
 
     // the following are valid when the owning module is Annotated or later
-    ModuleContext *module; // NULL for built-in class definitions
+    ModuleContext *module; // nullptr for built-in class definitions
     int64_t id; // note that __init__ has the same ID
     std::string name;
     ASTNode *ast_root;
-    int64_t parent_class_id; // can be zero
+    int64_t parent_class_id{}; // can be zero
 
     // this field's keys are valid when the owning module is Annotated or later,
     // but the values aren't valid until Analyzed or later
@@ -138,7 +137,7 @@ struct ClassContext
 
     int64_t offset_for_attribute(const char *attribute) const;
 
-    int64_t offset_for_attribute(size_t index) const;
+    static int64_t offset_for_attribute(size_t index) ;
 };
 
 struct FunctionContext
@@ -148,11 +147,11 @@ struct FunctionContext
     // in the Annotated phase or later
 
     // the following are valid when the owning module is Annotated or later
-    ModuleContext *module; // NULL for built-in functions
+    ModuleContext *module; // nullptr for built-in functions
     int64_t id;
     int64_t class_id; // id of class that this function is a method of; 0 for free functions
     std::string name;
-    ASTNode *ast_root; // NULL for built-in functions
+    ASTNode *ast_root; // nullptr for built-in functions
 
     struct Argument
     {
@@ -216,10 +215,10 @@ struct ModuleContext
     GlobalContext *global;
     Phase phase;
     std::string name;
-    std::shared_ptr<SourceFile> source; // NULL for built-in modules
+    std::shared_ptr<SourceFile> source; // nullptr for built-in modules
 
     // the following are valid in the Parsed phase and later
-    std::shared_ptr<ModuleStatement> ast_root; // NULL for built-in modules
+    std::shared_ptr<ModuleStatement> ast_root; // nullptr for built-in modules
 
     // the following are valid in the Annotated phase and later
     struct GlobalVariable
@@ -324,8 +323,7 @@ struct GlobalContext
     std::atomic<int64_t> next_callsite_token;
 
 
-    GlobalContext(const std::vector<std::string> &import_paths);
-
+    explicit GlobalContext(const std::vector<std::string> &import_paths);
     ~GlobalContext();
 
     void print_compile_error(FILE *stream, const ModuleContext *module,
@@ -338,10 +336,10 @@ struct GlobalContext
     std::string find_source_file(const std::string &module_name);
 
     FunctionContext *context_for_function(int64_t function_id,
-                                          ModuleContext *module_for_create = NULL);
+                                          ModuleContext *module_for_create = nullptr);
 
     ClassContext *context_for_class(int64_t class_id,
-                                    ModuleContext *module_for_create = NULL);
+                                    ModuleContext *module_for_create = nullptr);
 
     const BytesObject *get_or_create_constant(const std::string &s,
                                               bool use_shared_constants = true);

@@ -49,7 +49,7 @@ extern "C" {
 
 // raise a python exception. exc_block should be the exception block passed to
 // the c function, and exc should be an instance of the exception class. this
-// function returns only if exc_block is NULL, in which case it does nothing.
+// function returns only if exc_block is nullptr, in which case it does nothing.
 void raise_python_exception(ExceptionBlock *exc_block, void *exc);
 
 // raise a python exception from pyjit-generated code. this function cannot be

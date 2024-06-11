@@ -36,7 +36,7 @@ static std::shared_ptr<ModuleContext> get_module(UnicodeObject* module_name) {
     try {
         return global->modules.at(module_name_str);
     } catch (const out_of_range&) {
-        return NULL;
+        return nullptr;
     }
 }
 
@@ -64,10 +64,10 @@ static const UnicodeObject* module_phase(ModuleContext* module) {
 
 static BytesObject* module_source(ModuleContext* module) {
     if (!module) {
-        return bytes_new(NULL, 0);
+        return bytes_new(nullptr, 0);
     }
     if (!module->source.get()) {
-        return bytes_new(NULL, 0);
+        return bytes_new(nullptr, 0);
     }
     const string& data = module->source->data();
     return bytes_new(data.data(), data.size());

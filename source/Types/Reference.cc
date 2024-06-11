@@ -9,7 +9,7 @@
 using namespace std;
 
 
-BasicObject::BasicObject() : refcount(1), destructor(NULL)
+BasicObject::BasicObject() : refcount(1), destructor(nullptr)
 {}
 
 BasicObject::BasicObject(void (*destructor)(void *)) : refcount(1),

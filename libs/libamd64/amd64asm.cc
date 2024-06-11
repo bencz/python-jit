@@ -27,7 +27,7 @@ If filename is not given, read from stdin.\n",
 
 int main(int argc, char** argv) {
 
-  const char* filename = NULL;
+  const char* filename = nullptr;
   for (int x = 1; x < argc; x++) {
     if (!strcmp(argv[x], "--help") || !strcmp(argv[x], "-h")) {
       print_usage(argv[0]);

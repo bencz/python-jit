@@ -312,7 +312,7 @@ shared_ptr<ModuleContext> posix_initialize(GlobalContext *global_context)
     // note: we don't create stat_result within posix_module because it doesn't
     // have an __init__ function, so it isn't constructible from python code
     static int64_t stat_result_class_id = module->create_builtin_class(stat_result_def);
-    Value StatResult(ValueType::Instance, stat_result_class_id, NULL);
+    Value StatResult(ValueType::Instance, stat_result_class_id, nullptr);
     static ClassContext *stat_result_class = global_context->context_for_class(stat_result_class_id);
 
     static auto convert_stat_result = +[](const struct stat *st) -> void * {
@@ -406,7 +406,7 @@ shared_ptr<ModuleContext> posix_initialize(GlobalContext *global_context)
 
                                                                    {"read", {Int, Int}, Bytes,
                                                                     void_fn_ptr([](int64_t fd, int64_t buffer_size, ExceptionBlock *exc_block) -> BytesObject * {
-                                                                        BytesObject *ret = bytes_new(NULL, buffer_size);
+                                                                        BytesObject *ret = bytes_new(nullptr, buffer_size);
                                                                         ssize_t bytes_read = read(fd, ret->data, buffer_size);
                                                                         if (bytes_read >= 0)
                                                                         {
@@ -503,7 +503,7 @@ shared_ptr<ModuleContext> posix_initialize(GlobalContext *global_context)
                                                                         {
                                                                             delete_reference(o);
                                                                         }
-                                                                        envs_pointers.pop_back(); // the last one is NULL
+                                                                        envs_pointers.pop_back(); // the last one is nullptr
                                                                         for (auto &ptr: envs_pointers)
                                                                         {
                                                                             free(ptr);
@@ -666,7 +666,7 @@ shared_ptr<ModuleContext> posix_initialize(GlobalContext *global_context)
                                                                     }), true},
 
                                                                    {"getcwdb", {}, Bytes, void_fn_ptr([](ExceptionBlock *exc_block) -> BytesObject * {
-                                                                       BytesObject *ret = bytes_new(NULL, MAXPATHLEN);
+                                                                       BytesObject *ret = bytes_new(nullptr, MAXPATHLEN);
                                                                        if (!getcwd(ret->data, MAXPATHLEN))
                                                                        {
                                                                            delete_reference(ret);

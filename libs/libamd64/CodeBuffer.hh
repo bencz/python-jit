@@ -15,14 +15,14 @@ public:
   // about casting away constness when you reinterpret_cast them. if you're dumb
   // enough to try to write to this pointer then you deserve your segfault
   void* append(const std::string& data,
-      const std::unordered_set<size_t>* patch_offsets = NULL);
+      const std::unordered_set<size_t>* patch_offsets = nullptr);
   void* append(const void* data, size_t size,
-      const std::unordered_set<size_t>* patch_offsets = NULL);
+      const std::unordered_set<size_t>* patch_offsets = nullptr);
 
   void* overwrite(void* where, const std::string& data,
-      const std::unordered_set<size_t>* patch_offsets = NULL);
+      const std::unordered_set<size_t>* patch_offsets = nullptr);
   void* overwrite(void* where, const void* data, size_t size,
-      const std::unordered_set<size_t>* patch_offsets = NULL);
+      const std::unordered_set<size_t>* patch_offsets = nullptr);
 
   void clear();
 
@@ -43,9 +43,9 @@ private:
     ~Block();
 
     void* append(const void* data, size_t size,
-        const std::unordered_set<size_t>* patch_offsets = NULL);
+        const std::unordered_set<size_t>* patch_offsets = nullptr);
     void* overwrite(size_t offset, const void* data, size_t size,
-        const std::unordered_set<size_t>* patch_offsets = NULL);
+        const std::unordered_set<size_t>* patch_offsets = nullptr);
   };
 
   size_t size;

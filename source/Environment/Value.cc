@@ -20,68 +20,68 @@ using namespace std;
 
 // Indeterminate
 Value::Value() : type(ValueType::Indeterminate), value_known(false),
-                 int_value(0), instance(NULL)
+                 int_value(0), instance(nullptr)
 {}
 
 // any type, unknown value (except None, whose value is always known)
 Value::Value(ValueType type) : type(type), value_known(type == ValueType::None),
-                               int_value(0), instance(NULL)
+                               int_value(0), instance(nullptr)
 {}
 
 // any extended type, unknown value (except None, whose value is always known)
 Value::Value(ValueType type, const vector<Value> &extension_types) : type(type),
-                                                                     value_known(type == ValueType::None), int_value(0), instance(NULL),
+                                                                     value_known(type == ValueType::None), int_value(0), instance(nullptr),
                                                                      extension_types(extension_types)
 {}
 
 Value::Value(ValueType type, vector<Value> &&extension_types) : type(type),
-                                                                value_known(type == ValueType::None), int_value(0), instance(NULL),
+                                                                value_known(type == ValueType::None), int_value(0), instance(nullptr),
                                                                 extension_types(std::move(extension_types))
 {}
 
 // Bool
 Value::Value(ValueType type, bool bool_value) : type(type), value_known(true),
-                                                int_value(bool_value), instance(NULL)
+                                                int_value(bool_value), instance(nullptr)
 {
     if (this->type != ValueType::Bool)
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, bool)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, bool)", static_cast<int>(type)));
     }
 }
 
 // Int/Function/Class/ExtensionTypeReference
 Value::Value(ValueType type, int64_t int_value) : type(type),
                                                   value_known(type != ValueType::ExtensionTypeReference),
-                                                  int_value(int_value), instance(NULL)
+                                                  int_value(int_value), instance(nullptr)
 {
     if ((this->type != ValueType::Int) &&
         (this->type != ValueType::Function) &&
         (this->type != ValueType::Class) &&
         (this->type != ValueType::ExtensionTypeReference))
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, int64_t)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, int64_t)", static_cast<int>(type)));
     }
 }
 
 // Float
 Value::Value(ValueType type, double float_value) : type(type),
-                                                   value_known(true), float_value(float_value), instance(NULL)
+                                                   value_known(true), float_value(float_value), instance(nullptr)
 {
     if (this->type != ValueType::Float)
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, double)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, double)", static_cast<int>(type)));
     }
 }
 
 // Bytes/Module
 Value::Value(ValueType type, const char *bytes_value, size_t size) : type(type),
                                                                      value_known(true), bytes_value(new string(bytes_value, size)),
-                                                                     instance(NULL)
+                                                                     instance(nullptr)
 {
     if ((this->type != ValueType::Bytes) &&
         (this->type != ValueType::Module))
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, const char*, size_t)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, const char*, size_t)", static_cast<int>(type)));
     }
 }
 
@@ -90,34 +90,34 @@ Value::Value(ValueType type, const char *bytes_value) :
 {}
 
 Value::Value(ValueType type, const string &bytes_value) : type(type),
-                                                          value_known(true), bytes_value(new string(bytes_value)), instance(NULL)
+                                                          value_known(true), bytes_value(new string(bytes_value)), instance(nullptr)
 {
     if ((this->type != ValueType::Bytes) &&
         (this->type != ValueType::Module))
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, const char*)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, const char*)", static_cast<int>(type)));
     }
 }
 
 Value::Value(ValueType type, string &&bytes_value) : type(type),
                                                      value_known(true), bytes_value(new string(std::move(bytes_value))),
-                                                     instance(NULL)
+                                                     instance(nullptr)
 {
     if ((this->type != ValueType::Bytes) &&
         (this->type != ValueType::Module))
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, string&&)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, string&&)", static_cast<int>(type)));
     }
 }
 
 // Unicode
 Value::Value(ValueType type, const wchar_t *unicode_value, size_t size) :
         type(type), value_known(true),
-        unicode_value(new wstring(unicode_value, size)), instance(NULL)
+        unicode_value(new wstring(unicode_value, size)), instance(nullptr)
 {
     if (this->type != ValueType::Unicode)
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, const wchar_t*, size_t)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, const wchar_t*, size_t)", static_cast<int>(type)));
     }
 }
 
@@ -127,21 +127,21 @@ Value::Value(ValueType type, const wchar_t *unicode_value) :
 
 Value::Value(ValueType type, const wstring &unicode_value) : type(type),
                                                              value_known(true), unicode_value(new wstring(unicode_value)),
-                                                             instance(NULL)
+                                                             instance(nullptr)
 {
     if (this->type != ValueType::Unicode)
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, const wchar_t*)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, const wchar_t*)", static_cast<int>(type)));
     }
 }
 
 Value::Value(ValueType type, wstring &&unicode_value) : type(type),
                                                         value_known(true), unicode_value(new wstring(std::move(unicode_value))),
-                                                        instance(NULL)
+                                                        instance(nullptr)
 {
     if (this->type != ValueType::Unicode)
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, wstring&&)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, wstring&&)", static_cast<int>(type)));
     }
 }
 
@@ -150,11 +150,11 @@ Value::Value(ValueType type,
              const vector<shared_ptr<Value>> &list_value) : type(type),
                                                             value_known(true),
                                                             list_value(new vector<shared_ptr<Value>>(list_value)),
-                                                            instance(NULL)
+                                                            instance(nullptr)
 {
     if ((this->type != ValueType::List) && (this->type != ValueType::Tuple))
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, const vector<...>& list_value)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, const vector<...>& list_value)", static_cast<int>(type)));
     }
     if (this->type == ValueType::Tuple)
     {
@@ -170,11 +170,11 @@ Value::Value(ValueType type,
 Value::Value(ValueType type, vector<shared_ptr<Value>> &&list_value) :
         type(type), value_known(true),
         list_value(new vector<shared_ptr<Value>>(std::move(list_value))),
-        instance(NULL)
+        instance(nullptr)
 {
     if ((this->type != ValueType::List) && (this->type != ValueType::Tuple))
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, vector<...>&& list_value)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, vector<...>&& list_value)", static_cast<int>(type)));
     }
     if (this->type == ValueType::Tuple)
     {
@@ -191,11 +191,11 @@ Value::Value(ValueType type, vector<shared_ptr<Value>> &&list_value) :
 Value::Value(ValueType type, const unordered_set<Value> &set_value) :
         type(type), value_known(true),
         set_value(new unordered_set<Value>(set_value)),
-        instance(NULL)
+        instance(nullptr)
 {
     if (this->type != ValueType::Set)
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, const unordered_set<...>&)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, const unordered_set<...>&)", static_cast<int>(type)));
     }
     this->extension_types.emplace_back(compute_set_extension_type(
             *this->set_value));
@@ -204,11 +204,11 @@ Value::Value(ValueType type, const unordered_set<Value> &set_value) :
 Value::Value(ValueType type, unordered_set<Value> &&set_value) :
         type(type), value_known(true),
         set_value(new unordered_set<Value>(std::move(set_value))),
-        instance(NULL)
+        instance(nullptr)
 {
     if (this->type != ValueType::Set)
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, unordered_set<...>&&)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, unordered_set<...>&&)", static_cast<int>(type)));
     }
     this->extension_types.emplace_back(compute_set_extension_type(
             *this->set_value));
@@ -219,11 +219,11 @@ Value::Value(ValueType type,
              const unordered_map<Value, shared_ptr<Value>> &dict_value) :
         type(type), value_known(true),
         dict_value(new unordered_map<Value, shared_ptr<Value>>(dict_value)),
-        instance(NULL)
+        instance(nullptr)
 {
     if (this->type != ValueType::Dict)
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, const unordered_map<...>&)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, const unordered_map<...>&)", static_cast<int>(type)));
     }
     auto ex_types = compute_dict_extension_type(*this->dict_value);
     this->extension_types.emplace_back(std::move(ex_types.first));
@@ -233,11 +233,11 @@ Value::Value(ValueType type,
 Value::Value(ValueType type, unordered_map<Value, shared_ptr<Value>> &&dict_value) :
         type(type), value_known(true),
         dict_value(new unordered_map<Value, shared_ptr<Value>>(std::move(dict_value))),
-        instance(NULL)
+        instance(nullptr)
 {
     if (this->type != ValueType::Dict)
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, unordered_map<...>&&)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, unordered_map<...>&&)", static_cast<int>(type)));
     }
     auto ex_types = compute_dict_extension_type(*this->dict_value);
     this->extension_types.emplace_back(std::move(ex_types.first));
@@ -255,7 +255,7 @@ Value::Value(ValueType type, int64_t class_id, void *instance) :
     }
     if (this->type != ValueType::Instance)
     {
-        throw invalid_argument(string_printf("incorrect construction: Value(%d, int64_t, void*)", type));
+        throw invalid_argument(string_printf("incorrect construction: Value(%d, int64_t, void*)", static_cast<int>(type)));
     }
 }
 
@@ -334,7 +334,7 @@ Value &Value::operator=(const Value &other)
         if (this->type == ValueType::Instance)
         {
             this->class_id = other.class_id;
-            this->instance = NULL;
+            this->instance = nullptr;
         }
     }
 
@@ -388,7 +388,7 @@ Value &Value::operator=(Value &&other)
                 break;
             case ValueType::Instance:
                 this->instance = other.instance;
-                other.instance = NULL;
+                other.instance = nullptr;
             case ValueType::Class:
                 this->class_id = other.class_id;
                 break;
@@ -402,7 +402,7 @@ Value &Value::operator=(Value &&other)
         if (this->type == ValueType::Instance)
         {
             this->class_id = other.class_id;
-            this->instance = NULL;
+            this->instance = nullptr;
         }
     }
 
@@ -483,7 +483,7 @@ void Value::clear_value()
             break;
         case ValueType::Instance:
             delete_reference(this->instance);
-            this->instance = NULL;
+            this->instance = nullptr;
     }
 }
 
@@ -1966,7 +1966,7 @@ Value execute_binary_operator(BinaryOperator oper, const Value &left,
                 return Value(ValueType::Indeterminate);
             }
 
-            const Value *list = NULL;
+            const Value *list = nullptr;
             const Value *multiplier = NULL;
             if ((left.type == ValueType::List) || (left.type == ValueType::Tuple))
             {

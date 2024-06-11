@@ -57,7 +57,7 @@ struct LValueReference : Expression
 
 struct AttributeLValueReference : LValueReference
 {
-    std::shared_ptr<Expression> base; // may be NULL for references to local vars
+    std::shared_ptr<Expression> base; // may be nullptr for references to local vars
     std::string name;
     std::shared_ptr<TypeAnnotation> type_annotation;
 
@@ -234,7 +234,7 @@ struct ListComprehension : Expression
     std::shared_ptr<Expression> item_pattern;
     std::shared_ptr<Expression> variable; // lvalue references
     std::shared_ptr<Expression> source_data;
-    std::shared_ptr<Expression> predicate; // can be NULL
+    std::shared_ptr<Expression> predicate; // can be nullptr
 
     ListComprehension(std::shared_ptr<Expression> item_pattern,
                       std::shared_ptr<Expression> variable,
@@ -253,7 +253,7 @@ struct DictComprehension : Expression
     std::shared_ptr<Expression> value_pattern;
     std::shared_ptr<Expression> variable; // lvalue references
     std::shared_ptr<Expression> source_data;
-    std::shared_ptr<Expression> predicate; // can be NULL
+    std::shared_ptr<Expression> predicate; // can be nullptr
 
     DictComprehension(std::shared_ptr<Expression> key_pattern,
                       std::shared_ptr<Expression> value_pattern,
@@ -272,7 +272,7 @@ struct SetComprehension : Expression
     std::shared_ptr<Expression> item_pattern;
     std::shared_ptr<Expression> variable; // lvalue references
     std::shared_ptr<Expression> source_data;
-    std::shared_ptr<Expression> predicate; // can be NULL
+    std::shared_ptr<Expression> predicate; // can be nullptr
 
     SetComprehension(std::shared_ptr<Expression> item_pattern,
                      std::shared_ptr<Expression> variable,
@@ -289,8 +289,8 @@ struct FunctionArguments
     struct Argument
     {
         std::string name;
-        std::shared_ptr<TypeAnnotation> type_annotation; // NULL if not given
-        std::shared_ptr<Expression> default_value; // NULL for non-keyword args
+        std::shared_ptr<TypeAnnotation> type_annotation; // nullptr if not given
+        std::shared_ptr<Expression> default_value; // nullptr for non-keyword args
 
         Argument(const std::string &name,
                  std::shared_ptr<TypeAnnotation> type_annotation,
@@ -703,7 +703,7 @@ struct RaiseStatement : FlowStatement
 
 struct YieldStatement : FlowStatement
 {
-    std::shared_ptr<Expression> expr; // if NULL, yields None
+    std::shared_ptr<Expression> expr; // if nullptr, yields None
     bool from;
 
     // annotations
@@ -756,7 +756,7 @@ struct ElifStatement : SingleIfStatement
 struct IfStatement : SingleIfStatement
 {
     std::vector<std::shared_ptr<ElifStatement>> elifs;
-    std::shared_ptr<ElseStatement> else_suite; // may be NULL
+    std::shared_ptr<ElseStatement> else_suite; // may be nullptr
 
     IfStatement(std::shared_ptr<Expression> check,
                 std::vector<std::shared_ptr<Statement>> &&items,
@@ -774,7 +774,7 @@ struct ForStatement : CompoundStatement
 {
     std::shared_ptr<Expression> variable; // lvalue reference
     std::shared_ptr<Expression> collection;
-    std::shared_ptr<ElseStatement> else_suite; // may be NULL
+    std::shared_ptr<ElseStatement> else_suite; // may be nullptr
 
     ForStatement(std::shared_ptr<Expression> variable,
                  std::shared_ptr<Expression> collection,
@@ -791,7 +791,7 @@ struct ForStatement : CompoundStatement
 struct WhileStatement : CompoundStatement
 {
     std::shared_ptr<Expression> condition;
-    std::shared_ptr<ElseStatement> else_suite; // may be NULL
+    std::shared_ptr<ElseStatement> else_suite; // may be nullptr
 
     WhileStatement(std::shared_ptr<Expression> condition,
                    std::vector<std::shared_ptr<Statement>> &&items,
@@ -806,7 +806,7 @@ struct WhileStatement : CompoundStatement
 
 struct ExceptStatement : CompoundStatement
 {
-    std::shared_ptr<Expression> types; // can be NULL for default except clause
+    std::shared_ptr<Expression> types; // can be nullptr for default except clause
     std::string name;
 
     // annotations
@@ -833,8 +833,8 @@ struct FinallyStatement : CompoundStatement
 struct TryStatement : CompoundStatement
 {
     std::vector<std::shared_ptr<ExceptStatement>> excepts;
-    std::shared_ptr<ElseStatement> else_suite; // may be NULL
-    std::shared_ptr<FinallyStatement> finally_suite; // may be NULL
+    std::shared_ptr<ElseStatement> else_suite; // may be nullptr
+    std::shared_ptr<FinallyStatement> finally_suite; // may be nullptr
 
     TryStatement(std::vector<std::shared_ptr<Statement>> &&items,
                  std::vector<std::shared_ptr<ExceptStatement>> &&excepts,

@@ -337,7 +337,7 @@ FunctionArguments PythonParser::parse_function_argument_definition(
 
         // if there's a * or **, it's a *args or **kwargs. expect a _Dynamic
         // followed by maybe a _Comma
-        string *var_target = NULL;
+        string *var_target = nullptr;
         if (this->head_token().type == TokenType::_Asterisk)
         {
             var_target = &varargs_name;
@@ -730,7 +730,7 @@ shared_ptr<Expression> PythonParser::parse_expression(ssize_t end_offset,
                 }
 
                 // if there's a * or **, it's a *args or **kwargs
-                shared_ptr<Expression> *var_target = NULL;
+                shared_ptr<Expression> *var_target = nullptr;
                 if (this->head_token().type == TokenType::_Asterisk)
                 {
                     this->advance_token();
@@ -1037,8 +1037,8 @@ shared_ptr<Expression> PythonParser::parse_expression(ssize_t end_offset,
         this->expect_offset(end_offset, ParseError::IncompleteParsing,
                             "incomplete lvalue reference");
 
-        // ref->base == NULL means a local variable reference
-        return shared_ptr<Expression>(new AttributeLValueReference(NULL,
+        // ref->base == nullptr means a local variable reference
+        return shared_ptr<Expression>(new AttributeLValueReference(nullptr,
                                                                    tok.string_data, type_annotation, offset));
 
         // if not an lvalue, there may be constants and stuff
@@ -1097,7 +1097,7 @@ shared_ptr<Expression> PythonParser::parse_expression(ssize_t end_offset,
         this->expect_condition(false, ParseError::IncompleteExpressionParsing,
                                "no expression parsing rules matched");
     }
-    return NULL;
+    return nullptr;
 }
 
 
@@ -1665,7 +1665,7 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
                 auto items = this->parse_suite_from_colon(end_offset);
 
                 // we'll fill in the else clause later
-                prev_while.reset(new WhileStatement(condition, std::move(items), NULL, offset));
+                prev_while.reset(new WhileStatement(condition, std::move(items), nullptr, offset));
                 ret.emplace_back(prev_while);
                 newline_expected = false;
                 should_clear_local = false;
@@ -1699,7 +1699,7 @@ vector<shared_ptr<Statement>> PythonParser::parse_compound_statement_suite(
                 auto items = this->parse_suite_from_colon(end_offset);
 
                 // we'll fill in the else clause later
-                prev_for.reset(new ForStatement(variable, collection, std::move(items), NULL, offset));
+                prev_for.reset(new ForStatement(variable, collection, std::move(items), nullptr, offset));
                 ret.emplace_back(prev_for);
                 newline_expected = false;
                 should_clear_local = false;

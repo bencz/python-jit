@@ -25,7 +25,7 @@ If --parse-data is given, expect the input to be hex characters in ASCII text.\n
 
 int main(int argc, char** argv) {
 
-  const char* filename = NULL;
+  const char* filename = nullptr;
   bool parse_data = false;
   for (int x = 1; x < argc; x++) {
     if (!strcmp(argv[x], "--parse-data")) {

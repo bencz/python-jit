@@ -1,10 +1,7 @@
 #include "AnnotationVisitor.hh"
-
-#include <inttypes.h>
-#include <stdio.h>
-
+#include <cinttypes>
+#include <cstdio>
 #include <phosg/Strings.hh>
-
 #include "../AST/PythonLexer.hh"
 #include "Compile.hh"
 

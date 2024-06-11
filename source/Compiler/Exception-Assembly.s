@@ -11,7 +11,7 @@ _raise_python_exception:
   # c entry point for raising a pyjit exception. exc block ptr is rdi, exc
   # object is rsi. just move them into the right places and go to
   # __unwind_exception_internal. if the exception block or exception object is
-  # NULL, return without doing anything
+  # nullptr, return without doing anything
   test rdi, rdi
   jnz _raise_python_exception__block_valid
   ret

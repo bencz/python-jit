@@ -1,9 +1,7 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
+#include <cstdio>
+#include <cstring>
+#include <cstdlib>
 #include <phosg/Strings.hh>
-
 #include "Debug.hh"
 #include "AST/SourceFile.hh"
 #include "AST/PythonParser.hh"
@@ -71,7 +69,7 @@ int main(int argc, char *argv[])
     }
 
     // parse command line options
-    const char *module_spec = NULL;
+    const char *module_spec = nullptr;
     vector<const char *> sys_argv;
     bool module_is_code = false;
     bool module_is_filename = true;
@@ -148,7 +146,7 @@ int main(int argc, char *argv[])
     global.reset(new GlobalContext(import_paths));
 
     // populate the sys module appropriately
-    const char *argv0_realpath = realpath(argv[0], NULL);
+    const char *argv0_realpath = realpath(argv[0], nullptr);
     if (!argv0_realpath)
     {
         sys_set_executable("");

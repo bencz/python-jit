@@ -1,9 +1,9 @@
 #include "Contexts.hh"
 
-#include <inttypes.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cinttypes>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
 #include <phosg/Filesystem.hh>
 #include <phosg/Strings.hh>
@@ -98,7 +98,7 @@ ClassContext::ClassAttribute::ClassAttribute(const std::string &name,
 
 
 ClassContext::ClassContext(ModuleContext *module, int64_t id) : module(module),
-                                                                id(id), ast_root(NULL), destructor(NULL)
+                                                                id(id), ast_root(nullptr), destructor(nullptr)
 {}
 
 int64_t ClassContext::attribute_count() const
@@ -116,7 +116,7 @@ int64_t ClassContext::offset_for_attribute(const char *attribute) const
     return this->offset_for_attribute(this->attribute_indexes.at(attribute));
 }
 
-int64_t ClassContext::offset_for_attribute(size_t index) const
+int64_t ClassContext::offset_for_attribute(size_t index)
 {
     // attributes are stored at [instance + 8 * which + attribute_start_offset]
     return (sizeof(int64_t) * index) + sizeof(InstanceObject);
@@ -124,14 +124,14 @@ int64_t ClassContext::offset_for_attribute(size_t index) const
 
 
 FunctionContext::FunctionContext(ModuleContext *module, int64_t id) :
-        module(module), id(id), class_id(0), ast_root(NULL), num_splits(0),
+        module(module), id(id), class_id(0), ast_root(nullptr), num_splits(0),
         pass_exception_block(false)
 {}
 
 FunctionContext::FunctionContext(ModuleContext *module, int64_t id,
                                  const char *name, const vector<BuiltinFragmentDefinition> &fragments,
                                  bool pass_exception_block) : module(module), id(id), class_id(0),
-                                                              name(name), ast_root(NULL), num_splits(0),
+                                                              name(name), ast_root(nullptr), num_splits(0),
                                                               pass_exception_block(pass_exception_block)
 {
 
@@ -226,9 +226,9 @@ ModuleContext::ModuleContext(GlobalContext *global, const string &name,
                              const string &filename, bool is_code) : global(global),
                                                                      phase(Phase::Initial), name(name),
                                                                      source(new SourceFile(filename, is_code)),
-                                                                     global_space(NULL),
+                                                                     global_space(nullptr),
                                                                      root_fragment_num_splits(0),
-                                                                     root_fragment(NULL, -1, {}), compiled_size(0)
+                                                                     root_fragment(nullptr, -1, {}), compiled_size(0)
 {
     // TODO: using unescape_unicode is a stupid hack, but these strings can't
     // contain backslashes anyway (right? ...right?)
@@ -245,10 +245,10 @@ ModuleContext::ModuleContext(GlobalContext *global, const string &name,
 
 ModuleContext::ModuleContext(GlobalContext *global, const string &name,
                              const map<string, Value> &globals) : global(global), phase(Phase::Imported),
-                                                                  name(name), source(NULL), ast_root(NULL),
-                                                                  global_space(NULL),
+                                                                  name(name), source(nullptr), ast_root(nullptr),
+                                                                  global_space(nullptr),
                                                                   root_fragment_num_splits(0),
-                                                                  root_fragment(NULL, -1, {}), compiled_size(0)
+                                                                  root_fragment(nullptr, -1, {}), compiled_size(0)
 {
     this->create_global_variable("__name__", Value(ValueType::Unicode, unescape_unicode(name)), false);
     this->create_global_variable("__file__", Value(ValueType::Unicode, L"__main__"), false);
@@ -303,7 +303,7 @@ int64_t ModuleContext::create_builtin_class(BuiltinClassDefinition &def)
                                                                   forward_as_tuple(nullptr, class_id)).first->second;
     cls.destructor = def.destructor;
     cls.name = def.name;
-    cls.ast_root = NULL;
+    cls.ast_root = nullptr;
     for (const auto &it: def.attributes)
     {
         cls.attribute_indexes.emplace(it.first, cls.attributes.size());

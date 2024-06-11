@@ -21,4 +21,4 @@ struct BasicObject
 // onto the stack to keep it)
 void *add_reference(void *o);
 
-void delete_reference(void *o, ExceptionBlock *exc_block = NULL);
+void delete_reference(void *o, ExceptionBlock *exc_block = nullptr);

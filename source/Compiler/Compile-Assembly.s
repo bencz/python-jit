@@ -60,7 +60,7 @@ stack_ok:
 
   # on success, this function returns the address of the newly-compiled fragment
   # and sets the address pointed to by rdx to the new return address. on
-  # failure, it returns NULL and sets the address pointed to by rdx to the
+  # failure, it returns nullptr and sets the address pointed to by rdx to the
   # address of a PyJitCompilerError object, which should be raised to the
   # calling code. in the failure case, this function also releases the argument
   # references appropriately.

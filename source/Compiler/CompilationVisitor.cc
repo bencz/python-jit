@@ -113,7 +113,7 @@ size_t CompilationVisitor::get_file_offset() const
 
 
 CompilationVisitor::VariableLocation::VariableLocation() :
-        type(ValueType::Indeterminate), global_module(NULL), global_index(-1),
+        type(ValueType::Indeterminate), global_module(nullptr), global_index(-1),
         variable_mem(), variable_mem_valid(false)
 {}
 
@@ -1824,7 +1824,7 @@ struct FunctionCallArgumentValue
     bool evaluate_instance_pointer;
 
     FunctionCallArgumentValue(const std::string &name) : name(name),
-                                                         passed_value(NULL), default_value(), type(), stack_offset(0),
+                                                         passed_value(nullptr), default_value(), type(), stack_offset(0),
                                                          is_exception_block(false), evaluate_instance_pointer(false)
     {}
 };
@@ -1902,7 +1902,7 @@ void CompilationVisitor::visit(FunctionCall *a)
         }
 
         // if the function being called is __init__, allocate a class object first
-        // and push it as the first argument (passing an Instance with a NULL
+        // and push it as the first argument (passing an Instance with a nullptr
         // pointer instructs the later code to allocate an instance)
         if (a->is_class_construction)
         {

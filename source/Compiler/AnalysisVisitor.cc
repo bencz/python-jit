@@ -1209,7 +1209,7 @@ void AnalysisVisitor::visit(ExceptStatement *a)
     if (!a->name.empty())
     {
         this->record_assignment(a->name, Value(ValueType::Instance,
-                                               *a->class_ids.begin(), NULL), a->file_offset);
+                                               *a->class_ids.begin(), nullptr), a->file_offset);
     }
 
     this->visit_list(a->items);
@@ -1352,7 +1352,7 @@ void AnalysisVisitor::visit(FunctionDefinition *a)
             // the first argument is the class object - we know its type but not its
             // value
             fn->locals.at(arg.name) = Value(ValueType::Instance, this->in_class_id,
-                                            NULL);
+                                            nullptr);
 
             // if the arg has a default value, infer the type from that
         }

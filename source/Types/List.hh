@@ -20,20 +20,20 @@ struct ListObject
 };
 
 ListObject *list_new(uint64_t count, bool items_are_objects,
-                     ExceptionBlock *exc_block = NULL);
+                     ExceptionBlock *exc_block = nullptr);
 
 void list_delete(ListObject *l);
 
 void *list_get_item(const ListObject *l, int64_t position,
-                    ExceptionBlock *exc_block = NULL);
+                    ExceptionBlock *exc_block = nullptr);
 
 void list_set_item(ListObject *l, int64_t position, void *value,
-                   ExceptionBlock *exc_block = NULL);
+                   ExceptionBlock *exc_block = nullptr);
 
 void list_insert(ListObject *l, int64_t position, void *value,
-                 ExceptionBlock *exc_block = NULL);
+                 ExceptionBlock *exc_block = nullptr);
 
-void list_append(ListObject *l, void *value, ExceptionBlock *exc_block = NULL);
+void list_append(ListObject *l, void *value, ExceptionBlock *exc_block = nullptr);
 
 void *list_pop(ListObject *l, int64_t position, ExceptionBlock *exc_block);
 

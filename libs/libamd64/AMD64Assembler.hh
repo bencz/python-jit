@@ -415,16 +415,16 @@ public:
   // undefined labels - instead, just leaves them as unpatched offsets. it's a
   // bad idea to execute any code assembled with autodefine_labels = true; it
   // should be used only for debugging.
-  std::string assemble(std::unordered_set<size_t>* patch_offsets = NULL,
-      std::multimap<size_t, std::string>* label_offsets = NULL,
+  std::string assemble(std::unordered_set<size_t>* patch_offsets = nullptr,
+      std::multimap<size_t, std::string>* label_offsets = nullptr,
       int64_t base_address = 0, bool autodefine_labels = false);
 
   // disassembles the given binary data into a (multi-line) human-readable
   // string.
   static std::string disassemble(const std::string& data, size_t addr = 0,
-      const std::multimap<size_t, std::string>* label_offsets = NULL);
+      const std::multimap<size_t, std::string>* label_offsets = nullptr);
   static std::string disassemble(const void* vdata, size_t size, size_t addr = 0,
-      const std::multimap<size_t, std::string>* label_offsets = NULL);
+      const std::multimap<size_t, std::string>* label_offsets = nullptr);
 
   // deletes the stored results of all previous write_X calls
   void reset();
@@ -715,7 +715,7 @@ public:
 
 private:
   static std::string generate_jmp(Operation op8, Operation op32,
-      int64_t opcode_address, int64_t target_address, OperandSize* offset_size = NULL);
+      int64_t opcode_address, int64_t target_address, OperandSize* offset_size = nullptr);
   static std::string generate_absolute_jmp_position_independent(Operation op8,
       Operation op32, int64_t target_address);
   static std::string generate_rm(Operation op, const MemoryReference& mem,

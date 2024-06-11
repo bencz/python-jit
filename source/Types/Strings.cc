@@ -60,7 +60,7 @@ BytesObject *bytes_concat(const BytesObject *a, const BytesObject *b,
                           ExceptionBlock *exc_block)
 {
     uint64_t count = a->count + b->count;
-    BytesObject *s = bytes_new(NULL, count, exc_block);
+    BytesObject *s = bytes_new(nullptr, count, exc_block);
     memcpy(s->data, a->data, sizeof(char) * a->count);
     memcpy(&s->data[a->count], b->data, sizeof(char) * b->count);
     s->data[s->count] = 0;
@@ -181,7 +181,7 @@ UnicodeObject *unicode_concat(const UnicodeObject *a, const UnicodeObject *b,
                               ExceptionBlock *exc_block)
 {
     uint64_t count = a->count + b->count;
-    UnicodeObject *s = unicode_new(NULL, count, exc_block);
+    UnicodeObject *s = unicode_new(nullptr, count, exc_block);
     memcpy(s->data, a->data, sizeof(wchar_t) * a->count);
     memcpy(&s->data[a->count], b->data, sizeof(wchar_t) * b->count);
     s->data[s->count] = 0;
@@ -245,7 +245,7 @@ bool unicode_contains(const UnicodeObject *haystack, const UnicodeObject *needle
         return true;
     }
     if (memmem(haystack->data, haystack->count * sizeof(wchar_t),
-               needle->data, needle->count * sizeof(wchar_t)) != NULL)
+               needle->data, needle->count * sizeof(wchar_t)) != nullptr)
     {
         return true;
     }
@@ -272,7 +272,7 @@ BytesObject *unicode_encode_ascii(const wchar_t *s, ssize_t count)
     {
         count = wcslen(s);
     }
-    BytesObject *ret = bytes_new(NULL, count);
+    BytesObject *ret = bytes_new(nullptr, count);
     for (int64_t x = 0; x < count; x++)
     {
         ret->data[x] = s[x];
@@ -292,7 +292,7 @@ UnicodeObject *bytes_decode_ascii(const char *s, ssize_t count)
     {
         count = strlen(s);
     }
-    UnicodeObject *ret = unicode_new(NULL, count);
+    UnicodeObject *ret = unicode_new(nullptr, count);
     for (int64_t x = 0; x < count; x++)
     {
         ret->data[x] = s[x];

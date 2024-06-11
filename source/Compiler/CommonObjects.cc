@@ -71,7 +71,7 @@ size_t common_object_count()
 
 MemoryReference common_object_reference(const void *which)
 {
-    if (!pointer_to_index.get())
+    if (!pointer_to_index)
     {
         auto *m = new unordered_map<const void *, size_t>();
         for (size_t x = 0; x < objects.size(); x++)

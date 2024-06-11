@@ -57,8 +57,8 @@ int64_t construct_value(GlobalContext *global, const Value &value,
 
         case ValueType::Dict:
         {
-            size_t (*key_length)(const void *) = NULL;
-            uint8_t (*key_at)(const void *, size_t) = NULL;
+            size_t (*key_length)(const void *) = nullptr;
+            uint8_t (*key_at)(const void *, size_t) = nullptr;
             if (value.extension_types[0].type == ValueType::Bytes)
             {
                 key_length = reinterpret_cast<size_t (*)(const void *)>(bytes_length);
@@ -585,7 +585,7 @@ const void *jit_compile_scope(GlobalContext *global, int64_t callsite_token,
     }
 
     auto create_compiler_error_exception = [&](const char *what,
-                                               const SourceFile *src = NULL, ssize_t src_offset = -1) -> void * {
+                                               const SourceFile *src = nullptr, ssize_t src_offset = -1) -> void * {
         if (debug_flags & DebugFlag::ShowJITEvents)
         {
             fprintf(stderr, "[jit_callsite:%" PRId64 "] failed: %s\n",
@@ -625,7 +625,7 @@ const void *jit_compile_scope(GlobalContext *global, int64_t callsite_token,
     {
         *raise_exception = create_compiler_error_exception(
                 "callsite reference object is missing");
-        return NULL;
+        return nullptr;
     }
 
     if (debug_flags & DebugFlag::ShowJITEvents)
@@ -636,7 +636,7 @@ const void *jit_compile_scope(GlobalContext *global, int64_t callsite_token,
     }
 
     // get the caller function object (if it's not a module root scope)
-    FunctionContext *caller_fn = NULL;
+    FunctionContext *caller_fn = nullptr;
     if (callsite->caller_function_id)
     {
         try
@@ -646,7 +646,7 @@ const void *jit_compile_scope(GlobalContext *global, int64_t callsite_token,
         {
             *raise_exception = create_compiler_error_exception(
                     "caller function context is missing");
-            return NULL;
+            return nullptr;
         }
     }
 
@@ -661,7 +661,7 @@ const void *jit_compile_scope(GlobalContext *global, int64_t callsite_token,
         {
             *raise_exception = create_compiler_error_exception(
                     "caller fragment is missing");
-            return NULL;
+            return nullptr;
         }
     }
     else
@@ -687,7 +687,7 @@ const void *jit_compile_scope(GlobalContext *global, int64_t callsite_token,
         {
             *raise_exception = create_compiler_error_exception(
                     "callee function context is missing");
-            return NULL;
+            return nullptr;
         }
 
         if (debug_flags & DebugFlag::ShowJITEvents)
@@ -734,11 +734,11 @@ const void *jit_compile_scope(GlobalContext *global, int64_t callsite_token,
             {
                 *raise_exception = create_compiler_error_exception(e.what(),
                                                                    callee_fn->module->source.get(), e.where);
-                return NULL;
+                return nullptr;
             } catch (const exception &e)
             {
                 *raise_exception = create_compiler_error_exception(e.what());
-                return NULL;
+                return nullptr;
             }
         }
 
@@ -758,11 +758,11 @@ const void *jit_compile_scope(GlobalContext *global, int64_t callsite_token,
         {
             *raise_exception = create_compiler_error_exception(e.what(),
                                                                callee_fn->module->source.get(), e.where);
-            return NULL;
+            return nullptr;
         } catch (const exception &e)
         {
             *raise_exception = create_compiler_error_exception(e.what());
-            return NULL;
+            return nullptr;
         }
     }
 

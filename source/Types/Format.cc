@@ -159,13 +159,13 @@ template<typename T>
 static vector<struct FormatSpecifier> extract_formats(T *format, size_t count)
 {
     vector<struct FormatSpecifier> specs;
-    struct FormatSpecifier *current = NULL;
+    struct FormatSpecifier *current = nullptr;
 
     FormatParserState state = FormatParserState::PrefixChars;
 
     for (size_t x = 0; x < count;)
     {
-        if (current == NULL)
+        if (current == nullptr)
         {
             if (format[x] == '%')
             {
@@ -268,7 +268,7 @@ static vector<struct FormatSpecifier> extract_formats(T *format, size_t count)
                 current->format_code = format[x];
                 x++;
                 current->length = x - current->offset;
-                current = NULL;
+                current = nullptr;
                 state = FormatParserState::PrefixChars;
             }
             else if ((format[x] == 'h') || (format[x] == 'l') || (format[x] == 'L'))
@@ -537,7 +537,7 @@ template<typename ObjectType, typename StringType,
 ObjectType *string_format(ObjectType *format, TupleObject *args,
                           ExceptionBlock *exc_block, bool delete_tuple_reference = false)
 {
-    ObjectType *ret = NULL;
+    ObjectType *ret = nullptr;
     try
     {
         auto specs = extract_formats(format->data, format->count);

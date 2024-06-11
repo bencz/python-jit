@@ -52,6 +52,6 @@ shared_ptr<ModuleContext> create_builtin_module(GlobalContext *global,
         return m;
     } catch (const out_of_range &)
     {
-        return NULL;
+        return nullptr;
     }
 }

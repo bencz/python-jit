@@ -231,10 +231,10 @@ void RecursiveASTVisitor::visit(ListConstructor *a)
 
 void RecursiveASTVisitor::visit(DictConstructor *a)
 {
-    for (size_t x = 0; x < a->items.size(); x++)
+    for (auto & item : a->items)
     {
-        a->items[x].first->accept(this);
-        a->items[x].second->accept(this);
+        item.first->accept(this);
+        item.second->accept(this);
     }
 }
 

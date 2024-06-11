@@ -82,7 +82,7 @@ struct DictionaryObject
     };
 
     Traversal traverse(void *k, bool with_nodes, bool create,
-                       ExceptionBlock *exc_block = NULL);
+                       ExceptionBlock *exc_block = nullptr);
 
     Traversal traverse(void *k, bool with_nodes) const;
 
@@ -91,12 +91,12 @@ struct DictionaryObject
 
 DictionaryObject *dictionary_new(size_t (*key_length)(const void *k),
                                  uint8_t (*key_char)(const void *k, size_t which), uint64_t flags,
-                                 ExceptionBlock *exc_block = NULL);
+                                 ExceptionBlock *exc_block = nullptr);
 
 void dictionary_delete(void *d);
 
 void dictionary_insert(DictionaryObject *d, void *k, void *v,
-                       ExceptionBlock *exc_block = NULL);
+                       ExceptionBlock *exc_block = nullptr);
 
 bool dictionary_erase(DictionaryObject *d, void *k);
 
@@ -105,7 +105,7 @@ void dictionary_clear(DictionaryObject *d);
 bool dictionary_exists(const DictionaryObject *d, void *k);
 
 void *dictionary_at(const DictionaryObject *d, void *k,
-                    ExceptionBlock *exc_block = NULL);
+                    ExceptionBlock *exc_block = nullptr);
 
 bool dictionary_next_item(const DictionaryObject *d,
                           DictionaryObject::SlotContents *item);

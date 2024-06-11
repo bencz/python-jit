@@ -19,7 +19,7 @@ using FragDef = BuiltinFragmentDefinition;
 
 extern shared_ptr<GlobalContext> global;
 
-static UnicodeObject *empty_unicode = unicode_new(NULL, 0);
+static UnicodeObject *empty_unicode = unicode_new(nullptr, 0);
 static const Value None(ValueType::None);
 static const Value Bool(ValueType::Bool);
 static const Value Bool_True(ValueType::Bool, true);
@@ -396,7 +396,7 @@ shared_ptr<ModuleContext> builtins_initialize(GlobalContext *global_context)
 
                                                                    })), FragDef({Bytes}, Unicode, void_fn_ptr([](BytesObject *v) -> UnicodeObject * {
                                                                        string escape_ret = escape(reinterpret_cast<const char *>(v->data), v->count);
-                                                                       UnicodeObject *ret = unicode_new(NULL, escape_ret.size() + 3);
+                                                                       UnicodeObject *ret = unicode_new(nullptr, escape_ret.size() + 3);
                                                                        ret->data[0] = L'b';
                                                                        ret->data[1] = L'\'';
                                                                        for (size_t x = 0; x < escape_ret.size(); x++)
@@ -410,7 +410,7 @@ shared_ptr<ModuleContext> builtins_initialize(GlobalContext *global_context)
 
                                                                    })), FragDef({Unicode}, Unicode, void_fn_ptr([](UnicodeObject *v) -> UnicodeObject * {
                                                                        string escape_ret = escape(v->data, v->count);
-                                                                       UnicodeObject *ret = unicode_new(NULL, escape_ret.size() + 2);
+                                                                       UnicodeObject *ret = unicode_new(nullptr, escape_ret.size() + 2);
                                                                        ret->data[0] = L'\'';
                                                                        for (size_t x = 0; x < escape_ret.size(); x++)
                                                                        {
@@ -459,7 +459,7 @@ shared_ptr<ModuleContext> builtins_initialize(GlobalContext *global_context)
                                                                                                                "invalid value for chr()");
                                                                        }
 
-                                                                       UnicodeObject *s = unicode_new(NULL, 1);
+                                                                       UnicodeObject *s = unicode_new(nullptr, 1);
                                                                        s->data[0] = i;
                                                                        s->data[1] = 0;
                                                                        return s;
@@ -497,7 +497,7 @@ shared_ptr<ModuleContext> builtins_initialize(GlobalContext *global_context)
                                                                            return unicode_new(L"0b0", 3);
                                                                        }
 
-                                                                       UnicodeObject *s = unicode_new(NULL, 67);
+                                                                       UnicodeObject *s = unicode_new(nullptr, 67);
                                                                        size_t x = 0;
                                                                        if (i < 0)
                                                                        {
@@ -540,7 +540,7 @@ shared_ptr<ModuleContext> builtins_initialize(GlobalContext *global_context)
                                                                            return unicode_new(L"-0o1000000000000000000000", 25);
                                                                        }
 
-                                                                       UnicodeObject *s = unicode_new(NULL, 25);
+                                                                       UnicodeObject *s = unicode_new(nullptr, 25);
                                                                        size_t x = 0;
                                                                        if (i < 0)
                                                                        {
@@ -572,7 +572,7 @@ shared_ptr<ModuleContext> builtins_initialize(GlobalContext *global_context)
 
                                                                    // Unicode hex(Int)
                                                                    {"hex",   {Int},           Unicode, void_fn_ptr([](int64_t i) -> UnicodeObject * {
-                                                                       UnicodeObject *s = unicode_new(NULL, 19);
+                                                                       UnicodeObject *s = unicode_new(nullptr, 19);
                                                                        s->count = swprintf(s->data, 19, L"%s0x%x", (i < 0) ? "-" : "", (i < 0) ? -i : i);
                                                                        return s;
                                                                    }), false},
@@ -677,8 +677,8 @@ shared_ptr<ModuleContext> builtins_initialize(GlobalContext *global_context)
 
                                                       {"bytes", {}, {
                                                               /* TODO: implement these
-                                                              {"capitalize", {Self, TODO}, TODO, void_fn_ptr(NULL), false},
-                                                              {"center", {Self, TODO}, TODO, void_fn_ptr(NULL), false},
+                                                              {"capitalize", {Self, TODO}, TODO, void_fn_ptr(nullptr), false},
+                                                              {"center", {Self, TODO}, TODO, void_fn_ptr(nullptr), false},
                                                               {"count", {Self, TODO}, TODO, void_fn_ptr(NULL), false},
                                                               {"decode", {Self, TODO}, TODO, void_fn_ptr(NULL), false},
                                                               {"endswith", {Self, TODO}, TODO, void_fn_ptr(NULL), false},

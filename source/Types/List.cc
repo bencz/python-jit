@@ -33,7 +33,7 @@ ListObject *list_new(uint64_t count, bool items_are_objects,
     }
     else
     {
-        l->items = NULL;
+        l->items = nullptr;
     }
     return l;
 }
@@ -207,7 +207,7 @@ void list_clear(ListObject *l)
         }
     }
     free(l->items);
-    l->items = NULL;
+    l->items = nullptr;
     l->count = 0;
 }
 

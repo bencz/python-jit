@@ -13,7 +13,7 @@ using namespace std;
 
 
 static void* assemble(CodeBuffer& code, AMD64Assembler& as,
-    const char* expected_disassembly = NULL, bool check_disassembly = true) {
+    const char* expected_disassembly = nullptr, bool check_disassembly = true) {
   multimap<size_t, string> compiled_labels;
   unordered_set<size_t> patch_offsets;
   string data = as.assemble(&patch_offsets, &compiled_labels);
@@ -120,7 +120,7 @@ void test_jump_boundaries() {
     as.write_mov(rax, rdi);
     as.write_ret();
 
-    void* function = assemble(code, as, NULL, false);
+    void* function = assemble(code, as, nullptr, false);
     int64_t (*fn)(int64_t) = reinterpret_cast<int64_t (*)(int64_t)>(function);
 
     assert(fn(x) == x);
@@ -420,7 +420,7 @@ void test_absolute_patches() {
   as.write_label("label1");
   as.write_ret();
 
-  void* function = assemble(code, as, NULL, false);
+  void* function = assemble(code, as, nullptr, false);
   size_t (*fn)() = reinterpret_cast<size_t (*)()>(function);
 
   // the movabs opcode is 10 bytes long

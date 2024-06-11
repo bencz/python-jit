@@ -33,15 +33,15 @@ struct UnicodeObject
 
 
 BytesObject *bytes_new(const char *data, ssize_t count,
-                       ExceptionBlock *exc_block = NULL);
+                       ExceptionBlock *exc_block = nullptr);
 
 BytesObject *bytes_from_cxx_string(const std::string &data);
 
 BytesObject *bytes_concat(const BytesObject *a, const BytesObject *b,
-                          ExceptionBlock *exc_block = NULL);
+                          ExceptionBlock *exc_block = nullptr);
 
 char bytes_at(const BytesObject *s, size_t which,
-              ExceptionBlock *exc_block = NULL);
+              ExceptionBlock *exc_block = nullptr);
 
 size_t bytes_length(const BytesObject *s);
 
@@ -54,15 +54,15 @@ bool bytes_contains(const BytesObject *needle, const BytesObject *haystack);
 std::string bytes_to_cxx_string(const BytesObject *s);
 
 UnicodeObject *unicode_new(const wchar_t *data, ssize_t count,
-                           ExceptionBlock *exc_block = NULL);
+                           ExceptionBlock *exc_block = nullptr);
 
 UnicodeObject *unicode_from_cxx_wstring(const std::wstring &data);
 
 UnicodeObject *unicode_concat(const UnicodeObject *a, const UnicodeObject *b,
-                              ExceptionBlock *exc_block = NULL);
+                              ExceptionBlock *exc_block = nullptr);
 
 wchar_t unicode_at(const UnicodeObject *s, size_t which,
-                   ExceptionBlock *exc_block = NULL);
+                   ExceptionBlock *exc_block = nullptr);
 
 size_t unicode_length(const UnicodeObject *s);
 
