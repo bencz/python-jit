@@ -332,7 +332,7 @@ int64_t ModuleContext::create_builtin_class(BuiltinClassDefinition &def)
                                                                                         {"set",     {Set_Any,  Set_Same}},
                                                                                         {"dict",    {Dict_Any, Dict_Same}},
                                                                                 });
-    unordered_set<Value> self_types({{ValueType::Instance, static_cast<int64_t>(0), NULL}});
+    unordered_set<Value> self_types({{ValueType::Instance, static_cast<int64_t>(0), nullptr}});
     try
     {
         self_types = name_to_self_types.at(def.name);
@@ -380,7 +380,7 @@ int64_t ModuleContext::create_builtin_class(BuiltinClassDefinition &def)
             // if it's __init__, the return type must be the class instance, not None
             for (auto &frag_def: method_def.fragments)
             {
-                if (frag_def.return_type != Value(ValueType::Instance, static_cast<int64_t>(0), NULL))
+                if (frag_def.return_type != Value(ValueType::Instance, static_cast<int64_t>(0), nullptr))
                 {
                     throw logic_error(string_printf("%s.__init__ must return the class instance",
                                                     def.name));
@@ -611,7 +611,7 @@ FunctionContext *GlobalContext::context_for_function(int64_t function_id,
 {
     if (function_id == 0)
     {
-        return NULL;
+        return nullptr;
     }
     if (module_for_create)
     {
@@ -626,7 +626,7 @@ FunctionContext *GlobalContext::context_for_function(int64_t function_id,
             return &this->function_id_to_context.at(function_id);
         } catch (const out_of_range &e)
         {
-            return NULL;
+            return nullptr;
         }
     }
 }
@@ -636,7 +636,7 @@ ClassContext *GlobalContext::context_for_class(int64_t class_id,
 {
     if (class_id == 0)
     {
-        return NULL;
+        return nullptr;
     }
     if (module_for_create)
     {
@@ -651,7 +651,7 @@ ClassContext *GlobalContext::context_for_class(int64_t class_id,
             return &this->class_id_to_context.at(class_id);
         } catch (const out_of_range &e)
         {
-            return NULL;
+            return nullptr;
         }
     }
 }
@@ -687,7 +687,7 @@ int64_t GlobalContext::match_value_to_type(const Value &expected_type,
             cls = this->context_for_class(cls->parent_class_id);
         }
 
-        // cls is non-NULL if and only if we found a matching (super)class
+        // cls is non-nullptr if and only if we found a matching (super)class
         return cls ? 0 : -1;
     }
 
@@ -727,7 +727,7 @@ const BytesObject *GlobalContext::get_or_create_constant(const string &s,
         return bytes_new(s.data(), s.size());
     }
 
-    BytesObject *o = NULL;
+    BytesObject *o = nullptr;
     try
     {
         o = this->bytes_constants.at(s);
@@ -747,7 +747,7 @@ const UnicodeObject *GlobalContext::get_or_create_constant(const wstring &s,
         return unicode_new(s.data(), s.size());
     }
 
-    UnicodeObject *o = NULL;
+    UnicodeObject *o = nullptr;
     try
     {
         o = this->unicode_constants.at(s);
@@ -819,7 +819,7 @@ Value GlobalContext::type_for_annotation(ModuleContext *module,
         {
             throw compile_error("type annotation " + type_annotation->type_name + " refers to unknown-value type");
         }
-        return Value(ValueType::Instance, value.class_id, NULL);
+        return Value(ValueType::Instance, value.class_id, nullptr);
 
     } catch (const out_of_range &)
     {}

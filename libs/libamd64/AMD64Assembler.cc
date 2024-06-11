@@ -1110,8 +1110,6 @@ void AMD64Assembler::write_cvtsd2si(Register to, Register from) {
       OperandSize::QuadWord, 0xF2);
 }
 
-
-
 void AMD64Assembler::write_nop() {
   static string nop("\x90", 1);
   this->write(nop);
@@ -1363,8 +1361,6 @@ void AMD64Assembler::write_jg(const string& label_name) {
   this->write_jcc(Operation::JG8, Operation::JG, label_name);
 }
 
-
-
 void AMD64Assembler::write_imm_math(Operation math_op,
     const MemoryReference& to, int64_t value, OperandSize size) {
   if (math_op & 0xC7) {
@@ -1393,8 +1389,6 @@ void AMD64Assembler::write_imm_math(Operation math_op,
   }
   this->write(data);
 }
-
-
 
 void AMD64Assembler::write_add(const MemoryReference& to,
     const MemoryReference& from, OperandSize size) {
@@ -1548,8 +1542,6 @@ void AMD64Assembler::write_sar_cl(const MemoryReference& mem, OperandSize size) 
   this->write_shift(7, mem, 0xFF, size);
 }
 
-
-
 void AMD64Assembler::write_not(const MemoryReference& target,
     OperandSize size) {
   Operation op = (size == OperandSize::Byte) ? Operation::NOT_NEG8 : Operation::NOT_NEG32;
@@ -1624,8 +1616,6 @@ void AMD64Assembler::write_idiv(const MemoryReference& mem, OperandSize size) {
   Operation op = (size == OperandSize::Byte) ? Operation::NOT_NEG8 : Operation::NOT_NEG32;
   this->write_rm(op, mem, 7, size);
 }
-
-
 
 void AMD64Assembler::write_test(const MemoryReference& a,
     const MemoryReference& b, OperandSize size) {
@@ -1783,8 +1773,6 @@ void AMD64Assembler::write_setg(const MemoryReference& target) {
 void AMD64Assembler::write_lock() {
   this->write("\xF0");
 }
-
-
 
 void AMD64Assembler::write(const string& data) {
   this->stream.emplace_back(data);
@@ -2040,8 +2028,6 @@ string AMD64Assembler::Label::str() const {
       this->name.c_str(), this->stream_location, this->byte_location);
 }
 
-
-
 static inline Register make_reg(bool is_ext, uint8_t reg) {
   return static_cast<Register>((is_ext << 3) | reg);
 }
@@ -2217,19 +2203,19 @@ string AMD64Assembler::disassemble(const void* vdata, size_t size,
               "seta", "sets", "setns", "setp", "setnp", "setl", "setge",
               "setle", "setg"};
           static const char* fake_names[] = {
-              nullptr, nullptr, nullptr, NULL, NULL, NULL, NULL, NULL};
+              nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr};
           opcode_text = AMD64Assembler::disassemble_rm(data, size, offset,
               names[opcode & 0x0F], false, fake_names, ext, reg_ext, base_ext,
               index_ext, OperandSize::Byte);
 
         } else if (opcode == 0xAF) {
           opcode_text = AMD64Assembler::disassemble_rm(data, size, offset,
-              "imul", true, NULL, ext, reg_ext, base_ext, index_ext,
+              "imul", true, nullptr, ext, reg_ext, base_ext, index_ext,
               operand_size);
 
         } else if ((opcode & 0xFE) == 0xB6) {
           opcode_text = AMD64Assembler::disassemble_rm(data, size, offset,
-              "movzx", true, NULL, ext, reg_ext, base_ext, index_ext,
+              "movzx", true, nullptr, ext, reg_ext, base_ext, index_ext,
               operand_size, (opcode & 1) ? OperandSize::Word : OperandSize::Byte);
 
         } else if (opcode == 0xC2) {
@@ -2237,7 +2223,7 @@ string AMD64Assembler::disassemble(const void* vdata, size_t size,
             opcode_text = "<<unknown-0F-C2-non-xmm>>";
           } else {
             opcode_text = AMD64Assembler::disassemble_rm(data, size, offset,
-                "cmpsd", true, NULL, ext, reg_ext, base_ext, index_ext,
+                "cmpsd", true, nullptr, ext, reg_ext, base_ext, index_ext,
                 OperandSize::DoublePrecision);
             if (offset >= size) {
               opcode_text += ", <<incomplete>>";
@@ -2268,7 +2254,7 @@ string AMD64Assembler::disassemble(const void* vdata, size_t size,
           operand_size = OperandSize::Byte;
         }
         opcode_text = AMD64Assembler::disassemble_rm(data, size, offset,
-            math_op_names[which], opcode & 2, NULL, ext, reg_ext, base_ext,
+            math_op_names[which], opcode & 2, nullptr, ext, reg_ext, base_ext,
             index_ext, operand_size);
       }
 
@@ -2292,7 +2278,7 @@ string AMD64Assembler::disassemble(const void* vdata, size_t size,
 
     } else if ((opcode == 0x69) || (opcode == 0x6B)) {
       opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, "imul",
-          true, NULL, ext, reg_ext, base_ext, index_ext, operand_size);
+          true, nullptr, ext, reg_ext, base_ext, index_ext, operand_size);
       opcode_text += ", ";
       opcode_text += AMD64Assembler::disassemble_imm(data, size, offset,
           (opcode == 0x6B) ? OperandSize::Byte : operand_size);
@@ -2320,7 +2306,7 @@ string AMD64Assembler::disassemble(const void* vdata, size_t size,
       if (!(opcode & 1)) {
         operand_size = OperandSize::Byte;
       }
-      opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, NULL,
+      opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, nullptr,
           true, math_op_names, ext, reg_ext, base_ext, index_ext, operand_size);
 
       uint32_t displacement;
@@ -2338,30 +2324,30 @@ string AMD64Assembler::disassemble(const void* vdata, size_t size,
         operand_size = OperandSize::Byte;
       }
       opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, "test",
-          true, NULL, ext, reg_ext, base_ext, index_ext, operand_size);
+          true, nullptr, ext, reg_ext, base_ext, index_ext, operand_size);
 
     } else if ((opcode & 0xFE) == 0x86) {
       if (!(opcode & 1)) {
         operand_size = OperandSize::Byte;
       }
       opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, "xchg",
-          true, NULL, ext, reg_ext, base_ext, index_ext, operand_size);
+          true, nullptr, ext, reg_ext, base_ext, index_ext, operand_size);
 
     } else if ((opcode & 0xFC) == 0x88) {
       if (!(opcode & 1)) {
         operand_size = OperandSize::Byte;
       }
       opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, "mov",
-          opcode & 2, NULL, ext, reg_ext, base_ext, index_ext, operand_size);
+          opcode & 2, nullptr, ext, reg_ext, base_ext, index_ext, operand_size);
 
     } else if (opcode == 0x8D) {
       opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, "lea",
-          true, NULL, ext, reg_ext, base_ext, index_ext, operand_size);
+          true, nullptr, ext, reg_ext, base_ext, index_ext, operand_size);
 
     } else if (opcode == 0x8F) {
       static const char* names[] = {
-          "pop", NULL, NULL, NULL, NULL, NULL, NULL, NULL};
-      opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, NULL,
+          "pop", nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr};
+      opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, nullptr,
           false, names, ext, reg_ext, base_ext, index_ext, OperandSize::QuadWord);
 
     } else if (opcode == 0x90) {
@@ -2379,7 +2365,7 @@ string AMD64Assembler::disassemble(const void* vdata, size_t size,
       }
       static const char* names[] = {
           "rol", "ror", "rcl", "rcr", "shl", "shr", "sal", "sar"};
-      opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, NULL,
+      opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, nullptr,
           true, names, ext, reg_ext, base_ext, index_ext, operand_size);
 
       if ((opcode & 0xFE) == 0xC0) {
@@ -2403,8 +2389,8 @@ string AMD64Assembler::disassemble(const void* vdata, size_t size,
         operand_size = OperandSize::Byte;
       }
       static const char* names[] = {
-          "mov", NULL, NULL, NULL, NULL, NULL, NULL, NULL};
-      opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, NULL,
+          "mov", nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr};
+      opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, nullptr,
           false, names, ext, reg_ext, base_ext, index_ext, operand_size);
       opcode_text += ", " + AMD64Assembler::disassemble_imm(data, size, offset,
           operand_size);
@@ -2440,7 +2426,7 @@ string AMD64Assembler::disassemble(const void* vdata, size_t size,
 
         static const char* names[] = {
             "test", "test", "not", "neg", "mul", "imul", "div", "idiv"};
-        opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, NULL,
+        opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, nullptr,
             true, names, ext, reg_ext, base_ext, index_ext, operand_size);
 
         // if it's a test (0 or 1) then an immediate value follows
@@ -2461,14 +2447,14 @@ string AMD64Assembler::disassemble(const void* vdata, size_t size,
 
         } else {
           static const char* names[] = {
-            "inc", "dec", "call", NULL, "jmp", NULL, "push", NULL};
+            "inc", "dec", "call", nullptr, "jmp", nullptr, "push", nullptr};
           // this opcode has an implied 64-bit operand size except for inc/dec
           if (opcode == 0xFE) {
             operand_size = OperandSize::Byte;
           } else if (!is_inc_dec) {
             operand_size = OperandSize::QuadWord;
           }
-          opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, NULL,
+          opcode_text = AMD64Assembler::disassemble_rm(data, size, offset, nullptr,
               false, names, ext, reg_ext, base_ext, index_ext, operand_size);
         }
       }

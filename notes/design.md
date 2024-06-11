@@ -11,7 +11,7 @@ Guiding ideas behind this project:
 
 The basic types are:
 
-    None                - NULL
+    None                - nullptr
     Bool                - true or false
     Int                 - signed 64-bit integer
     Float               - double-precision floating-point number
@@ -35,7 +35,7 @@ Nontrivial types are represented as pointers to allocated objects. All objects h
     uint64_t reference_count
     void (*destructor)()
 
-All objects must be destructible (destructor must never be NULL).
+All objects must be destructible (destructor must never be nullptr).
 
 Built-in types have structures defined in their respective header files (in the Source/Types directory). User-defined types follow the structure in Source/Types/Instance.hh, with attributes immediately following the class id. The memory order of attributes in an instance object follows the order in which the attributes are created in the source file; most often, this is the order they're set in the class' `__init__` function. However, the memory order of the attributes in a class instance object should be considered arbitrary and should not be relied upon (though it should be impossible to have such a dependency in Python code).
 
@@ -143,7 +143,7 @@ The compilation phase uses this information to know which fragment to call for a
 
 This is implemented by CompilationVisitor. This visitor walks the AST for a specific execution path - that is, it does not recur into definitions of any type. This is by far the most complex visitor; it maintains a lot of state as it follows the execution path. Multiple invocations of this visitor are often required to compile a single source file; one for the module root scope, one for each fragment called from the root scope (including fragments for functions defined in other modules).
 
-Module root scopes compile into functions that take no arguments and return the active exception object if one was raised, or NULL if no exception was raised. Functions defined within modules expect r12-r14 to already be set up properly; see the calling convention description below for more information.
+Module root scopes compile into functions that take no arguments and return the active exception object if one was raised, or nullptr if no exception was raised. Functions defined within modules expect r12-r14 to already be set up properly; see the calling convention description below for more information.
 
 Space for all local variables is initialized at the beginning of the function's scope. Temporary variables may only live during a statement's execution; when a statement is completed, they are either copied to a local/global variable or destroyed. This means that no registers should be reserved across statement boundaries, and no references should be held in registers either.
 

@@ -2083,7 +2083,7 @@ void CompilationVisitor::visit(FunctionCall *a)
                 this->write_alloc_class_instance(cls->id);
 
                 arg.type = arg.default_value;
-                this->current_type = Value(ValueType::Instance, cls->id, NULL);
+                this->current_type = Value(ValueType::Instance, cls->id, nullptr);
                 this->holding_reference = true;
 
                 // if the argument is the exception block, copy it from r14
@@ -2831,7 +2831,7 @@ void CompilationVisitor::visit(AttributeLValueReference *a)
         // typecheck the result. the type of a variable can only be changed if it's
         // Indeterminate; otherwise it's an error
         // TODO: deduplicate some of this with location_for_variable
-        Value *target_variable = NULL;
+        Value *target_variable = nullptr;
         if (loc.global_module)
         {
             target_variable = &loc.global_module->global_variables.at(loc.name).value;
@@ -2883,7 +2883,7 @@ void CompilationVisitor::visit(ModuleStatement *a)
     // have to treat it like a function, but it has no local variables (everything
     // it writes is global, so based on R13, not RSP). the global pointer is
     // passed as an argument (RDI) instead of already being in R13, so we move it
-    // into place. it returns the active exception object (NULL means success).
+    // into place. it returns the active exception object (nullptr means success).
     this->write_push(rbp);
     this->as.write_mov(rbp, rsp);
     this->write_push(r12);
@@ -3031,7 +3031,7 @@ void CompilationVisitor::visit(ImportStatement *a)
         }
 
         // store the value in this module. variable_mem is valid if global_module is
-        // this module or NULL
+        // this module or nullptr
         if (!dest_loc.variable_mem_valid)
         {
             throw compile_error("variable reference not valid", a->file_offset);
@@ -3849,7 +3849,7 @@ void CompilationVisitor::visit(TryStatement *a)
 
             // typecheck the result
             // TODO: deduplicate some of this with AttributeLValueReference
-            Value *target_variable = NULL;
+            Value *target_variable = nullptr;
             if (loc.global_module)
             {
                 if (!loc.variable_mem_valid)
@@ -4107,10 +4107,10 @@ void CompilationVisitor::visit(ClassDefinition *a)
                 {
                     throw compile_error("__del__ has multiple fragments", this->file_offset);
                 }
-                vector<Value> expected_arg_types({Value(ValueType::Instance, a->class_id, NULL)});
+                vector<Value> expected_arg_types({Value(ValueType::Instance, a->class_id, nullptr)});
                 if (fn->fragments.empty())
                 {
-                    vector<Value> arg_types({Value(ValueType::Instance, a->class_id, NULL)});
+                    vector<Value> arg_types({Value(ValueType::Instance, a->class_id, nullptr)});
                     fn->fragments.emplace_back(fn, fn->fragments.size(), arg_types);
                     compile_fragment(this->global, fn->module, &fn->fragments.back());
                 }
@@ -4171,7 +4171,7 @@ void CompilationVisitor::visit(ClassDefinition *a)
                         // get the object pointer
                         dtor_as.write_mov(rdi, MemoryReference(rbx, offset));
 
-                        // if the pointer is NULL, do nothing
+                        // if the pointer is nullptr, do nothing
                         dtor_as.write_test(rdi, rdi);
                         dtor_as.write_je(skip_label);
 
@@ -4729,7 +4729,7 @@ void CompilationVisitor::write_delete_reference(const MemoryReference &mem,
             this->as.write_mov(r_mem, mem);
         }
 
-        // if the pointer is NULL, do nothing
+        // if the pointer is nullptr, do nothing
         this->as.write_test(r_mem, r_mem);
         this->as.write_je(skip_label);
 
@@ -4765,7 +4765,7 @@ void CompilationVisitor::write_alloc_class_instance(int64_t class_id,
     this->as.write_call(common_object_reference(void_fn_ptr(&malloc)));
     this->adjust_stack(stack_bytes_used);
 
-    // check if the result is NULL and raise MemoryError in that case
+    // check if the result is nullptr and raise MemoryError in that case
     this->as.write_test(rax, rax);
     this->as.write_jnz(skip_label);
     this->as.write_mov(rax, common_object_reference(&MemoryError_instance));

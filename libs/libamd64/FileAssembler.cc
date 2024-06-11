@@ -1,8 +1,8 @@
 #include "FileAssembler.hh"
 
-#include <errno.h>
-#include <inttypes.h>
-#include <string.h>
+#include <cerrno>
+#include <cinttypes>
+#include <cstring>
 #include <unistd.h>
 
 #include <phosg/Filesystem.hh>
@@ -13,8 +13,6 @@
 #include "AMD64Assembler.hh"
 
 using namespace std;
-
-
 
 struct RegisterDefinition {
   Register reg;
@@ -586,8 +584,6 @@ unordered_multimap<string, InstructionAssemblyDefinition> assembly_definitions({
 
 #undef handler_t
 
-
-
 static void remove_empty(vector<string>& t) {
   for (size_t x = 0; x < t.size();) {
     if (t[x].empty()) {
@@ -754,7 +750,7 @@ static void assemble_line(AMD64Assembler& as, const string& raw_line) {
           }
           if (ch == '-') {
             // check for leading - sign
-            if ((expr_tokens.size() == 1) && (expr_tokens.back().size() == 0)) {
+            if ((expr_tokens.size() == 1) && (expr_tokens.back().empty())) {
               expr_tokens_negative[0] = true;
             } else {
               expr_tokens.emplace_back();
@@ -869,8 +865,6 @@ static void assemble_line(AMD64Assembler& as, const string& raw_line) {
 
   throw invalid_argument("no typechecks matched");
 }
-
-
 
 AssembledFile assemble_file(const string& data) {
   auto lines = split(data, '\n');

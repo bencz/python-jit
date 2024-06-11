@@ -477,7 +477,7 @@ DictionaryObject::Traversal DictionaryObject::traverse(void *k, bool with_nodes,
                 raise_python_exception(exc_block, &MemoryError_instance);
                 throw bad_alloc();
             }
-            new(this->root) Node(1, 0, 0, nullptr, NULL, false);
+            new(this->root) Node(1, 0, 0, nullptr, nullptr, false);
             t.node = this->root;
             t.ch = 0x100;
             if (with_nodes)
@@ -494,10 +494,10 @@ DictionaryObject::Traversal DictionaryObject::traverse(void *k, bool with_nodes,
             raise_python_exception(exc_block, &MemoryError_instance);
             throw bad_alloc();
         }
-        new(this->root) Node(ch, ch, 0, NULL, NULL, false);
+        new(this->root) Node(ch, ch, 0, nullptr, nullptr, false);
     }
 
-    Node *parent_node = NULL;
+    Node *parent_node = nullptr;
     t.node = this->root;
     if (with_nodes)
     {
@@ -558,7 +558,7 @@ DictionaryObject::Traversal DictionaryObject::traverse(void *k, bool with_nodes,
     // the node wasn't found; fail if we're not supposed to create it
     if (!create)
     {
-        t.node = NULL;
+        t.node = nullptr;
         return t;
     }
 
@@ -595,7 +595,7 @@ DictionaryObject::Traversal DictionaryObject::traverse(void *k, bool with_nodes,
                 // new slots are at the low end of the range
                 for (; x < t.node->start; x++)
                 {
-                    new_node->set_slot(x, NULL, NULL, false, false);
+                    new_node->set_slot(x, nullptr, nullptr, false, false);
                 }
                 for (; x <= new_node->end; x++)
                 {
@@ -613,7 +613,7 @@ DictionaryObject::Traversal DictionaryObject::traverse(void *k, bool with_nodes,
                 }
                 for (; x <= new_node->end; x++)
                 {
-                    new_node->set_slot(x, NULL, NULL, false, false);
+                    new_node->set_slot(x, nullptr, nullptr, false, false);
                 }
             }
 
@@ -626,7 +626,7 @@ DictionaryObject::Traversal DictionaryObject::traverse(void *k, bool with_nodes,
                     throw logic_error("replaced node not found in parent");
                 }
                 free(old_slot_contents.value);
-                parent_node->set_slot(new_node->parent_slot, NULL, new_node, true, true);
+                parent_node->set_slot(new_node->parent_slot, nullptr, new_node, true, true);
             }
             else
             { // we're replacing the root node
@@ -673,7 +673,7 @@ DictionaryObject::Traversal DictionaryObject::traverse(void *k, bool with_nodes,
                            slot_contents.occupied);
 
         // link to the new node from the parent
-        t.node->set_slot(t.ch, NULL, new_node, true, true);
+        t.node->set_slot(t.ch, nullptr, new_node, true, true);
         this->node_count++;
 
         // move down to that node
@@ -723,7 +723,7 @@ bool dictionary_next_item(const DictionaryObject *d,
             return true;
         }
 
-        // current is not NULL - we're continuing iteration
+        // current is not nullptr - we're continuing iteration
     }
     else
     {
@@ -830,7 +830,7 @@ bool dictionary_next_item(const DictionaryObject *d,
 
 string dictionary_structure(const DictionaryObject *d)
 {
-    if (d->root == NULL)
+    if (d->root == nullptr)
     {
         return "()";
     }

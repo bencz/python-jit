@@ -1967,7 +1967,7 @@ Value execute_binary_operator(BinaryOperator oper, const Value &left,
             }
 
             const Value *list = nullptr;
-            const Value *multiplier = NULL;
+            const Value *multiplier = nullptr;
             if ((left.type == ValueType::List) || (left.type == ValueType::Tuple))
             {
                 list = &left;
@@ -1979,7 +1979,7 @@ Value execute_binary_operator(BinaryOperator oper, const Value &left,
                 multiplier = &left;
             }
 
-            // if list isn't NULL, then it's valid and already typechecked, but we
+            // if list isn't nullptr, then it's valid and already typechecked, but we
             // need to typecheck multiplier
             if (list)
             {
